@@ -1,0 +1,12 @@
+@import "../colors";
+
+div.anime-view {
+    div.container {
+        div.column div.rating {
+            margin-bottom: 1.5rem;
+        }
+    }
+    section.info-header {
+        background-color: $color-section;
+    }
+}

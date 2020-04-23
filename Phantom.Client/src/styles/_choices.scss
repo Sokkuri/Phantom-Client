@@ -1,0 +1,28 @@
+@import "./colors";
+
+.choices {
+    .choices__inner {
+        border-color: $color-secondary;
+        background-color: $color-secondary;
+
+        &:hover,
+        &:focus {
+            transition: all .2s !important;
+            border-color: $color-primary;
+        }
+    }
+
+    .choices__list--dropdown {
+        background-color: $color-secondary;
+
+        .choices__item,
+        .choices__item--choice {
+            color: $color-white;
+            padding-right: unset !important;
+
+            &.is-highlighted {
+                background-color: $color-secondary-lighter;
+            }
+        }
+    }
+}

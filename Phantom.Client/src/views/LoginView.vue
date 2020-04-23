@@ -1,0 +1,40 @@
+<template>
+  <div class="login">
+    <div class="container">
+      <div class="columns is-multiline">
+        <div class="column is-12">
+          <h1 class="title">Willkommen zurück!</h1>
+          <div class="field">
+            <label class="label">Nutzername</label>
+            <input v-model="username" class="input" id="username" autofocus required type="text" />
+          </div>
+          <div class="field">
+            <label class="label">Passwort</label>
+            <input v-model="password" class="input" id="password" autofocus required type="password" />
+          </div>
+          <button v-on:click="onSubmit" class="button is-primary is-fullwidth">Anmelden</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script lang="ts">
+import { Component, Vue } from "vue-property-decorator";
+import UserSessionManager from "@/common/security/UserSessionManager";
+import AnimeDataContext from "@/dataContexts/AnimeDataContext";
+
+@Component
+export default class LoginView extends Vue {
+    private sessionManager: UserSessionManager = new UserSessionManager();
+
+    private username: string = "";
+    private password: string = "";
+
+    private onSubmit() {
+        if (this.username && this.password) {
+            this.sessionManager.login(this.username, this.password);
+        }
+    }
+}
+</script>

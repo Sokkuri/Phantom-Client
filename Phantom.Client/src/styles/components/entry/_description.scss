@@ -1,0 +1,14 @@
+@import "../../colors";
+
+div.description {
+    overflow-wrap: break-word;
+
+    p {
+        color: $color-white-medium;
+        text-align: justify;
+    }
+
+    p.source {
+        margin-top: 1rem;
+    }
+}

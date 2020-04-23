@@ -1,0 +1,197 @@
+{
+    "offline": {
+        "title": "Was ist den hier los?",
+        "message": "Es kann aktuell keine Verbindung zur API hergestellt werden! Probiere es später erneut."
+    },
+    "global": {
+        "userList": {
+            "entryState": {
+                "planned": "Geplant",
+                "watching": "Am Schauen",
+                "completed": "Abgeschlossen",
+                "waiting": "Wartend",
+                "canceled": "Abgebrochen"
+            }
+        },
+        "anime": {
+            "type": {
+                "series": "Serie",
+                "movie": "Film",
+                "special": "Spezial",
+                "ova": "OVA"
+            }
+        },
+        "season": {
+            "winter": "Winter",
+            "spring": "Frühling",
+            "summer": "Sommer",
+            "fall": "Herbst"
+        },
+        "adaption": {
+            "anime": "Anime",
+            "manga": "Manga",
+            "visualNovel": "Visual Novel",
+            "lightNovel": "Light Novel",
+            "original": "Original",
+            "game": "Spiel",
+            "other": "Sonstige"
+        },
+        "state": {
+            "preAiring": "Pre-Airing",
+            "airing": "Airing",
+            "finished": "Abgeschlossen",
+            "uncompleted": "Abgebrochen"
+        },
+        "tag": {
+            "action": "Action",
+            "adventure": "Abenteuer",
+            "ageGap": "Altersunterschied",
+            "aliens": "Außerirdische",
+            "amnesia": "Gedächtnisverlust",
+            "androids": "Androiden",
+            "angel": "Engel",
+            "animalProtagonist": "Tiermenschen",
+            "apocalypse": "Apokalypse",
+            "archery": "Bogenschießen",
+            "baseball": "Baseball",
+            "basketball": "Basketball",
+            "boardGames": "Brettspiele",
+            "bountyHunter": "Kopfgeldjäger",
+            "martialArts": "Kampfsport",
+            "cannibalism": "Kannibalismus",
+            "cars": "Autos",
+            "comedy": "Komödie",
+            "cooking": "Kochen",
+            "criminals": "Verbrecher",
+            "curse": "Verflucht",
+            "cyberpunk": "Cyberpunk",
+            "cyborgs": "Cyborg",
+            "dancing": "Tanzen",
+            "demons": "Dämonen",
+            "dragons": "Drachen",
+            "drama": "Drama",
+            "alternativeWorld": "Alternative Welt",
+            "ecchi": "Ecchi",
+            "educational": "Lehrreich",
+            "episodic": "Episodisch",
+            "europe": "Europa",
+            "familyFriendly": "Familienfreundlich",
+            "fantasy": "Fantasy",
+            "ghost": "Geister",
+            "gods": "Götter",
+            "guns": "Schusswaffen",
+            "harem": "Harem",
+            "historical": "Historisch",
+            "horror": "Horror",
+            "idols": "Idole",
+            "illness": "Krankheit",
+            "atmospheric": "Atmosphärisch",
+            "loveTriangle": "Liebesdreieck",
+            "magic": "Magie",
+            "maids": "Dienstmädchen",
+            "mecha": "Mecha",
+            "medieval": "Mittelalter",
+            "military": "Militär",
+            "monsters": "Monster",
+            "music": "Musik",
+            "mystery": "Mystery",
+            "ninja": "Ninjas",
+            "universe": "Weltall",
+            "overpowered": "Overpowered",
+            "parody": "Parodie",
+            "pirates": "Piraten",
+            "prison": "Gefängnis",
+            "psychological": "Psychologisch",
+            "revenge": "Rache",
+            "reverseHarem": "Reverse-Harem",
+            "robot": "Roboter",
+            "romance": "Romantik",
+            "royalty": "Königtum",
+            "samurai": "Samurai",
+            "school": "Schule",
+            "sciFi": "Science-Fiction",
+            "seinen": "Seinen",
+            "sexualContent": "Sexueller-Inhalt",
+            "shoujo": "Shoujo",
+            "shoujoAi": "Shoujo-Ai",
+            "shounen": "Shounen",
+            "shounenAi": "Shounen-Ai",
+            "sliceOfLife": "Alltagssituation",
+            "soccer": "Fußball",
+            "sport": "Sport",
+            "steampunk": "Steampunk",
+            "superheroes": "Superhelden",
+            "supernatural": "Übernatürlich",
+            "survival": "Überleben",
+            "swordFight": "Schwertkampf",
+            "crimeStory": "Krimi",
+            "timeTravel": "Zeitreisen",
+            "tsundere": "Tsundere",
+            "vampires": "Vampire",
+            "videoGame": "Videospiel",
+            "war": "Krieg",
+            "witches": "Hexen",
+            "yaoi": "Yaoi",
+            "yuri": "Yuri",
+            "zombies": "Zombies",
+            "openEnd": "Offenes Ende",
+            "badEnd": "Negatives Ende",
+            "happyEnd": "Happy End",
+            "shortAnime": "Kurzanime",
+            "severalProtagonists": "Mehrere Protagonisten",
+            "isekai": "Isekai",
+            "difficultCircumstances": "Schwierige Umstände",
+            "violence": "Gewalt",
+            "thriller": "Thriller"
+        },
+        "notification": {
+            "savedSuccessfully": "Erfolgreich gespeichert"
+        }
+    },
+    "header": {
+        "blog": "Blog",
+        "browse": "Durchsuchen",
+        "login": "Anmelden",
+        "anime": {
+            "menuTitle": "Anime",
+            "currentSeason": "Aktuelle Season"
+        },
+        "community": {
+            "menuTitle": "Community",
+            "discord": "Discord",
+            "teamspeak": "TeamSpeak"
+        },
+        "user": {
+            "myAnimeList": "Meine Animeliste",
+            "settings": "Einstellungen",
+            "login": "Anmelden",
+            "logout": "Abmelden"
+        }
+    },
+    "blog": {
+        "title": "Neuigkeiten"
+    },
+    "anime": {
+        "details": {
+            "format": "Format",
+            "state": "Status",
+            "episodes": "Episoden",
+            "adaption": "Adaption",
+            "airedSeason": "Anfangsseason",
+            "endingSeason": "Endendeseason"
+        },
+        "heading": {
+            "tags": "Tags",
+            "details": "Details",
+            "companies": "Unternehmen"
+        },
+        "button": {
+            "addToList": "Zur Liste hinzufügen"
+        }
+    },
+    "components": {
+        "description": {
+            "source": "Quelle"
+        }
+    }
+}

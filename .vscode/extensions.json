@@ -1,0 +1,9 @@
+{
+    "recommendations": [
+        "EditorConfig.EditorConfig",
+        "msjsdiag.debugger-for-chrome",
+        "Zignd.html-css-class-completion",
+        "mrmlnc.vscode-scss",
+        "octref.vetur"
+    ]
+}

@@ -1,0 +1,13 @@
+@import "../../colors";
+
+div.rating {
+    span.icon i.fa {
+        &.fa-star {
+            color: $color-primary;
+        }
+
+        &.fa-star-o {
+            color: $color-secondary-lighter;
+        }
+    }
+}

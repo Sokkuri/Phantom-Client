@@ -1,0 +1,16 @@
+image: "wgamedia/phantom-client-continuous:latest"
+
+before_script:
+    - cd build/ci
+
+stages:
+    - build
+
+build:
+    stage: build
+    script:
+        - pwsh build.ps1
+
+cache:
+    paths:
+        - Phantom.Client/node_modules/

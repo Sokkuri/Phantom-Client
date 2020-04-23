@@ -1,0 +1,11 @@
+@import "../../colors";
+
+div.info-card {
+    background-color: $color-background-more-lighter;
+    text-align: center;
+    padding: 1rem;
+    p {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+}
