@@ -1,4 +1,4 @@
-$projectLocation = "../../Phantom.Client";
+$projectLocation = "../../";
 
 function prepareProject {
     npm install

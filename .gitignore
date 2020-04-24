@@ -12,7 +12,7 @@
 /**/docker/*.tar
 
 # Client
-Phantom.Client/dist
+/dist
 .env.local
 .env.*.local
 npm-debug.log*

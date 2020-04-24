@@ -1,0 +1,45 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
+
+@import "../colors";
+
+$navbar-dropdown-radius: 0;
+$navbar-height: 4.5rem;
+
+// Colors
+// Header general
+$navbar-background-color: $color-background-header;
+$navbar-item-color: $color-white;
+$navbar-item-hover-color: $color-primary;
+$navbar-item-hover-background-color: transparent;
+
+// Header dropdown
+$navbar-dropdown-background-color: $color-secondary;
+$navbar-dropdown-item-hover-color: $color-white;
+$navbar-dropdown-item-hover-background-color: $color-secondary-darker;
+$navbar-dropdown-arrow: $color-white-medium;
+
+@import "../../node_modules/bulma/sass/components/navbar.sass";
+@import "../../node_modules/bulma/sass/form/shared.sass";
+@import "../../node_modules/bulma/sass/form/tools.sass";
+@import "../../node_modules/bulma/sass/form/input-textarea.sass";
+
+nav {
+    div.navbar-brand {
+        .navbar-item img {
+            max-height: unset;
+        }
+    }
+
+    a.navbar-item,
+    a.navbar-link
+    {
+        font-weight: bold;
+        text-decoration: unset;
+    }
+
+    i:hover {
+        color: $navbar-item-hover-color;
+    }
+}

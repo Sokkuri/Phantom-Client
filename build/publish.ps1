@@ -1,4 +1,4 @@
-$projectLocation = "../Phantom.Client";
+$projectLocation = "../";
 
 function publishClient() {
     npm install

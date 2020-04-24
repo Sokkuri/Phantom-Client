@@ -1,0 +1,33 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
+
+@import "../../colors";
+
+div.blog-post {
+    padding: 1.5rem;
+    border-radius: 5px;
+    background-color: $color-background-more-lighter;
+
+    img {
+        max-width: 100%;
+        max-height: 20rem;
+        border-radius: 5px;
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    h3 a {
+        text-decoration: none;
+    }
+
+    p.content {
+        text-align: justify;
+        overflow-wrap: break-word;
+        color: $color-white-medium;
+    }
+
+    p.creation-date {
+        color: $color-white-medium;
+    }
+}
