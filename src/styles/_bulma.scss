@@ -22,17 +22,17 @@ $input-focus-border-color: $color-primary;
 
 // Button
 $button-color: $color-white;
-$button-hover-color: $color-white;
 $button-text-color: $color-white;
-$button-background-color: $color-secondary;
-$button-border-color: transparent;
-// $button-hover-border-color: transparent;
-
+$button-focus-color: $color-white;
+$button-active-color: $color-white;
 $button-hover-color: $color-white;
-$button-hover-border-color: $color-white;
 
-// $button-text-hover-background-color: $color-white;
-// $button-text-hover-color: $color-white;
+$button-background-color: $color-secondary;
+
+$button-border-color: transparent;
+$button-focus-border-color: transparent;
+$button-hover-border-color: transparent;
+$button-active-border-color: transparent;
 
 // Section
 $section-padding: 1.5rem 1rem;
@@ -44,9 +44,15 @@ $section-padding: 1.5rem 1rem;
 }
 
 button.button {
+    color: $color-white;
     text-transform: uppercase;
     font-size: 0.7rem;
     min-height: 2.5rem;
     font-weight: bold;
     letter-spacing: 0.06rem;
+
+    &:hover,
+    &:active {
+        background-image: linear-gradient(transparent, rgba(0,0,0, 0.05) 40%, rgba(0,0,0, 0.10));
+    }
 }
