@@ -225,8 +225,11 @@ export default class AnimeView extends Vue {
 
     private onEntryStateChange(value: string): void {
         if (value) {
-            this.userListDataContext.setAnimeState(this.anime.id, value);
-            Notification.addSuccess(value).show();
+            this.userListDataContext.setAnimeState(this.anime.id, value).then((x: RequestResult<void>) => {
+                if (x.successfully) {
+                    Notification.addSuccess(TranslationUtils.translate("global.notification.savedSuccessfully")).show();
+                }
+            });
         }
     }
 
