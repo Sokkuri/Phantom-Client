@@ -232,10 +232,8 @@ export default class AnimeView extends Vue {
 
     private onAddAnimeToListClick() {
         this.userListDataContext.addAnime(this.anime.id).then((x: RequestResult<void>) => {
-            console.log(x);
-
             if (x.successfully) {
-                Notification.addSuccess(TranslationUtils.translate("global.notification.savedSuccessfully"));
+                Notification.addSuccess(TranslationUtils.translate("global.notification.savedSuccessfully")).show();
             }
         });
     }
