@@ -26,4 +26,8 @@ export default class UserListDataContext extends BaseDataContext {
     public async setAnimeState(id: number, state: string): Promise<RequestResult<void>> {
         return super.post("setAnimeState", {id, state});
     }
+
+    public async setAnimeRating(id: number, rating: number): Promise<RequestResult<void>> {
+        return super.post("setAnimeRating", {id, rating});
+    }
 }

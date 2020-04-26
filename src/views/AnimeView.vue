@@ -31,6 +31,12 @@
                 <div class="columns is-multiline">
                     <div class="column is-2">
                         <DropdownComponent
+                            v-bind:elements="selectableRatings"
+                            v-bind:searchEnabled="false"
+                            v-bind:placeholder="true"
+                            @selectionChange="onEntryRatingChange"
+                        />
+                        <DropdownComponent
                             v-bind:elements="watchingStates"
                             v-bind:searchEnabled="false"
                             v-bind:placeholder="true"
@@ -127,12 +133,14 @@ export default class AnimeView extends Vue {
     private entryTags: Tag[] = [];
     private entryDetails: Array<KeyValuePair<string, string>> = [];
 
+    private selectableRatings: SelectListItem[] = [];
     private watchingStates: SelectListItem[] = [];
     private selectedValue: string = "";
 
     created() {
         const animeId: number = +this.$route.params.id;
 
+        this.selectableRatings = SelectListItemUtils.getItemsWithSameContent([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
         this.watchingStates = SelectListItemUtils.getTranslatedItems(Constants.WatchingStates.WatchingStates);
 
         if (animeId) {
@@ -153,7 +161,8 @@ export default class AnimeView extends Vue {
                                 if (userListResult.successfully && userListResult.data) {
                                     this.userListEntry = userListResult.data;
 
-                                    this.setUserListState();
+                                    this.overrideRatingWithUserlistData();
+                                    this.overrideWatchingStateWithUserlistData();
                                 }
                             });
                         }
@@ -212,14 +221,31 @@ export default class AnimeView extends Vue {
         }
     }
 
-    private setUserListState() {
-        if (this.userListEntry) {
-            let element = this.watchingStates.find(x => x.value == this.userListEntry.status) as SelectListItem;
-            const index = this.watchingStates.indexOf(element);
+    private overrideWatchingStateWithUserlistData() {
+        let element = this.selectableRatings.find(x => (+x.value) == this.userListEntry.overallRating) as SelectListItem;
+        const index = this.selectableRatings.indexOf(element);
 
-            element.selected = true;
+        element.selected = true;
 
-            Vue.set(this.watchingStates, index, element);
+        Vue.set(this.selectableRatings, index, element);
+    }
+
+    private overrideRatingWithUserlistData() {
+        let element = this.watchingStates.find(x => x.value == this.userListEntry.status) as SelectListItem;
+        const index = this.watchingStates.indexOf(element);
+
+        element.selected = true;
+
+        Vue.set(this.watchingStates, index, element);
+    }
+
+    private onEntryRatingChange(value: number): void {
+        if (value) {
+            this.userListDataContext.setAnimeRating(this.anime.id, value).then((x: RequestResult<void>) => {
+                if (x.successfully) {
+                    this.showSuccessfullySaveNotification();
+                }
+            })
         }
     }
 
@@ -227,7 +253,7 @@ export default class AnimeView extends Vue {
         if (value) {
             this.userListDataContext.setAnimeState(this.anime.id, value).then((x: RequestResult<void>) => {
                 if (x.successfully) {
-                    Notification.addSuccess(TranslationUtils.translate("global.notification.savedSuccessfully")).show();
+                    this.showSuccessfullySaveNotification();
                 }
             });
         }
@@ -236,9 +262,13 @@ export default class AnimeView extends Vue {
     private onAddAnimeToListClick() {
         this.userListDataContext.addAnime(this.anime.id).then((x: RequestResult<void>) => {
             if (x.successfully) {
-                Notification.addSuccess(TranslationUtils.translate("global.notification.savedSuccessfully")).show();
+                this.showSuccessfullySaveNotification();
             }
         });
+    }
+
+    private showSuccessfullySaveNotification() {
+        Notification.addSuccess(TranslationUtils.translate("global.notification.savedSuccessfully")).show();
     }
 }
 </script>

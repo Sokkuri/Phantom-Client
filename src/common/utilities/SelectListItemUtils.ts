@@ -15,4 +15,14 @@ export default class SelectListItemUtils {
 
         return items;
     }
+
+    public static getItemsWithSameContent<T extends string | number>(values: T[]): SelectListItem[] {
+        let items: SelectListItem[] = [];
+
+        values.forEach((x: T) => {
+            items.push(new SelectListItem({label: x.toString(), value: x}));
+        });
+
+        return items;
+    }
 }
