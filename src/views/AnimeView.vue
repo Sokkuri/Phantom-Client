@@ -45,7 +45,7 @@
                         <button class="button is-fullwidth" v-on:click="onAddAnimeToListClick">{{ $t("anime.button.addToList") }}</button>
                     </div>
                     <div class="column is-10">
-                        <h2 class="title">{{ $t("anime.heading.tags") }}</h2>
+                        <h2 class="subtitle">{{ $t("anime.heading.tags") }}</h2>
                         <div class="columns is-multiline"
                             v-if="anime.tags">
                             <div class="column is-10">
@@ -56,7 +56,7 @@
                                 />
                             </div>
                         </div>
-                        <h2 class="title">{{ $t("anime.heading.details") }}</h2>
+                        <h2 class="subtitle">{{ $t("anime.heading.details") }}</h2>
                         <div class="columns is-multiline">
                             <div class="column is-4"
                                 v-for="detail in entryDetails"
@@ -67,9 +67,9 @@
                                 />
                             </div>
                         </div>
-                        <h2 class="title">{{ $t("anime.heading.companies") }}</h2>
+                        <h2 class="subtitle">{{ $t("anime.heading.companies") }}</h2>
                         <div class="columns is-multiline">
-                            <div class="column is-is-2"
+                            <div class="column is-6"
                                 v-for="company in anime.companies"
                                 v-bind:key="company.name">
                                 <InfoCardComponent
@@ -77,6 +77,23 @@
                                 />
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="section contents">
+            <div class="container">
+                <div class="columns is-multiline">
+                    <div class="column is-12">
+                        <h2 class="title">{{ $t("anime.heading.contents") }}</h2>
+                    </div>
+                    <div class="column is-4"
+                        v-for="content in entryVideoContents"
+                        v-bind:key="content.id">
+
+                        <VideoComponent
+                            v-bind:youtubeUrl="content.url"
+                        />
                     </div>
                 </div>
             </div>
@@ -109,6 +126,9 @@ import KeyValuePair from "@/common/models/KeyValuePair";
 import TranslationUtils from "@/common/utilities/TranslationUtils";
 import TagComponent from "@/components/entry/TagComponent.vue";
 import Tag from "@/common/models/Tag";
+import VideoComponent from "@/components/global/VideoComponent.vue";
+import ContentDataContext from "@/dataContexts/ContentDataContext";
+import Content from "@/common/models/Content";
 
 @Component({
     components: {
@@ -118,15 +138,18 @@ import Tag from "@/common/models/Tag";
         RatingComponent,
         DropdownComponent,
         InfoCardComponent,
-        TagComponent
+        TagComponent,
+        VideoComponent
     }
 })
 export default class AnimeView extends Vue {
     private loading: boolean = false;
     private animeDataContext: AnimeDataContext = new AnimeDataContext();
     private userListDataContext: UserListDataContext = new UserListDataContext();
+    private contentDataContext: ContentDataContext = new ContentDataContext();
 
     private anime: Anime = new Anime();
+    private entryVideoContents: Content[] = [];
     private userListEntry: UserList = new UserList();
     private entryMainTitle: EntryTitle = new EntryTitle();
     private entryMainDescription: Description = new Description();
@@ -153,6 +176,12 @@ export default class AnimeView extends Vue {
                     this.setMainTitle();
                     this.setMainDescription();
                     this.setEntryDetails();
+
+                    this.contentDataContext.getAnimeContents(animeId).then((contentsResult: RequestResult<Array<Content>>) => {
+                        if (contentsResult.successfully && contentsResult.data) {
+                            this.entryVideoContents = contentsResult.data.filter(x => x.type == Constants.ContentTypes.Video);
+                        }
+                    });
 
                     // Only load the userlist date when there is a session.
                     new UserSessionManager().getCurrentSession().then((session => {

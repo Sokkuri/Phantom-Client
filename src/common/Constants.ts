@@ -60,6 +60,16 @@ const ova = animeTypePrefix + "ova";
 
 //#endregion
 
+//#region ContentTypes
+
+const contentTypePrefix = "global.content.type.";
+
+const episode = contentTypePrefix + "episode";
+const video = contentTypePrefix + "video";
+const streamLinking = contentTypePrefix + "streamLinking";
+
+//#endregion
+
 export default {
     Languages: {
         German: german,
@@ -79,6 +89,11 @@ export default {
         Movie: movie,
         Special: special,
         OVA: ova
+    },
+    ContentTypes: {
+        Episode: episode,
+        Video: video,
+        Streamlinking: streamLinking
     },
     Adaptions: {
         Anime: anime,
