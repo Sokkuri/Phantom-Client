@@ -35,10 +35,6 @@ export default class DropdownComponent extends Vue {
         }
     }
 
-    beforeUpdate() {
-        console.log("UPDATE!!!");
-    }
-
     @Watch("elements") onElementChange() {
         this.dropdown.clearChoices();
         this.dropdown.setChoices(this.prepareElements);
