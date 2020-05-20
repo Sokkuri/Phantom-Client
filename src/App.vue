@@ -17,6 +17,15 @@
                 </div>
             </div>
         </div>
+        <div class="changelog-modal">
+            <ModalComponent
+                v-bind:title="changelogTitle"
+                v-bind:visible="showChangelogModal">
+                <iframe
+                    v-bind:src="changelogUrl">
+                </iframe>
+            </ModalComponent>
+        </div>
         <div ref="mainContent" class="main-content">
             <Header />
             <router-view />
@@ -30,14 +39,20 @@ import Header from "@/components/HeaderComponent.vue";
 import { ConfigurationContext } from "@/dataContexts/ConfigurationDataContext";
 import VersionInfo from "@/common/models/VersionInfo";
 import RequestResult from "@/common/models/RequestResult";
+import ModalComponent from "@/components/global/ModalComponent.vue";
+import TranslationUtils from "@/common/utilities/TranslationUtils";
 
 @Component({
   components: {
-    Header
+    Header,
+    ModalComponent
   }
 })
 export default class App extends Vue {
     private dataContext: ConfigurationContext = new ConfigurationContext();
+    private showChangelogModal: boolean = false;
+    private changelogTitle: string = TranslationUtils.translate("changelog.title");
+    private changelogUrl: string = "";
 
     mounted() {
         this.startup();
@@ -52,10 +67,19 @@ export default class App extends Vue {
                 offlineMessage.hidden = false;
                 mainContent.hidden = true;
             } else {
-                const savedVersion = localStorage.getItem("Version");
+                const savedVersion = localStorage.getItem("ProductVersion");
 
-                if (savedVersion != result.data.version) {
-                    localStorage.setItem("Version", result.data.version);
+                if (savedVersion != result.data.productVersion) {
+                    localStorage.setItem("ProductVersion", result.data.productVersion);
+
+                    if (savedVersion) {
+                        this.dataContext.getChangelog().then((changelogResult: RequestResult<string>) => {
+                            if (changelogResult.successfully && changelogResult.data && changelogResult.data.replace("http://", "").replace("https://", "").split("/")[0] == "blog.playperium.eu") {
+                                this.changelogUrl = changelogResult.data;
+                                this.showChangelogModal = true;
+                            }
+                        });
+                    }
                 }
             }
         });

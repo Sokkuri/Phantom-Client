@@ -16,4 +16,10 @@ export class ConfigurationContext extends BaseDataContext {
             return result;
         });
     }
+
+    public getChangelog(): Promise<RequestResult<string>> {
+        return super.get<string>("getChangelog").then((result: RequestResult<string>) => {
+            return result;
+        });
+    }
 }

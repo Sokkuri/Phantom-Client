@@ -3,6 +3,6 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 export default class VersionInfo {
-    version: string;
+    productVersion: string;
     buildDate: Date;
 }

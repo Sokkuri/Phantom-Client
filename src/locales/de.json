@@ -3,6 +3,9 @@
         "title": "Was ist den hier los?",
         "message": "Es kann aktuell keine Verbindung zur API hergestellt werden! Probiere es später erneut."
     },
+    "changelog": {
+        "title": "Änderungen in der neuen Version"
+    },
     "global": {
         "userList": {
             "entryState": {
@@ -183,7 +186,8 @@
         "heading": {
             "tags": "Tags",
             "details": "Details",
-            "companies": "Unternehmen"
+            "companies": "Unternehmen",
+            "contents": "Trailer & Videos"
         },
         "button": {
             "addToList": "Zur Liste hinzufügen"

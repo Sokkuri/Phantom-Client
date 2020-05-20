@@ -8,6 +8,7 @@
 $link: $color-white;
 $primary: $color-primary;
 $title-color: $color-white;
+$subtitle-color: $color-white;
 
 // Label
 $label-color: $color-white;
@@ -36,6 +37,13 @@ $button-active-border-color: transparent;
 
 // Section
 $section-padding: 1.5rem 1rem;
+
+// Modal
+$modal-card-title-color: $color-white;
+$modal-card-head-background-color: $color-background-more-lighter;
+$modal-card-body-background-color: $color-background-more-lighter;
+$modal-card-head-border-bottom: 0;
+$modal-card-foot-border-top: 0;
 
 @import "../../node_modules/bulma/bulma.sass";
 
