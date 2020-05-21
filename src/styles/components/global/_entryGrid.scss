@@ -15,3 +15,19 @@ div.entry-grid {
         }
     }
 }
+
+.tippy-box[data-theme~='entryGrid'] {
+    padding: 1rem;
+
+    p {
+        font-weight: bold;
+    }
+
+    div.tags {
+        margin-top: 1rem;
+
+        span.tag {
+            margin-right: 0.5rem;
+        }
+    }
+}
