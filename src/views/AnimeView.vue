@@ -16,12 +16,14 @@
                         <button class="button is-primary is-fullwidth">Loading</button>
                     </div>
                     <div class="column is-10">
-                        <h1 class="title">{{ entryMainTitle.title }}</h1>
-                        <RatingComponent v-bind:selected="anime.overallRating" />
-                        <DescriptionComponent
-                            v-bind:content="entryMainDescription.content"
-                            v-bind:source="entryMainDescription.source"
-                        />
+                        <div class="info-header-content">
+                            <h1 class="title">{{ entryMainTitle.title }}</h1>
+                            <RatingComponent v-bind:selected="anime.overallRating" />
+                            <DescriptionComponent
+                                v-bind:content="entryMainDescription.content"
+                                v-bind:source="entryMainDescription.source"
+                            />
+                        </div>
                     </div>
                 </div>
             </div>

@@ -5,6 +5,17 @@
 @import "../colors";
 
 div.anime-view {
+    section.info-header {
+        img {
+            min-height: 19rem;
+            margin-bottom: 1rem;
+        }
+
+        div.info-header-content {
+            margin-top: 2rem;
+        }
+    }
+
     div.container {
         div.column {
             div.rating {
