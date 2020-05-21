@@ -7,6 +7,11 @@
         "title": "Änderungen in der neuen Version"
     },
     "global": {
+        "language": {
+            "german": "Deutsch",
+            "english": "Englisch",
+            "japanese": "Romaji"
+        },
         "userList": {
             "entryState": {
                 "planned": "Geplant",
@@ -186,8 +191,9 @@
         "heading": {
             "tags": "Tags",
             "details": "Details",
+            "contents": "Trailer & Videos",
             "companies": "Unternehmen",
-            "contents": "Trailer & Videos"
+            "synonyms": "Synonyme"
         },
         "button": {
             "addToList": "Zur Liste hinzufügen"

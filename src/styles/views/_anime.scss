@@ -6,8 +6,29 @@
 
 div.anime-view {
     div.container {
-        div.column div.rating {
-            margin-bottom: 1.5rem;
+        div.column {
+            div.rating {
+                margin-bottom: 1.5rem;
+            }
+
+            div.additional-information {
+                background-color: $color-background-more-lighter;
+                padding: 1rem;
+                margin-top: 1.5rem;
+
+                div {
+                    padding-bottom: 1rem;
+
+                    h6 {
+                        padding-bottom: 0.5rem;
+                        font-weight: bold;
+                    }
+
+                    p {
+                        overflow-wrap: break-word;
+                    }
+                }
+            }
         }
     }
 

@@ -43,6 +43,19 @@
                             @selectionChange="onEntryStateChange"
                         />
                         <button class="button is-fullwidth" v-on:click="onAddAnimeToListClick">{{ $t("anime.button.addToList") }}</button>
+
+                        <div class="additional-information"
+                            v-if="additionalEntryInfos.length > 0">
+                            <div
+                                v-for="info in additionalEntryInfos"
+                                v-bind:key="info.key">
+
+                                <h6>{{ $t(info.key) }}</h6>
+                                <p
+                                    v-for="val in info.value"
+                                    v-bind:key="val">{{ val }}</p>
+                            </div>
+                        </div>
                     </div>
                     <div class="column is-10">
                         <h2 class="subtitle">{{ $t("anime.heading.tags") }}</h2>
@@ -155,6 +168,7 @@ export default class AnimeView extends Vue {
     private entryMainDescription: Description = new Description();
     private entryTags: Tag[] = [];
     private entryDetails: Array<KeyValuePair<string, string>> = [];
+    private additionalEntryInfos: KeyValuePair<string, string[]>[] = [];
 
     private selectableRatings: SelectListItem[] = [];
     private watchingStates: SelectListItem[] = [];
@@ -176,6 +190,7 @@ export default class AnimeView extends Vue {
                     this.setMainTitle();
                     this.setMainDescription();
                     this.setEntryDetails();
+                    this.setAdditionalInformation();
 
                     this.contentDataContext.getAnimeContents(animeId).then((contentsResult: RequestResult<Array<Content>>) => {
                         if (contentsResult.successfully && contentsResult.data) {
@@ -248,6 +263,39 @@ export default class AnimeView extends Vue {
 
             this.entryDetails = this.entryDetails.concat(details);
         }
+    }
+
+    private setAdditionalInformation() {
+        let infos: KeyValuePair<string, string[]>[] = [];
+
+        const otherTitles = this.anime.titles.filter(x => x != this.entryMainTitle);
+
+        otherTitles.forEach(x => {
+            infos.push(new KeyValuePair<string, string[]> ({
+                key: x.language,
+                value: [x.title]
+            }));
+        });
+
+        const synonyms = this.anime.synonyms.map(x => x.title);
+
+        if (synonyms && synonyms.length > 0) {
+            infos.push(new KeyValuePair<string, string[]>({
+                key: "anime.heading.synonyms",
+                value: synonyms
+            }));
+        }
+
+        const companyTitles = this.anime.companies.map(x => x.name);
+
+        if (companyTitles && companyTitles.length > 0) {
+            infos.push(new KeyValuePair<string, string[]>({
+                key: "anime.heading.companies",
+                value: companyTitles
+            }));
+        }
+
+        this.additionalEntryInfos = this.additionalEntryInfos.concat(infos);
     }
 
     private overrideWatchingStateWithUserlistData() {

@@ -6,6 +6,7 @@ import BaseModel from "./BaseModel";
 import Company from "./Company";
 import Description from "./Description";
 import EntryTitle from "./EntryTitle";
+import Synonym from "./Synonym";
 import SystemFile from "./SystemFile";
 import Tag from "./Tag";
 
@@ -25,4 +26,5 @@ export default class Anime extends BaseModel {
     overallRating: number;
     tags: Tag[];
     companies: Company[];
+    synonyms: Synonym[];
 }
