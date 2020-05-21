@@ -3,28 +3,12 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 import BaseEntry from "./BaseEntry";
-import Company from "./Company";
-import Description from "./Description";
-import EntryTitle from "./EntryTitle";
-import Synonym from "./Synonym";
-import SystemFile from "./SystemFile";
-import Tag from "./Tag";
 
 export default class Anime extends BaseEntry {
-    titles: EntryTitle[];
-    type: string;
-    status: string;
     adaptation: string;
     episodes: number;
     airedSeason: string;
     airedYear: string;
     endingSeason: string;
     endingYear: string;
-    descriptions: Description[];
-    systemFile: SystemFile;
-    creationDate: Date;
-    overallRating: number;
-    tags: Tag[];
-    companies: Company[];
-    synonyms: Synonym[];
 }

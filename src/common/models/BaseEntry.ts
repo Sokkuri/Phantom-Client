@@ -13,6 +13,7 @@ import Tag from "./Tag";
 export default class BaseEntry extends BaseModel {
     titles: EntryTitle[];
     synonyms: Synonym[];
+    type: string;
     status: string;
     descriptions: Description[];
     tags: Tag[];
