@@ -16,4 +16,10 @@ export default class AnimeDataContext extends BaseDataContext {
             return x;
         });
     }
+
+    public async getSimilarAnimes(id: number): Promise<RequestResult<Anime[]>> {
+        return super.get<Anime[]>("getSimilarAnimes/" + id).then((x: RequestResult<Anime[]>) => {
+            return x;
+        });
+    }
 }

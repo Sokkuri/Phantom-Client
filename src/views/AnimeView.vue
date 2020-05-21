@@ -80,16 +80,11 @@
                                 />
                             </div>
                         </div>
-                        <h2 class="subtitle">{{ $t("anime.heading.companies") }}</h2>
-                        <div class="columns is-multiline">
-                            <div class="column is-6"
-                                v-for="company in anime.companies"
-                                v-bind:key="company.name">
-                                <InfoCardComponent
-                                    v-bind:content="company.name"
-                                />
-                            </div>
-                        </div>
+                        <h2 class="subtitle">{{ $t("anime.heading.similiarAnimes") }}</h2>
+                        <EntryGridComponent
+                            v-bind:colspan="2"
+                            v-bind:entries="similiarAnimes"
+                        />
                     </div>
                 </div>
             </div>
@@ -142,6 +137,9 @@ import Tag from "@/common/models/Tag";
 import VideoComponent from "@/components/global/VideoComponent.vue";
 import ContentDataContext from "@/dataContexts/ContentDataContext";
 import Content from "@/common/models/Content";
+import EntryGridComponent from "@/components/global/EntryGridComponent.vue";
+import BaseEntry from "@/common/models/BaseEntry";
+import EntryUtils from "@/common/utilities/EntryUtils";
 
 @Component({
     components: {
@@ -152,7 +150,8 @@ import Content from "@/common/models/Content";
         DropdownComponent,
         InfoCardComponent,
         TagComponent,
-        VideoComponent
+        VideoComponent,
+        EntryGridComponent
     }
 })
 export default class AnimeView extends Vue {
@@ -169,6 +168,7 @@ export default class AnimeView extends Vue {
     private entryTags: Tag[] = [];
     private entryDetails: Array<KeyValuePair<string, string>> = [];
     private additionalEntryInfos: KeyValuePair<string, string[]>[] = [];
+    private similiarAnimes: Anime[] = [];
 
     private selectableRatings: SelectListItem[] = [];
     private watchingStates: SelectListItem[] = [];
@@ -187,7 +187,7 @@ export default class AnimeView extends Vue {
                 if (animeResult.successfully && animeResult.data) {
                     this.anime = animeResult.data;
 
-                    this.setMainTitle();
+                    this.entryMainTitle = EntryUtils.getPrimaryTitle(this.anime.titles, Constants.Languages.German);
                     this.setMainDescription();
                     this.setEntryDetails();
                     this.setAdditionalInformation();
@@ -195,6 +195,12 @@ export default class AnimeView extends Vue {
                     this.contentDataContext.getAnimeContents(animeId).then((contentsResult: RequestResult<Array<Content>>) => {
                         if (contentsResult.successfully && contentsResult.data) {
                             this.entryVideoContents = contentsResult.data.filter(x => x.type == Constants.ContentTypes.Video);
+                        }
+                    });
+
+                    this.animeDataContext.getSimilarAnimes(animeId).then((similiarAnimesResult: RequestResult<Anime[]>) => {
+                        if (similiarAnimesResult.successfully && similiarAnimesResult.data) {
+                            this.similiarAnimes = similiarAnimesResult.data;
                         }
                     });
 
@@ -215,14 +221,6 @@ export default class AnimeView extends Vue {
             }).finally(() => {
                 this.loading = false;
             });
-        }
-    }
-
-    private setMainTitle() {
-        if (this.anime.titles && this.anime.titles.length > 0) {
-            this.entryMainTitle = this.anime.titles
-                .some(x => x.language == Constants.Languages.German) ?
-                    (this.anime.titles.find(x => x.language == Constants.Languages.German) as EntryTitle) : (_.first(this.anime.titles) as EntryTitle)
         }
     }
 

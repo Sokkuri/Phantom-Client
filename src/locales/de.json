@@ -193,7 +193,8 @@
             "details": "Details",
             "contents": "Trailer & Videos",
             "companies": "Unternehmen",
-            "synonyms": "Synonyme"
+            "synonyms": "Synonyme",
+            "similiarAnimes": "Vielleicht gefällt dir auch"
         },
         "button": {
             "addToList": "Zur Liste hinzufügen"
