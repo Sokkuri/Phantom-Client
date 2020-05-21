@@ -3,9 +3,7 @@
    - file, You can obtain one at https://mozilla.org/MPL/2.0/. -->
 
 <template>
-    <div>
-        <img ref="imageElement" class="image clickable-image" v-bind:src="imageUrl" />
-    </div>
+    <img ref="imageElement" class="image clickable-image" v-bind:src="imageUrl" />
 </template>
 
 <script lang="ts">
