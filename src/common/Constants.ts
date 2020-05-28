@@ -51,7 +51,7 @@ const canceled = watchingStatePrefix + "canceled";
 
 //#region AnimeTypes
 
-const animeTypePrefix = "global.userList.entryState.";
+const animeTypePrefix = "global.anime.type.";
 
 const series = animeTypePrefix + "series";
 const movie = animeTypePrefix + "movie";
@@ -67,6 +67,18 @@ const contentTypePrefix = "global.content.type.";
 const episode = contentTypePrefix + "episode";
 const video = contentTypePrefix + "video";
 const streamLinking = contentTypePrefix + "streamLinking";
+
+//#endregion
+
+//#region CompanyTypes
+
+const companyTypePrefix = "global.company.type.";
+
+const publisher = companyTypePrefix + "publisher";
+const studio = companyTypePrefix + "studio";
+const streamingService = companyTypePrefix + "streamingService";
+const developerStudio = companyTypePrefix + "developerStudio";
+const tvSender = companyTypePrefix + "tvSender";
 
 //#endregion
 
@@ -88,12 +100,21 @@ export default {
         Series: series,
         Movie: movie,
         Special: special,
-        OVA: ova
+        OVA: ova,
+        AnimeTypes: [ series, movie, special, ova ]
     },
     ContentTypes: {
         Episode: episode,
         Video: video,
         Streamlinking: streamLinking
+    },
+    CompanyTypes: {
+        Publisher: publisher,
+        Studio: studio,
+        StreamingService: streamingService,
+        DeveloperStudio: developerStudio,
+        TvSender: tvSender,
+        CompanyTypes: [ publisher, studio, streamingService, developerStudio, tvSender ]
     },
     Adaptions: {
         Anime: anime,
@@ -108,6 +129,7 @@ export default {
         PreAiring: preAiring,
         Airing: airing,
         Finished: finished,
-        Uncompleted: uncompleted
+        Uncompleted: uncompleted,
+        States: [ preAiring, airing, finished, uncompleted ]
     }
 }

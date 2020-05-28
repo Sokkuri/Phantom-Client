@@ -4,10 +4,11 @@
 
 import EntryTitle from "@/common/models/EntryTitle";
 import _ from "lodash";
+import Settings from "../Settings";
 
 export default class EntryUtils {
-    public static getPrimaryTitle(titles: EntryTitle[], primaryLanguage: string) {
-        return titles.some(x => x.language == primaryLanguage) ?
-            (titles.find(x => x.language == primaryLanguage) as EntryTitle) : (_.first(titles) as EntryTitle);
+    public static getTitle(titles: EntryTitle[]) {
+        return titles.some(x => x.language == Settings.FallbackPrimaryLanguage) ?
+            (titles.find(x => x.language == Settings.FallbackPrimaryLanguage) as EntryTitle) : (_.first(titles) as EntryTitle);
     }
 }

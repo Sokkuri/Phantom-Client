@@ -2,10 +2,18 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
-import Constants from "./Constants";
+.tippy-box[data-theme~='phantom'] {
+    padding: 1rem;
 
-export default {
-    ApiUrl: "/api/",
-    ClientId: "phantom",
-    FallbackPrimaryLanguage: Constants.Languages.English
+    p {
+        font-weight: bold;
+    }
+
+    div.tags {
+        margin-top: 1rem;
+
+        span.tag {
+            margin-right: 0.5rem;
+        }
+    }
 }

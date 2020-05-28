@@ -83,8 +83,9 @@
                             </div>
                         </div>
                         <h2 class="subtitle">{{ $t("anime.heading.similiarAnimes") }}</h2>
-                        <EntryGridComponent
+                        <AnimeGridComponent
                             v-bind:colspan="2"
+                            v-bind:entryType="'anime'"
                             v-bind:entries="similiarAnimes"
                         />
                     </div>
@@ -139,7 +140,7 @@ import Tag from "@/common/models/Tag";
 import VideoComponent from "@/components/global/VideoComponent.vue";
 import ContentDataContext from "@/dataContexts/ContentDataContext";
 import Content from "@/common/models/Content";
-import EntryGridComponent from "@/components/global/EntryGridComponent.vue";
+import AnimeGridComponent from "@/components/global/grid/AnimeGridComponent.vue";
 import BaseEntry from "@/common/models/BaseEntry";
 import EntryUtils from "@/common/utilities/EntryUtils";
 
@@ -153,7 +154,7 @@ import EntryUtils from "@/common/utilities/EntryUtils";
         InfoCardComponent,
         TagComponent,
         VideoComponent,
-        EntryGridComponent
+        AnimeGridComponent
     }
 })
 export default class AnimeView extends Vue {
@@ -189,7 +190,7 @@ export default class AnimeView extends Vue {
                 if (animeResult.successfully && animeResult.data) {
                     this.anime = animeResult.data;
 
-                    this.entryMainTitle = EntryUtils.getPrimaryTitle(this.anime.titles, Constants.Languages.German);
+                    this.entryMainTitle = EntryUtils.getTitle(this.anime.titles);
                     this.setMainDescription();
                     this.setEntryDetails();
                     this.setAdditionalInformation();

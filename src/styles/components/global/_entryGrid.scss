@@ -5,29 +5,15 @@
 div.entry-grid {
     div.column {
         a img {
-            min-height: 15rem;
+            min-height: 16rem;
+            max-height: 16rem;
             width: 100%;
             margin-bottom: 1rem;
+            border-radius: 5px;
         }
 
         a.link {
             display: block;
-        }
-    }
-}
-
-.tippy-box[data-theme~='entryGrid'] {
-    padding: 1rem;
-
-    p {
-        font-weight: bold;
-    }
-
-    div.tags {
-        margin-top: 1rem;
-
-        span.tag {
-            margin-right: 0.5rem;
         }
     }
 }
