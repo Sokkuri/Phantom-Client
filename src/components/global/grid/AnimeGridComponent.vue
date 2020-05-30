@@ -12,6 +12,8 @@ import AnimeTooltip from "@/common/tooltips/AnimeTooltip";
 export default class AnimeGridComponent extends BaseEntryGridComponent {
     @Prop() protected entries!: Anime[];
 
+    protected entryType: string = "anime";
+
     protected initTooltips() {
         let elements = document.querySelectorAll("div.entry-grid div div.tooltip");
 

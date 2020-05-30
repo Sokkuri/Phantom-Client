@@ -34,8 +34,9 @@ import TranslationUtils from "@/common/utilities/TranslationUtils";
 })
 export default class BaseEntryGridComponent extends Vue {
     @Prop() protected colspan!: number;
-    @Prop() protected entryType!: string;
     @Prop() protected entries!: BaseEntry[];
+
+    protected entryType!: string;
 
     private elementClasses: string = "";
     private contents: KeyValuePair<string, BaseEntry>[] = [];

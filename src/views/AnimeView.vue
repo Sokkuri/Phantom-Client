@@ -85,7 +85,6 @@
                         <h2 class="subtitle">{{ $t("anime.heading.similiarAnimes") }}</h2>
                         <AnimeGridComponent
                             v-bind:colspan="2"
-                            v-bind:entryType="'anime'"
                             v-bind:entries="similiarAnimes"
                         />
                     </div>
