@@ -213,7 +213,8 @@
                 "excludedTags": "Ausgeschlossene Tags",
                 "includedContentCompanies": "Streamingdienste"
             }
-        }
+        },
+        "noResults": "Keine Ergebnisse gefunden"
     },
     "components": {
         "description": {

@@ -45,6 +45,7 @@
                     <button class="button is-primary" v-on:click="submitSearch">{{ $t("search.anime.button.search") }}</button>
                 </div>
                 <div class="column is-12">
+                    <h2 class="subtitle has-text-centered" v-if="searchResults.length == 0 && lastSearchResultCount == 0 && !initState">{{ $t("search.noResults") }}</h2>
                     <AnimeGridComponent
                         v-bind:colspan="2"
                         v-bind:entries="searchResults"
@@ -91,6 +92,7 @@ export default class AnimeSearchView extends Vue {
     private searchSettings: SearchSettings = new SearchSettings({ types: [], states: [], includedTagIds: [], excludedTagIds: [], page: 1 });
 
     private lastSearchResultCount: number = 0;
+    private initState: boolean = true;
 
     created() {
         this.selectableTypes = SelecListItemUtils.getTranslatedItems(Constants.AnimeTypes.AnimeTypes, [Constants.AnimeTypes.Series]);
@@ -126,7 +128,7 @@ export default class AnimeSearchView extends Vue {
         document.addEventListener("scroll", (x) => {
             this.$nextTick(() => {
                 // Search only if search results are still possible.
-                if (this.searchSettings.page == 1 || this.lastSearchResultCount != 0) {
+                if (this.searchSettings.page == 1 || this.lastSearchResultCount >= 20) {
                     const lastEntry = document.querySelector("div.entry-grid div:last-of-type div.tooltip") as HTMLDivElement;
 
                     if (lastEntry && !this.loading) {
@@ -146,7 +148,7 @@ export default class AnimeSearchView extends Vue {
         this.searchResults = [];
         this.searchSettings.page = 1;
 
-        this.search();
+        this.search().then(() => this.initState = false);
     }
 
     private loadNextPage() {
@@ -154,12 +156,12 @@ export default class AnimeSearchView extends Vue {
         this.search();
     }
 
-    private search() {
+    private async search() {
         const searchDataContext = new SearchDataContext();
 
         this.loading = true;
 
-        searchDataContext.animeSearch(this.searchSettings).then(x => {
+        await searchDataContext.animeSearch(this.searchSettings).then(x => {
             if (x.successfully && x.data) {
                 this.loading = false;
                 this.searchResults = _.unionBy(this.searchResults.concat(x.data), x => x.id);
