@@ -23,7 +23,7 @@
             <div class="navbar-start">
                 <a href="http://blog.playperium.eu" target="_blank" rel="noopener noreferrer"
                     class="navbar-item">{{ $t("header.blog") }}</a>
-                <a asp-controller="Search" asp-action="Advanced" class="navbar-item">{{ $t("header.browse") }}</a>
+                <router-link to="/search/anime" tag="a" class="navbar-item">{{ $t("header.browse") }}</router-link>
 
                 <div class="navbar-item has-dropdown is-hoverable">
                     <a class="navbar-link">{{ $t("header.anime.menuTitle") }}</a>
