@@ -207,7 +207,7 @@
                 "search": "Suchen"
             },
             "label": {
-                "type": "Type",
+                "format": "Format",
                 "state": "Status",
                 "includedTags": "Enthaltene Tags",
                 "excludedTags": "Ausgeschlossene Tags",

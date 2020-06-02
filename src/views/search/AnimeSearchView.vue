@@ -10,13 +10,13 @@
                     <h1 class="title">{{ $t("search.anime.title")}}</h1>
                 </div>
                 <div class="column is-6">
-                    <label class="label">{{ $t("search.anime.label.type") }}</label>
+                    <label class="label">{{ $t("search.anime.label.format") }}</label>
                     <MultiSelectComponent
                         v-bind:elements="selectableTypes"
                         v-model="searchSettings.types"
                     />
 
-                    <label class="label">{{ $t("search.anime.label.state") }}</label>
+                    <label class="label">{{ $t("search.anime.label.includedTags") }}</label>
                     <MultiSelectComponent
                         v-bind:elements="selectableTags"
                         v-model="searchSettings.includedTagIds"
@@ -29,7 +29,7 @@
                     />
                 </div>
                 <div class="column is-6">
-                    <label class="label">{{ $t("search.anime.label.excludedTags") }}</label>
+                    <label class="label">{{ $t("search.anime.label.state") }}</label>
                     <MultiSelectComponent
                         v-bind:elements="selectableStates"
                         v-model="searchSettings.states"
