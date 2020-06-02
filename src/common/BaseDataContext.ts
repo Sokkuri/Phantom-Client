@@ -29,7 +29,7 @@ export abstract class BaseDataContext {
         }
 
         return instance.get(this.buildUrl(methode)).then((x: AxiosResponse) => {
-            return new RequestResult<T>({successfully: true, data: x.data});
+            return new RequestResult<T>({ successfully: true, statusCode: x.status, data: x.data });
         }).catch((error: AxiosError) => {
             // Redirect to loginpage when response is unauthorized
             if (error.response && error.response.status == 401) {
@@ -37,7 +37,7 @@ export abstract class BaseDataContext {
             }
 
             console.log(error);
-            return new RequestResult<T>({successfully: false});
+            return new RequestResult<T>({ successfully: false, statusCode: error.response ? error.response.status : undefined });
         });
     }
 
@@ -50,7 +50,7 @@ export abstract class BaseDataContext {
         }
 
         return instance.post(this.buildUrl(methode), data).then((x: AxiosResponse) => {
-            return new RequestResult<T>({successfully: true, data: x.data});
+            return new RequestResult<T>({ successfully: true, statusCode: x.status, data: x.data });
         }).catch((error: AxiosError) => {
             // Redirect to loginpage when response is unauthorized
             if (error.response && error.response.status == 401) {
@@ -58,7 +58,10 @@ export abstract class BaseDataContext {
             }
 
             console.log(error);
-            return new RequestResult<T>({successfully: false});
+
+            let statusCode = error.response ? error.response.status : undefined;
+
+            return new RequestResult<T>({ successfully: false, statusCode: error.response ? error.response.status : undefined });
         });
     }
 }

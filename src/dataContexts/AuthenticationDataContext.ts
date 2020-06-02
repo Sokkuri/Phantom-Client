@@ -25,10 +25,10 @@ export default class AuthenticationDataContext {
         }
 
         return instance.post(this.buildUrl("login"), params).then((x: AxiosResponse) => {
-            return new RequestResult<AuthData>({successfully: true, data: x.data});
+            return new RequestResult<AuthData>({ successfully: true, statusCode: x.status, data: x.data });
         }).catch((error: AxiosError) => {
             console.log(error);
-            return new RequestResult<AuthData>({successfully: false});
+            return new RequestResult<AuthData>({ successfully: false, statusCode: error.response ? error.response.status : undefined });
         });
     }
 
@@ -44,10 +44,10 @@ export default class AuthenticationDataContext {
         }
 
         return instance.post(this.buildUrl("login"), params).then((x: AxiosResponse) => {
-            return new RequestResult({successfully: true, data: x.data});
+            return new RequestResult({ successfully: true, statusCode: x.status, data: x.data });
         }).catch((error: AxiosError) => {
             console.log(error);
-            return new RequestResult<AuthData>({successfully: false})
+            return new RequestResult<AuthData>({ successfully: false, statusCode: error.response ? error.response.status : undefined })
         });
     }
 

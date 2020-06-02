@@ -4,12 +4,15 @@
 
 export default class RequestResult<T> {
     successfully: boolean;
+    statusCode?: number;
     data?: T;
 
     constructor(options: {
         successfully: boolean,
-        data?: T }) {
+        statusCode?: number,
+        data?: T, }) {
             this.successfully = options.successfully;
             this.data = options.data;
+            this.statusCode = options.statusCode;
         }
 }
