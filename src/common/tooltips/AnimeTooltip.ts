@@ -21,17 +21,15 @@ export default class AnimeTooltip extends BaseTooltip {
         const id = instance.reference.getAttribute("data-id");
         const data = this.entries.find(x => x.id.toString() === id) as Anime;
 
-        let infoElements: string = "";
-
         let infos: string[] = [];
-        infos.push(TranslationUtils.translate(data.type));
-        infos.push(TranslationUtils.translate(data.status));
 
-        const studio = data.companies.find(x => x.type == Constants.CompanyTypes.Studio);
-
-        if (studio) {
-            infos.push(studio.name);
+        if (data.type == Constants.AnimeTypes.Movie || data.episodes == 0) {
+            infos.push(_.escape(TranslationUtils.translate(data.type)));
+        } else {
+            infos.push(`${_.escape(TranslationUtils.translate(data.type))} - ${data.episodes} ${TranslationUtils.translate("anime.details.episodes")}`);
         }
+
+        infos.push(_.escape(TranslationUtils.translate(data.status)));
 
         let tagElements: string = "";
 
