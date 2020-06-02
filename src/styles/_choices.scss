@@ -5,6 +5,8 @@
 @import "./colors";
 
 .choices {
+    margin-bottom: 24px !important;
+
     .choices__inner {
         border-color: $color-secondary;
         background-color: $color-secondary;
@@ -26,6 +28,28 @@
 
             &.is-highlighted {
                 background-color: $color-secondary-lighter;
+            }
+        }
+    }
+
+    &[data-type*=select-multiple] {
+        input.choices__input {
+            background-color: transparent;
+        }
+
+        .choices__list--multiple {
+            .choices__item {
+                background-color: $color-secondary-more-lighter;
+                border: none;
+
+                &.choices__item--selectable {
+                    cursor: default;
+                }
+
+                button {
+                    border: none;
+                    margin: unset;
+                }
             }
         }
     }
