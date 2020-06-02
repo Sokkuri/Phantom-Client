@@ -42,15 +42,20 @@ export default class UserSessionManager {
         if (savedSession) {
             if (this.validateAccessToken(savedSession)) {
                 return savedSession;
-            } else {
+            } else if (!UserSession.RefreshInProgress) {
+                UserSession.RefreshInProgress = true;
+
                 const sessionRefreshResult = await this.refresh(savedSession);
 
                 if (!sessionRefreshResult.successfully || !sessionRefreshResult.data) {
                     UserSession.removeSavedSession();
+                    UserSession.RefreshInProgress = false;
                     return null;
                 }
 
                 UserSession.setSession(sessionRefreshResult.data);
+                UserSession.RefreshInProgress = false;
+
                 return sessionRefreshResult.data;
             }
         }
@@ -82,7 +87,7 @@ export default class UserSessionManager {
     private validateAccessToken(authData: AuthData): boolean {
         if (authData.issueDate) {
             const issueDate = TimeUtils.parseISO(authData.issueDate);
-            const expirationDate = TimeUtils.addMinutes(issueDate, 30);
+            const expirationDate = TimeUtils.addSeconds(issueDate, authData.expires_in);
 
             if (TimeUtils.isAfter(expirationDate, new Date())) {
                 return true;

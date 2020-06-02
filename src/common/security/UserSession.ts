@@ -5,6 +5,8 @@
 import AuthData from "@/common/models/AuthData";
 
 export default class UserSession {
+    public static RefreshInProgress: boolean = false;
+
     public static getSavedSession(): AuthData | null {
         const json = localStorage.getItem("Session");
 
