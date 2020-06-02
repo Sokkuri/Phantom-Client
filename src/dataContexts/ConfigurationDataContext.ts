@@ -4,9 +4,10 @@
 
 import { BaseDataContext } from "@/common/BaseDataContext";
 import RequestResult from "@/common/models/RequestResult";
+import Tag from "@/common/models/Tag";
 import VersionInfo from "@/common/models/VersionInfo";
 
-export class ConfigurationContext extends BaseDataContext {
+export default class ConfigurationContext extends BaseDataContext {
     constructor() {
         super("configuration");
     }
@@ -19,6 +20,12 @@ export class ConfigurationContext extends BaseDataContext {
 
     public getChangelog(): Promise<RequestResult<string>> {
         return super.get<string>("getChangelog").then((result: RequestResult<string>) => {
+            return result;
+        });
+    }
+
+    public getAvailableTags(): Promise<RequestResult<Tag[]>> {
+        return super.get<Tag[]>("getAvailableTags").then((result: RequestResult<Tag[]>) => {
             return result;
         });
     }

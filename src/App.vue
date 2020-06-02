@@ -36,7 +36,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import Header from "@/components/HeaderComponent.vue";
-import { ConfigurationContext } from "@/dataContexts/ConfigurationDataContext";
+import ConfigurationContext from "@/dataContexts/ConfigurationDataContext";
 import VersionInfo from "@/common/models/VersionInfo";
 import RequestResult from "@/common/models/RequestResult";
 import ModalComponent from "@/components/global/ModalComponent.vue";

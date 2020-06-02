@@ -200,6 +200,21 @@
             "addToList": "Zur Liste hinzufügen"
         }
     },
+    "search": {
+        "anime": {
+            "title": "Durchsuchen",
+            "button": {
+                "search": "Suchen"
+            },
+            "label": {
+                "type": "Type",
+                "state": "Status",
+                "includedTags": "Enthaltene Tags",
+                "excludedTags": "Ausgeschlossene Tags",
+                "includedContentCompanies": "Streamingdienste"
+            }
+        }
+    },
     "components": {
         "description": {
             "source": "Quelle"
