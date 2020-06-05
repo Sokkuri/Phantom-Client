@@ -10,7 +10,7 @@ enum NotificationTypes {
     INFO = "info"
 }
 
-var timeout: number = 5000;
+const timeout: number = 5000;
 
 export default class Notification {
     public static addSuccess(message: string): Noty {

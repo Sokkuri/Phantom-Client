@@ -21,7 +21,7 @@ export default class AnimeTooltip extends BaseTooltip {
         const id = instance.reference.getAttribute("data-id");
         const data = this.entries.find(x => x.id.toString() === id) as Anime;
 
-        let infos: string[] = [];
+        const infos: string[] = [];
 
         if (data.type == Constants.AnimeTypes.Movie || data.episodes == 0) {
             infos.push(_.escape(TranslationUtils.translate(data.type)));

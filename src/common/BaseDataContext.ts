@@ -58,9 +58,6 @@ export abstract class BaseDataContext {
             }
 
             console.log(error);
-
-            let statusCode = error.response ? error.response.status : undefined;
-
             return new RequestResult<T>({ successfully: false, statusCode: error.response ? error.response.status : undefined });
         });
     }

@@ -125,7 +125,7 @@ export default class AnimeSearchView extends Vue {
         });
 
         // Infinity Scroll
-        document.addEventListener("scroll", (x) => {
+        document.addEventListener("scroll", () => {
             this.$nextTick(() => {
                 // Search only if search results are still possible.
                 if (this.searchSettings.page == 1 || this.lastSearchResultCount >= 20) {

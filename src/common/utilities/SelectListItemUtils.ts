@@ -8,7 +8,7 @@ import TranslationUtils from "@/common/utilities/TranslationUtils";
 
 export default class SelectListItemUtils {
     public static getTranslatedItems(translationKeys: string[], preselectedKeys?: string[]): SelectListItem[] {
-        let items: SelectListItem[] = [];
+        const items: SelectListItem[] = [];
 
         translationKeys.forEach((x) => {
             if (preselectedKeys && preselectedKeys.some(y => y == x)) {
@@ -22,7 +22,7 @@ export default class SelectListItemUtils {
     }
 
     public static getItemsWithSameContent<T extends string | number>(values: T[]): SelectListItem[] {
-        let items: SelectListItem[] = [];
+        const items: SelectListItem[] = [];
 
         values.forEach((x: T) => {
             items.push(new SelectListItem({label: x.toString(), value: x}));
@@ -32,7 +32,7 @@ export default class SelectListItemUtils {
     }
 
     public static getTranslatedPairItems<T>(pairs: KeyValuePair<string, T>[]): SelectListItem[] {
-        let items: SelectListItem[] = [];
+        const items: SelectListItem[] = [];
 
         pairs.forEach((x: KeyValuePair<string, T>) => {
             items.push(new SelectListItem({label: TranslationUtils.translate(x.key), value: x.value }))
