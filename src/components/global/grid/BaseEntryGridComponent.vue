@@ -9,11 +9,11 @@
             v-bind:key="content.value.id">
 
             <div class="tooltip" v-bind:data-id="content.value.id">
-                <a v-bind:href="'/' + entryType +'/' + content.value.id">
+                <router-link v-bind:to="'/' + entryType +'/' + content.value.id">
                     <img class="image" v-bind:src="'/api/files/' + content.value.systemFile.name">
-                </a>
+                </router-link>
 
-                <a class="link" v-bind:href="'/' + entryType + '/' + content.value.id">{{ content.key }}</a>
+                <router-link class="link" v-bind:to="'/' + entryType +'/' + content.value.id">{{ content.key }}</router-link>
             </div>
         </div>
     </div>
