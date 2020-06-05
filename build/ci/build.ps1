@@ -6,6 +6,7 @@ function prepareProject {
 
 function runBuild() {
     npm run lint
+    npm run build
 }
 
 Set-Location $projectLocation;
