@@ -1,4 +1,4 @@
-image: "wgamedia/phantom-client-continuous:latest"
+image: "node:lts-stretch"
 
 before_script:
     - npm install
@@ -10,7 +10,6 @@ build:
     stage: build
     script:
         - npm run lint
-        - npm run build
 
 cache:
     paths:
