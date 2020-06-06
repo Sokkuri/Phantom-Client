@@ -1,7 +1,7 @@
 image: "wgamedia/phantom-client-continuous:latest"
 
 before_script:
-    - cd build/ci
+    - npm install
 
 stages:
     - build
@@ -9,7 +9,8 @@ stages:
 build:
     stage: build
     script:
-        - pwsh build.ps1
+        - npm run lint
+        - npm run build
 
 cache:
     paths:
