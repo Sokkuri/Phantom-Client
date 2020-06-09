@@ -27,7 +27,7 @@
         </div>
         <div ref="mainContent" class="main-content">
             <Header />
-            <router-view />
+            <router-view v-bind:key="$route.path" />
         </div>
     </div>
 </template>
