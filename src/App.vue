@@ -13,6 +13,11 @@
                     <div class="column is-12">
                         <h2 class="subtitle">{{ $t("offline.message") }}</h2>
                     </div>
+                    <div class="column is-12">
+                        <div class="link-container">
+                            <a href="https://status.sokkuri.eu" target="blank" rel="noopener noreferrer">{{ $t("offline.serverState") }}</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
