@@ -2,11 +2,13 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
+import RequestResult from "@/common/models/RequestResult";
+import Notification from "@/common/Notification";
 import UserSessionManager from "@/common/security/UserSessionManager";
 import Settings from "@/common/Settings";
+import TranslationUtils from "@/common/utilities/TranslationUtils";
 import Main from "@/main";
 import Axios, { AxiosError, AxiosResponse } from "axios";
-import RequestResult from "./models/RequestResult";
 
 export abstract class BaseDataContext {
     private apiUrl: string = Settings.ApiUrl;
@@ -31,13 +33,11 @@ export abstract class BaseDataContext {
         return instance.get(this.buildUrl(methode)).then((x: AxiosResponse) => {
             return new RequestResult<T>({ successfully: true, statusCode: x.status, data: x.data });
         }).catch((error: AxiosError) => {
-            // Redirect to loginpage when response is unauthorized
-            if (error.response && error.response.status == 401) {
-                Main.router.push({ name: "login" });
-            }
+            const result = new RequestResult<T>({ successfully: false, statusCode: error.response ? error.response.status : undefined });
 
-            console.log(error);
-            return new RequestResult<T>({ successfully: false, statusCode: error.response ? error.response.status : undefined });
+            this.handleError(result);
+
+            return result;
         });
     }
 
@@ -52,13 +52,31 @@ export abstract class BaseDataContext {
         return instance.post(this.buildUrl(methode), data).then((x: AxiosResponse) => {
             return new RequestResult<T>({ successfully: true, statusCode: x.status, data: x.data });
         }).catch((error: AxiosError) => {
-            // Redirect to loginpage when response is unauthorized
-            if (error.response && error.response.status == 401) {
-                Main.router.push({ name: "login" });
-            }
+            const result = new RequestResult<T>({ successfully: false, statusCode: error.response ? error.response.status : undefined });
 
-            console.log(error);
-            return new RequestResult<T>({ successfully: false, statusCode: error.response ? error.response.status : undefined });
+            this.handleError(result);
+
+            return result;
         });
+    }
+
+    private handleError<T>(result: RequestResult<T>) {
+        switch (result.statusCode) {
+            case 401:
+                // Redirect to loginpage when response is unauthorized
+                Main.router.push({ name: "login" });
+                break;
+
+            case 400:
+                Notification.addError(TranslationUtils.translate("global.notification.actionError"), false).show();
+                break;
+
+            case 500:
+                // ToDo: Errorpage
+                break;
+
+            default:
+                break;
+        }
     }
 }

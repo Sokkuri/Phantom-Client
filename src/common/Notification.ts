@@ -10,18 +10,18 @@ enum NotificationTypes {
     INFO = "info"
 }
 
-const timeout: number = 5000;
+const defaultTimeout: number = 5000;
 
 export default class Notification {
-    public static addSuccess(message: string): Noty {
-        return new Noty({ text: message, type: NotificationTypes.SUCCESS, layout: "bottomLeft", timeout: timeout });
+    public static addSuccess(message: string, timeout: boolean = true): Noty {
+        return new Noty({ text: message, type: NotificationTypes.SUCCESS, layout: "bottomLeft", timeout: timeout ? defaultTimeout : false });
     }
 
-    public static addError(message: string): Noty {
-        return new Noty({ text: message, type: NotificationTypes.ERROR, layout: "bottomLeft", timeout: timeout });
+    public static addError(message: string, timeout: boolean = true): Noty {
+        return new Noty({ text: message, type: NotificationTypes.ERROR, layout: "bottomLeft", timeout: timeout ? defaultTimeout : false });
     }
 
-    public static addInfo(message: string): Noty {
-        return new Noty({ text: message, type: NotificationTypes.INFO, layout: "bottomLeft", timeout: timeout });
+    public static addInfo(message: string, timeout: boolean = true): Noty {
+        return new Noty({ text: message, type: NotificationTypes.INFO, layout: "bottomLeft", timeout: timeout ? defaultTimeout : false });
     }
 }
