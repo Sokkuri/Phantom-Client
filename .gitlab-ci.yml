@@ -1,5 +1,8 @@
 image: "node:lts-stretch"
 
+include:
+    - Dependency-Scanning.gitlab-ci.yml
+
 before_script:
     - npm install
 
