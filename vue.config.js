@@ -3,12 +3,15 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 module.exports = {
-  pluginOptions: {
-    i18n: {
-      locale: "de",
-      fallbackLocale: "de",
-      localeDir: "locales",
-      enableInSFC: false
+    pluginOptions: {
+        i18n: {
+            locale: "de",
+            fallbackLocale: "de",
+            localeDir: "locales",
+            enableInSFC: false
+        }
+    },
+    configureWebpack: {
+        devtool: 'source-map'
     }
-  }
 }
