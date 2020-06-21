@@ -8,7 +8,7 @@ import UserList from "@/common/models/UserList";
 
 export default class UserListDataContext extends BaseDataContext {
     constructor() {
-        super("UserList");
+        super("userList");
     }
 
     public async getAnimeEntry(animeId: number): Promise<RequestResult<UserList>> {
@@ -29,5 +29,9 @@ export default class UserListDataContext extends BaseDataContext {
 
     public async setAnimeRating(id: number, rating: number): Promise<RequestResult<void>> {
         return super.post("setAnimeRating", {id, rating});
+    }
+
+    public async saveChanges(id: number, overallRating: number, state: string, currentEpisode: number): Promise<RequestResult<void>> {
+        return super.post("saveChanges", {id, overallRating, state, currentEpisode});
     }
 }
