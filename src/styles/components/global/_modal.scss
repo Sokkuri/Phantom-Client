@@ -1,0 +1,22 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
+
+@import "../../colors";
+
+div.modal {
+    div.modal-content {
+        background-color: $color-secondary-darker;
+        padding: 1.5rem;
+        border-radius: 5px;
+
+        button.delete {
+            cursor: pointer;
+            float: right;
+        }
+
+        button.danger {
+            float: right;
+        }
+    }
+}

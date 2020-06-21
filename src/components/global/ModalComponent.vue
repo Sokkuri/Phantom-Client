@@ -4,19 +4,15 @@
 
 <template>
     <div ref="modalElement" class="modal">
-        <div class="modal-background"></div>
+        <div class="modal-background" v-on:click="onCloseClick"></div>
 
-        <div class="modal-card">
-            <header class="modal-card-head">
-                <p class="modal-card-title">{{ title }}</p>
-                <button v-on:click="onClose" class="delete"></button>
-            </header>
-            <section class="modal-card-body">
-                <slot></slot>
-            </section>
-            <footer class="modal-card-foot">
-
-            </footer>
+        <div class="modal-content">
+            <div class="columns">
+                <div class="column is-12">
+                    <button class="delete" v-on:click="onCloseClick" />
+                </div>
+            </div>
+            <slot></slot>
         </div>
     </div>
 </template>
@@ -26,24 +22,17 @@ import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 
 @Component
 export default class ModalComponent extends Vue {
-    @Prop() private title!: string;
-    @Prop() private visible!: boolean;
-
-    @Watch("visible") onElementChange() {
-        this.setModalVisibility(this.visible);
+    private onCloseClick() {
+        this.toggleVisibility();
     }
 
-    private onClose() {
-        this.setModalVisibility(false);
-    }
-
-    private setModalVisibility(visible: boolean) {
+    public toggleVisibility() {
         const element: HTMLDivElement = this.$refs.modalElement as HTMLDivElement;
 
-        if (visible) {
-            element.classList.add("is-active");
-        } else {
+        if (element.classList.contains("is-active")) {
             element.classList.remove("is-active");
+        } else {
+            element.classList.add("is-active");
         }
     }
 }
