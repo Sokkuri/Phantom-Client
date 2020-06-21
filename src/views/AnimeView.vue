@@ -13,7 +13,10 @@
                             v-if="anime.systemFile"
                             v-bind:imageUrl="'/api/files/' + anime.systemFile.name"
                         />
-                        <button class="button is-primary is-fullwidth">Loading</button>
+                        <button class="button is-primary is-fullwidth">
+                            <font-awesome-icon :icon="['far', 'play-circle']" size="2x" />
+                            {{ $t("anime.button.watchNow") }}
+                        </button>
                     </div>
                     <div class="column is-10">
                         <div class="info-header-content">
@@ -32,19 +35,28 @@
             <div class="container">
                 <div class="columns is-multiline">
                     <div class="column is-2">
-                        <DropdownComponent
+                        <button v-if="userListEntry.status" class="button is-fullwidth" v-on:click="$refs.userListEditor.toggleVisibility()">{{ $t("anime.button.editListEntry") }}</button>
+                        <button v-else class="button is-fullwidth" v-on:click="onAddAnimeToListClick">{{ $t("anime.button.addToList") }}</button>
+
+                        <AnimeUserListEditorComponent ref="userListEditor" @saved-changes="setUserListData" @deleted-entry="clearUserListData" v-if="userListEntry.status" v-bind:animeId="anime.id" v-bind:userListEntry="userListEntry" />
+
+                        <label class="label">{{ $t("anime.label.state") }}</label>
+                        <SelectComponent
+                            v-bind:elements="selectableWatchingStates"
+                            v-bind:searchEnabled="false"
+                            v-bind:placeholder="true"
+                            v-model="userListEntry.status"
+                            @selection="saveUserListWatchingState"
+                        />
+
+                        <label class="label">{{ $t("anime.label.rating") }}</label>
+                        <SelectComponent
                             v-bind:elements="selectableRatings"
                             v-bind:searchEnabled="false"
                             v-bind:placeholder="true"
-                            @selectionChange="onEntryRatingChange"
+                            v-model="userListEntry.overallRating"
+                            @selection="saveUserListRating"
                         />
-                        <DropdownComponent
-                            v-bind:elements="watchingStates"
-                            v-bind:searchEnabled="false"
-                            v-bind:placeholder="true"
-                            @selectionChange="onEntryStateChange"
-                        />
-                        <button class="button is-fullwidth" v-on:click="onAddAnimeToListClick">{{ $t("anime.button.addToList") }}</button>
 
                         <div class="additional-information"
                             v-if="additionalEntryInfos.length > 0">
@@ -112,7 +124,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Watch } from "vue-property-decorator";
 import AnimeDataContext from "@/dataContexts/AnimeDataContext";
 import Constants from "@/common/Constants";
 import _ from "lodash";
@@ -123,7 +135,6 @@ import Description from "@/common/models/Description";
 import SpinnerComponent from "@/components/SpinnerComponent.vue";
 import RatingComponent from "@/components/entry/RatingComponent.vue";
 import Anime from "@/common/models/Anime";
-import DropdownComponent from "@/components/global/DropdownComponent.vue";
 import SelectListItem from "@/common/models/SelectListItem";
 import SelectListItemUtils from "@/common/utilities/SelectListItemUtils";
 import Notification from "@/common/Notification";
@@ -142,6 +153,9 @@ import Content from "@/common/models/Content";
 import AnimeGridComponent from "@/components/global/grid/AnimeGridComponent.vue";
 import BaseEntry from "@/common/models/BaseEntry";
 import EntryUtils from "@/common/utilities/EntryUtils";
+import AnimeUserListEditorComponent from "@/components/global/userListEditor/AnimeUserListEditorComponent.vue";
+import SelectComponent from "@/components/global/SelectComponent.vue";
+import StringUtils from "@/common/utilities/StringUtils";
 
 @Component({
     components: {
@@ -149,11 +163,12 @@ import EntryUtils from "@/common/utilities/EntryUtils";
         DescriptionComponent,
         SpinnerComponent,
         RatingComponent,
-        DropdownComponent,
         InfoCardComponent,
         TagComponent,
         VideoComponent,
-        AnimeGridComponent
+        AnimeGridComponent,
+        AnimeUserListEditorComponent,
+        SelectComponent
     }
 })
 export default class AnimeView extends Vue {
@@ -173,14 +188,14 @@ export default class AnimeView extends Vue {
     private similiarAnimes: Anime[] = [];
 
     private selectableRatings: SelectListItem[] = [];
-    private watchingStates: SelectListItem[] = [];
+    private selectableWatchingStates: SelectListItem[] = [];
     private selectedValue: string = "";
 
     created() {
         const animeId: number = +this.$route.params.id;
 
         this.selectableRatings = SelectListItemUtils.getItemsWithSameContent([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
-        this.watchingStates = SelectListItemUtils.getTranslatedItems(Constants.WatchingStates.WatchingStates);
+        this.selectableWatchingStates = SelectListItemUtils.getTranslatedItems(Constants.WatchingStates.WatchingStates);
 
         if (animeId) {
             this.loading = true;
@@ -206,19 +221,7 @@ export default class AnimeView extends Vue {
                         }
                     });
 
-                    // Only load the userlist date when there is a session.
-                    new UserSessionManager().getCurrentSession().then((session => {
-                        if (session) {
-                            this.userListDataContext.getAnimeEntry(animeId).then((userListResult: RequestResult<UserList>) => {
-                                if (userListResult.successfully && userListResult.data) {
-                                    this.userListEntry = userListResult.data;
-
-                                    this.overrideRatingWithUserlistData();
-                                    this.overrideWatchingStateWithUserlistData();
-                                }
-                            });
-                        }
-                    }));
+                    this.setUserListData();
                 }
             }).finally(() => {
                 this.loading = false;
@@ -265,6 +268,28 @@ export default class AnimeView extends Vue {
         }
     }
 
+    private setUserListData() {
+        // Only load the userlist date when there is a session.
+        new UserSessionManager().getCurrentSession().then((session => {
+            if (session) {
+                this.userListDataContext.getAnimeEntry(this.anime.id).then((userListResult: RequestResult<UserList>) => {
+                    if (userListResult.successfully && userListResult.data) {
+                        this.userListEntry = userListResult.data;
+
+                        this.overrideRatingWithUserlistData();
+                        this.overrideWatchingStateWithUserlistData();
+                    }
+                });
+            }
+        }));
+    }
+
+    private clearUserListData() {
+        this.selectableRatings = SelectListItemUtils.getItemsWithSameContent([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+        this.selectableWatchingStates = SelectListItemUtils.getTranslatedItems(Constants.WatchingStates.WatchingStates);
+        this.userListEntry = new UserList();
+    }
+
     private setAdditionalInformation() {
         let infos: KeyValuePair<string, string[]>[] = [];
 
@@ -298,47 +323,48 @@ export default class AnimeView extends Vue {
         this.additionalEntryInfos = this.additionalEntryInfos.concat(infos);
     }
 
-    private overrideWatchingStateWithUserlistData() {
-        let element = this.selectableRatings.find(x => (+x.value) == this.userListEntry.overallRating) as SelectListItem;
-        const index = this.selectableRatings.indexOf(element);
-
-        element.selected = true;
-
-        Vue.set(this.selectableRatings, index, element);
-    }
-
     private overrideRatingWithUserlistData() {
-        let element = this.watchingStates.find(x => x.value == this.userListEntry.status) as SelectListItem;
-        const index = this.watchingStates.indexOf(element);
+        let element = this.selectableRatings.find(x => (+x.value) == this.userListEntry.overallRating) as SelectListItem;
 
-        element.selected = true;
-
-        Vue.set(this.watchingStates, index, element);
-    }
-
-    private onEntryRatingChange(value: number): void {
-        if (value) {
-            this.userListDataContext.setAnimeRating(this.anime.id, value).then((x: RequestResult<void>) => {
-                if (x.successfully) {
-                    this.showSuccessfullySaveNotification();
-                }
-            })
+        if (element) {
+            SelectListItemUtils.updateSingleSelectSelection(this.selectableRatings, element);
         }
     }
 
-    private onEntryStateChange(value: string): void {
+    private overrideWatchingStateWithUserlistData() {
+        let element = this.selectableWatchingStates.find(x => StringUtils.equalsIgnoreCase(x.value, this.userListEntry.status)) as SelectListItem;
+
+        if (element) {
+            SelectListItemUtils.updateSingleSelectSelection(this.selectableWatchingStates, element);
+        }
+    }
+
+    private saveUserListWatchingState(value: string): void {
         if (value) {
             this.userListDataContext.setAnimeState(this.anime.id, value).then((x: RequestResult<void>) => {
                 if (x.successfully) {
+                    this.setUserListData();
                     this.showSuccessfullySaveNotification();
                 }
             });
         }
     }
 
+    private saveUserListRating(value: number): void {
+        if (value) {
+            this.userListDataContext.setAnimeRating(this.anime.id, value).then((x: RequestResult<void>) => {
+                if (x.successfully) {
+                    this.setUserListData();
+                    this.showSuccessfullySaveNotification();
+                }
+            })
+        }
+    }
+
     private onAddAnimeToListClick() {
         this.userListDataContext.addAnime(this.anime.id).then((x: RequestResult<void>) => {
             if (x.successfully) {
+                this.setUserListData();
                 this.showSuccessfullySaveNotification();
             }
         });

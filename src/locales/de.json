@@ -1,7 +1,8 @@
 {
     "offline": {
         "title": "Was ist den hier los?",
-        "message": "Es kann aktuell keine Verbindung zur API hergestellt werden! Probiere es später erneut."
+        "message": "Es kann aktuell keine Verbindung zur API hergestellt werden! Probiere es später erneut.",
+        "serverState": "Serverstatus"
     },
     "changelog": {
         "title": "Änderungen in der neuen Version"
@@ -153,7 +154,9 @@
             "thriller": "Thriller"
         },
         "notification": {
-            "savedSuccessfully": "Erfolgreich gespeichert"
+            "savedSuccessfully": "Erfolgreich gespeichert",
+            "deletedSuccessfully": "Erfolgreich gelöscht",
+            "actionError": "Die Aktion konnte nicht durchgeführt werden!"
         }
     },
     "header": {
@@ -194,10 +197,16 @@
             "contents": "Trailer & Videos",
             "companies": "Unternehmen",
             "synonyms": "Synonyme",
-            "similiarAnimes": "Vielleicht gefällt dir auch"
+            "similiarAnimes": "Das könnte dir auch gefallen"
         },
         "button": {
-            "addToList": "Zur Liste hinzufügen"
+            "watchNow": "Jetzt ansehen",
+            "addToList": "Zur Liste hinzufügen",
+            "editListEntry": "Eintrag bearbeiten"
+        },
+        "label": {
+            "state": "Status",
+            "rating": "Bewertung"
         }
     },
     "search": {
@@ -215,6 +224,17 @@
             }
         },
         "noResults": "Keine Ergebnisse gefunden"
+    },
+    "userListEntryEditor": {
+        "button": {
+            "save": "Speichern"
+        },
+        "label": {
+            "state": "Status",
+            "rating": "Bewertung",
+            "episode": "Episode",
+            "review": "Rezension"
+        }
     },
     "components": {
         "description": {
