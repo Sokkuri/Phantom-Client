@@ -11,32 +11,37 @@
                 </div>
                 <div class="column is-6">
                     <label class="label">{{ $t("search.anime.label.format") }}</label>
-                    <MultiSelectComponent
+                    <SelectComponent
+                        v-bind:multiple="true"
                         v-bind:elements="selectableTypes"
                         v-model="searchSettings.types"
                     />
 
                     <label class="label">{{ $t("search.anime.label.includedTags") }}</label>
-                    <MultiSelectComponent
+                    <SelectComponent
+                        v-bind:multiple="true"
                         v-bind:elements="selectableTags"
                         v-model="searchSettings.includedTagIds"
                     />
 
                     <label class="label">{{ $t("search.anime.label.includedContentCompanies") }}</label>
-                    <MultiSelectComponent
+                    <SelectComponent
+                        v-bind:multiple="true"
                         v-bind:elements="selectableStreamingServices"
                         v-model="searchSettings.includedContentCompanyIds"
                     />
                 </div>
                 <div class="column is-6">
                     <label class="label">{{ $t("search.anime.label.state") }}</label>
-                    <MultiSelectComponent
+                    <SelectComponent
+                        v-bind:multiple="true"
                         v-bind:elements="selectableStates"
                         v-model="searchSettings.states"
                     />
 
-                    <label class="label">{{ $t("search.anime.label.includedTags") }}</label>
-                    <MultiSelectComponent
+                    <label class="label">{{ $t("search.anime.label.excludedTags") }}</label>
+                    <SelectComponent
+                        v-bind:multiple="true"
                         v-bind:elements="selectableTags"
                         v-model="searchSettings.excludedTagIds"
                     />
@@ -59,7 +64,6 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import MultiSelectComponent from "@/components/global/MultiSelectComponent.vue";
 import SelecListItemUtils from "@/common/utilities/SelectListItemUtils";
 import Constants from "@/common/Constants";
 import SelectListItem from "@/common/models/SelectListItem";
@@ -72,11 +76,12 @@ import Anime from "@/common/models/Anime";
 import _ from "lodash";
 import AnimeGridComponent from "@/components/global/grid/AnimeGridComponent.vue";
 import CompanyDataContext from "@/dataContexts/CompanyDataContext";
+import SelectComponent from "@/components/global/SelectComponent.vue";
 
 @Component({
     components: {
         AnimeGridComponent,
-        MultiSelectComponent,
+        SelectComponent,
         SpinnerComponent
     }
 })

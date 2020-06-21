@@ -5,6 +5,7 @@
 import KeyValuePair from "@/common/models/KeyValuePair";
 import SelectListItem from "@/common/models/SelectListItem";
 import TranslationUtils from "@/common/utilities/TranslationUtils";
+import { Vue } from "vue-property-decorator";
 
 export default class SelectListItemUtils {
     public static getTranslatedItems(translationKeys: string[], preselectedKeys?: string[]): SelectListItem[] {
@@ -39,5 +40,20 @@ export default class SelectListItemUtils {
         });
 
         return items;
+    }
+
+    public static updateSingleSelectSelection(items: SelectListItem[], selectedItem: SelectListItem) {
+        items.forEach(x => {
+            if (x === selectedItem) {
+                x.selected = true;
+            } else {
+                x.selected = false;
+            }
+        });
+
+        const selectedItemIndex = items.findIndex(x => x === selectedItem);
+        const updatedElement = items[selectedItemIndex];
+
+        Vue.set(items, selectedItemIndex, updatedElement);
     }
 }
