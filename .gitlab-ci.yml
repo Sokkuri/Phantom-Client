@@ -13,4 +13,4 @@ build:
 
 cache:
     paths:
-        - Phantom.Client/node_modules/
+        - node_modules/
