@@ -4,11 +4,11 @@
 
 import RequestResult from "@/common/models/RequestResult";
 import Notification from "@/common/Notification";
-import UserSessionManager from "@/common/security/UserSessionManager";
 import Settings from "@/common/Settings";
 import TranslationUtils from "@/common/utilities/TranslationUtils";
 import Main from "@/main";
 import Axios, { AxiosError, AxiosResponse } from "axios";
+import { UserSessionManager } from "kogitte";
 
 export abstract class BaseDataContext {
     private apiUrl: string = Settings.ApiUrl;

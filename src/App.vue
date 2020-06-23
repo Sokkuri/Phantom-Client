@@ -45,6 +45,8 @@ import VersionInfo from "@/common/models/VersionInfo";
 import RequestResult from "@/common/models/RequestResult";
 import ModalComponent from "@/components/global/ModalComponent.vue";
 import TranslationUtils from "@/common/utilities/TranslationUtils";
+import { AuthStore } from "kogitte";
+import Settings from "@/common/Settings";
 
 @Component({
   components: {
@@ -65,6 +67,8 @@ export default class App extends Vue {
     private startup(): void {
         const offlineMessage: HTMLElement = this.$refs.apiOffline as HTMLElement;
         const mainContent: HTMLElement = this.$refs.mainContent as HTMLElement;
+
+        AuthStore.init(Settings.ClientId, "/api/authentication/login", "/api/authentication/logout");
 
         this.dataContext.getVersion().then((result: RequestResult<VersionInfo>) => {
             if (!result.successfully || !result.data) {

@@ -64,7 +64,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import UserSessionManager from "@/common/security/UserSessionManager";
+import { UserSessionManager } from "kogitte";
 
 @Component
 export default class HeaderComponent extends Vue {

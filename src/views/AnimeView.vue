@@ -141,7 +141,7 @@ import Notification from "@/common/Notification";
 import UserListDataContext from "@/dataContexts/UserListDataContext";
 import RequestResult from "@/common/models/RequestResult";
 import UserList from "@/common/models/UserList";
-import UserSessionManager from "@/common/security/UserSessionManager";
+import { UserSessionManager } from "kogitte";
 import InfoCardComponent from "@/components/entry/InfoCardComponent.vue";
 import KeyValuePair from "@/common/models/KeyValuePair";
 import TranslationUtils from "@/common/utilities/TranslationUtils";
