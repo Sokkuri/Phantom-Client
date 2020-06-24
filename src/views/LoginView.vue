@@ -25,8 +25,8 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import UserSessionManager from "@/common/security/UserSessionManager";
 import AnimeDataContext from "@/dataContexts/AnimeDataContext";
+import { UserSessionManager } from "kogitte";
 
 @Component
 export default class LoginView extends Vue {
