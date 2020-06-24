@@ -200,32 +200,34 @@ export default class AnimeView extends Vue {
         if (animeId) {
             this.loading = true;
 
-            this.animeDataContext.getAnime(animeId).then((animeResult: RequestResult<Anime>) => {
-                if (animeResult.successfully && animeResult.data) {
-                    this.anime = animeResult.data;
+            const getAnime = this.animeDataContext.getAnime(animeId);
+            getAnime.then(x => {
+                if (x.successfully && x.data) {
+                    this.anime = x.data;
 
                     this.entryMainTitle = EntryUtils.getTitle(this.anime.titles);
                     this.setMainDescription();
                     this.setEntryDetails();
                     this.setAdditionalInformation();
-
-                    this.contentDataContext.getAnimeContents(animeId).then((contentsResult: RequestResult<Array<Content>>) => {
-                        if (contentsResult.successfully && contentsResult.data) {
-                            this.entryVideoContents = contentsResult.data.filter(x => x.type == Constants.ContentTypes.Video);
-                        }
-                    });
-
-                    this.animeDataContext.getSimilarAnimes(animeId).then((similiarAnimesResult: RequestResult<Anime[]>) => {
-                        if (similiarAnimesResult.successfully && similiarAnimesResult.data) {
-                            this.similiarAnimes = similiarAnimesResult.data;
-                        }
-                    });
-
-                    this.setUserListData();
                 }
-            }).finally(() => {
-                this.loading = false;
             });
+
+            const getContents = this.contentDataContext.getAnimeContents(animeId);
+            getContents.then(x => {
+                if (x.successfully && x.data) {
+                    this.entryVideoContents = x.data.filter(x => x.type == Constants.ContentTypes.Video);
+                }
+            });
+
+            Promise.all([getAnime, getContents]).finally(() => this.loading = false);
+
+            this.animeDataContext.getSimilarAnimes(animeId).then((similiarAnimesResult: RequestResult<Anime[]>) => {
+                if (similiarAnimesResult.successfully && similiarAnimesResult.data) {
+                    this.similiarAnimes = similiarAnimesResult.data;
+                }
+            });
+
+            this.setUserListData();
         }
     }
 

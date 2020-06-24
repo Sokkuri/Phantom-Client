@@ -5,6 +5,7 @@
 <template>
     <div class="anime-content">
         <div class="container">
+            <SpinnerComponent v-if="loading" />
             <div class="columns is-multiline">
                 <div class="column is-12">
                     <h1 class="title">{{ entryTitle.title }}</h1>
@@ -41,13 +42,18 @@ import StringUtils from "@/common/utilities/StringUtils";
 import EntryTitle from "@/common/models/EntryTitle";
 import AnimeDataContext from "@/dataContexts/AnimeDataContext";
 import EntryUtils from "@/common/utilities/EntryUtils";
+import SpinnerComponent from "@/components/SpinnerComponent.vue";
 
 @Component({
     components: {
+        SpinnerComponent,
         VideoComponent
     }
 })
 export default class BaseEntryContentView extends Vue {
+    private loading: boolean = false;
+    private animeDataContext: AnimeDataContext = new AnimeDataContext();
+
     protected entryId: number;
     private entryTitle: EntryTitle = new EntryTitle();
     private streamLinkages: Content[] = [];
@@ -57,33 +63,30 @@ export default class BaseEntryContentView extends Vue {
         this.entryId = +this.$route.params.id;
 
         if (this.entryId) {
-            this.getTitles();
-            this.filterContents();
-        }
-    }
+            this.loading = true;
 
-    private getTitles() {
-        const animeDataContext: AnimeDataContext = new AnimeDataContext();
-
-        animeDataContext.getTitles(this.entryId).then(x => {
-            if (x.successfully && x.data) {
-                this.entryTitle = EntryUtils.getTitle(x.data);
-            }
-        });
-    }
-
-    private filterContents() {
-        this.loadContents().then((x: RequestResult<Content[]>) => {
-            if (x.successfully && x.data) {
-                this.streamLinkages = x.data.filter(y => StringUtils.equalsIgnoreCase(y.type, Constants.ContentTypes.Streamlinking));
-
-                const episode = _.first(x.data.filter(y => StringUtils.equalsIgnoreCase(y.type, Constants.ContentTypes.Episode)));
-
-                if (episode) {
-                    this.firstEpisode = episode;
+            const getTitles = this.animeDataContext.getTitles(this.entryId);
+            getTitles.then(x => {
+                if (x.successfully && x.data) {
+                    this.entryTitle = EntryUtils.getTitle(x.data);
                 }
-            }
-        });
+            });
+
+            const getContents = this.loadContents();
+            getContents.then((x: RequestResult<Content[]>) => {
+                if (x.successfully && x.data) {
+                    this.streamLinkages = x.data.filter(y => StringUtils.equalsIgnoreCase(y.type, Constants.ContentTypes.Streamlinking));
+
+                    const episode = _.first(x.data.filter(y => StringUtils.equalsIgnoreCase(y.type, Constants.ContentTypes.Episode)));
+
+                    if (episode) {
+                        this.firstEpisode = episode;
+                    }
+                }
+            });
+
+            Promise.all([getTitles, getContents]).finally(() => this.loading = false);
+        }
     }
 
     private openExternalLink(content: Content) {
