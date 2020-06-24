@@ -4,6 +4,7 @@
 
 import { BaseDataContext } from "@/common/BaseDataContext";
 import Anime from "@/common/models/Anime";
+import EntryTitle from "@/common/models/EntryTitle";
 import RequestResult from "@/common/models/RequestResult";
 
 export default class AnimeDataContext extends BaseDataContext {
@@ -19,6 +20,12 @@ export default class AnimeDataContext extends BaseDataContext {
 
     public async getSimilarAnimes(id: number): Promise<RequestResult<Anime[]>> {
         return super.get<Anime[]>("getSimilarAnimes/" + id).then((x: RequestResult<Anime[]>) => {
+            return x;
+        });
+    }
+
+    public async getTitles(id: number): Promise<RequestResult<EntryTitle[]>> {
+        return super.get<EntryTitle[]>("getTitles/" + id).then(x => {
             return x;
         });
     }

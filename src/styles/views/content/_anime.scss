@@ -2,6 +2,12 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
-@import "./home";
-@import "./anime";
-@import "./content/anime";
+div.anime-content {
+    iframe {
+        display: block;
+        margin: 0 auto;
+        width: 854px;
+        height: 480px;
+        margin-bottom: 1rem;
+    }
+}

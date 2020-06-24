@@ -182,6 +182,11 @@
     "blog": {
         "title": "Neuigkeiten"
     },
+    "view": {
+        "content": {
+            "firstEpisode": "Erste Episode"
+        }
+    },
     "anime": {
         "details": {
             "format": "Format",

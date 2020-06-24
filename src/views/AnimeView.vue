@@ -13,10 +13,10 @@
                             v-if="anime.systemFile"
                             v-bind:imageUrl="'/api/files/' + anime.systemFile.name"
                         />
-                        <button class="button is-primary is-fullwidth">
+                        <router-link class="button is-primary is-fullwidth" v-bind:to="'/anime/content/' + anime.id" tag="button">
                             <font-awesome-icon :icon="['far', 'play-circle']" size="2x" />
                             {{ $t("anime.button.watchNow") }}
-                        </button>
+                        </router-link>
                     </div>
                     <div class="column is-10">
                         <div class="info-header-content">

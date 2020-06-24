@@ -24,6 +24,11 @@ const routes = [
         component: () => import("@/views/AnimeView.vue")
     },
     {
+        path: "/anime/content/:id",
+        name: "content",
+        component: () => import("@/views/content/AnimeContentView.vue")
+    },
+    {
         path: "/search/anime",
         name: "animeSearch",
         component: () => import("@/views/search/AnimeSearchView.vue")
