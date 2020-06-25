@@ -2,7 +2,7 @@
 
 **Currently not stable and under heavy development!**
 
-The web client for the rewrite of the anime community site from PlayPerium.eu.
+The web client for the anime community platform of Sokkuri.eu.
 
 ## Setup
 **Before you can execute this command, you must have Node.js installed!**
