@@ -2,10 +2,11 @@
     "offline": {
         "title": "Was ist den hier los?",
         "message": "Es kann aktuell keine Verbindung zur API hergestellt werden! Probiere es später erneut.",
+        "twitter": "Twitter",
         "serverState": "Serverstatus"
     },
     "changelog": {
-        "title": "Änderungen in der neuen Version"
+        "message": "Wir haben die Version %PRODUCTVERSION% unserer Seite veröffentlicht! Schaue dir doch die Erneuerungen in unserem Blog an! ^^"
     },
     "global": {
         "language": {

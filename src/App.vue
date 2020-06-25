@@ -15,20 +15,12 @@
                     </div>
                     <div class="column is-12">
                         <div class="link-container">
+                            <a href="https://twitter.com/playperium" target="blank" rel="noopener noreferrer">{{ $t("offline.twitter") }}</a>
                             <a href="https://status.sokkuri.eu" target="blank" rel="noopener noreferrer">{{ $t("offline.serverState") }}</a>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="changelog-modal">
-            <ModalComponent
-                v-bind:title="changelogTitle"
-                v-bind:visible="showChangelogModal">
-                <iframe
-                    v-bind:src="changelogUrl">
-                </iframe>
-            </ModalComponent>
         </div>
         <div ref="mainContent" class="main-content">
             <Header />
@@ -43,22 +35,19 @@ import Header from "@/components/HeaderComponent.vue";
 import ConfigurationContext from "@/dataContexts/ConfigurationDataContext";
 import VersionInfo from "@/common/models/VersionInfo";
 import RequestResult from "@/common/models/RequestResult";
-import ModalComponent from "@/components/global/ModalComponent.vue";
 import TranslationUtils from "@/common/utilities/TranslationUtils";
 import { AuthStore } from "kogitte";
 import Settings from "@/common/Settings";
+import Notification from "@/common/Notification";
 
 @Component({
   components: {
-    Header,
-    ModalComponent
+    Header
   }
 })
 export default class App extends Vue {
     private dataContext: ConfigurationContext = new ConfigurationContext();
     private showChangelogModal: boolean = false;
-    private changelogTitle: string = TranslationUtils.translate("changelog.title");
-    private changelogUrl: string = "";
 
     mounted() {
         this.startup();
@@ -81,12 +70,7 @@ export default class App extends Vue {
                     localStorage.setItem("ProductVersion", result.data.productVersion);
 
                     if (savedVersion) {
-                        this.dataContext.getChangelog().then((changelogResult: RequestResult<string>) => {
-                            if (changelogResult.successfully && changelogResult.data && changelogResult.data.replace("http://", "").replace("https://", "").split("/")[0] == "blog.playperium.eu") {
-                                this.changelogUrl = changelogResult.data;
-                                this.showChangelogModal = true;
-                            }
-                        });
+                        Notification.addInfo(TranslationUtils.translate("changelog.message").replace("%PRODUCTVERSION%", result.data.productVersion), false).show();
                     }
                 }
             }
