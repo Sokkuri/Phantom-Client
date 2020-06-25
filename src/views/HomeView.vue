@@ -3,7 +3,7 @@
    - file, You can obtain one at https://mozilla.org/MPL/2.0/. -->
 
 <template>
-  <div class="home">
+  <div class="view home-view">
     <Blog />
   </div>
 </template>

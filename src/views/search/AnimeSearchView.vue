@@ -3,7 +3,7 @@
    - file, You can obtain one at https://mozilla.org/MPL/2.0/. -->
 
 <template>
-    <div class="anime-search-view">
+    <div class="view anime-search-view">
         <div class="container">
             <div class="columns is-multiline">
                 <div class="column is-12">

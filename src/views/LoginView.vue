@@ -3,7 +3,7 @@
    - file, You can obtain one at https://mozilla.org/MPL/2.0/. -->
 
 <template>
-  <div class="login">
+  <div class="view login-view">
     <div class="container">
       <div class="columns is-multiline">
         <div class="column is-12">

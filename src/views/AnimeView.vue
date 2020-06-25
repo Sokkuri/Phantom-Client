@@ -3,7 +3,7 @@
    - file, You can obtain one at https://mozilla.org/MPL/2.0/. -->
 
 <template>
-    <div class="anime-view">
+    <div class="view anime-view">
         <section class="section info-header">
             <div class="container">
                 <SpinnerComponent v-if="loading" />
