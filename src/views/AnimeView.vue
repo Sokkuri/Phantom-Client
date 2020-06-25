@@ -209,6 +209,7 @@ export default class AnimeView extends Vue {
                     this.setMainDescription();
                     this.setEntryDetails();
                     this.setAdditionalInformation();
+                    this.setUserListData();
                 }
             });
 
@@ -226,8 +227,6 @@ export default class AnimeView extends Vue {
                     this.similiarAnimes = similiarAnimesResult.data;
                 }
             });
-
-            this.setUserListData();
         }
     }
 
