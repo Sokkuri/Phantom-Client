@@ -10,6 +10,7 @@ build:
     stage: build
     script:
         - npm run lint
+        - npm run build
 
 cache:
     paths:
