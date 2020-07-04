@@ -5,8 +5,8 @@
 @import "./global";
 
 // Node Modules
-@import "./bulma";
-@import "./choices";
+@import "./bulma/bulma";
+@import "./npm/choices";
 @import "../../node_modules/normalize.css/normalize.css";
 @import "../../node_modules/viewerjs/dist/viewer.min.css";
 @import "../../node_modules/choices.js/public/assets/styles/choices.min.css";
@@ -16,6 +16,6 @@
 
 // Phantom
 @import "./offline";
-@import "./tooltip";
 @import "./views/views";
 @import "./components/components";
+@import "./tooltips/tooltips";

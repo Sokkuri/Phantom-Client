@@ -1,0 +1,13 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
+
+$input-color: $color-white;
+$input-border-color: $color-secondary;
+$input-background-color: $color-secondary;
+$input-hover-border-color: $color-primary;
+$input-focus-border-color: $color-primary;
+
+input.input {
+    min-height: 2.8rem;
+}

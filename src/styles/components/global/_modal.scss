@@ -3,12 +3,13 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 @import "../../colors";
+@import "../../appearance";
 
 div.modal {
     div.modal-content {
         background-color: $color-secondary-darker;
         padding: 1.5rem;
-        border-radius: 5px;
+        border-radius: $global-border-radius;
 
         button.delete {
             cursor: pointer;

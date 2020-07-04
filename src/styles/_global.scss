@@ -3,6 +3,7 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 @import "./colors";
+@import "./appearance";
 
 *:not(i) {
     font-family: 'Open Sans', sans-serif, arial !important;
@@ -32,7 +33,7 @@ body {
     }
 
     a:hover {
-        transition: all .2s;
+        transition: $global-transition;
         color: $color-primary;
     }
 }

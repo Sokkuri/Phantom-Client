@@ -3,6 +3,7 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 @import "./colors";
+@import "./appearance";
 
 .choices {
     margin-bottom: 24px !important;
@@ -13,7 +14,7 @@
 
         &:hover,
         &:focus {
-            transition: all .2s !important;
+            transition: $global-transition !important;
             border-color: $color-primary;
         }
     }

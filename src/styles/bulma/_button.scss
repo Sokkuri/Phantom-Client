@@ -2,26 +2,6 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
-@import "./colors";
-
-// Global
-$link: $color-white;
-$primary: $color-primary;
-$title-color: $color-white;
-$subtitle-color: $color-white;
-
-// Label
-$label-color: $color-white;
-$label-weight: 400;
-
-// Input
-$input-color: $color-white;
-$input-border-color: $color-secondary;
-$input-background-color: $color-secondary;
-$input-hover-border-color: $color-primary;
-$input-focus-border-color: $color-primary;
-
-// Button
 $button-color: $color-white;
 $button-text-color: $color-white;
 $button-focus-color: $color-white;
@@ -34,24 +14,6 @@ $button-border-color: transparent;
 $button-focus-border-color: transparent;
 $button-hover-border-color: transparent;
 $button-active-border-color: transparent;
-
-// Section
-$section-padding: 1.5rem 1rem;
-
-// Modal
-$modal-content-width: 60rem;
-
-$modal-card-title-color: $color-white;
-$modal-card-head-background-color: $color-background-more-lighter;
-$modal-card-body-background-color: $color-background-more-lighter;
-$modal-card-head-border-bottom: 0;
-$modal-card-foot-border-top: 0;
-
-@import "../../node_modules/bulma/bulma.sass";
-
-.container {
-    padding: 0 2rem;
-}
 
 button.button {
     color: $color-white;
@@ -75,8 +37,4 @@ button.button {
     svg {
         margin: 0.3rem;
     }
-}
-
-input.input {
-    min-height: 2.8rem;
 }

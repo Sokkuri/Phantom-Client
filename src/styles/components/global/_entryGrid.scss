@@ -2,6 +2,8 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
+@import "../../appearance";
+
 div.entry-grid {
     div.column {
         a img {
@@ -9,7 +11,7 @@ div.entry-grid {
             max-height: 16rem;
             width: 100%;
             margin-bottom: 1rem;
-            border-radius: 5px;
+            border-radius: $global-border-radius;
         }
 
         a.link {

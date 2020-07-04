@@ -3,12 +3,13 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 @import "../../colors";
+@import "../../appearance";
 
 div.info-card {
     background-color: $color-background-more-lighter;
     text-align: center;
     padding: 1rem;
-    border-radius: 5px;
+    border-radius: $global-border-radius;
 
     p {
         margin-top: 1rem;
