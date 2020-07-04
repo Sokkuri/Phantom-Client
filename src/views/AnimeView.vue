@@ -76,11 +76,13 @@
                         <div class="columns is-multiline"
                             v-if="anime.tags">
                             <div class="column is-10">
-                                <TagComponent
-                                    v-for="tag in anime.tags"
-                                    v-bind:key="tag.id"
-                                    v-bind:content="$t(tag.translationKey)"
-                                />
+                                <div class="tags">
+                                    <span class="tag is-rounded"
+                                        v-for="tag in anime.tags"
+                                        v-bind:key="tag.id">
+                                        {{ $t(tag.translationKey) }}
+                                    </span>
+                                </div>
                             </div>
                         </div>
                         <h2 class="subtitle">{{ $t("anime.heading.details") }}</h2>
@@ -145,7 +147,6 @@ import { UserSessionManager } from "kogitte";
 import InfoCardComponent from "@/components/entry/InfoCardComponent.vue";
 import KeyValuePair from "@/common/models/KeyValuePair";
 import TranslationUtils from "@/common/utilities/TranslationUtils";
-import TagComponent from "@/components/entry/TagComponent.vue";
 import Tag from "@/common/models/Tag";
 import VideoComponent from "@/components/global/VideoComponent.vue";
 import ContentDataContext from "@/dataContexts/ContentDataContext";
@@ -164,7 +165,6 @@ import StringUtils from "@/common/utilities/StringUtils";
         SpinnerComponent,
         RatingComponent,
         InfoCardComponent,
-        TagComponent,
         VideoComponent,
         AnimeGridComponent,
         AnimeUserListEditorComponent,

@@ -13,7 +13,7 @@ export default class AnimeTooltip extends BaseTooltip {
     private entries: Anime[] = [];
 
     constructor(entries: Anime[]) {
-        super("phantom");
+        super("anime");
         this.entries = entries;
     }
 
