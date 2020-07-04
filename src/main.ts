@@ -2,9 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { far } from "@fortawesome/free-regular-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import FontAwesomeIcons from "@/FontAwesomeIcons";
 import Vue from "vue";
 import VueI18n from "vue-i18n";
 import VueRouter from "vue-router";
@@ -12,9 +10,7 @@ import App from "./App.vue";
 import i18n from "./i18n";
 import router from "./router";
 
-library.add(far);
-
-Vue.component("font-awesome-icon", FontAwesomeIcon);
+FontAwesomeIcons.init();
 
 Vue.config.productionTip = false
 
