@@ -28,7 +28,7 @@
                 <div class="navbar-item has-dropdown is-hoverable">
                     <a class="navbar-link">{{ $t("header.anime.menuTitle") }}</a>
                     <div class="navbar-dropdown is-boxed">
-                        <a class="navbar-item">{{ $t("header.anime.currentSeason") }}</a>
+                        <router-link to="/season" tag="a" class="navbar-item">{{ $t("header.anime.season") }}</router-link>
                     </div>
                 </div>
 

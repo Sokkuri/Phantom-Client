@@ -166,7 +166,7 @@
         "login": "Anmelden",
         "anime": {
             "menuTitle": "Anime",
-            "currentSeason": "Aktuelle Season"
+            "season": "Season"
         },
         "community": {
             "menuTitle": "Community",
@@ -186,6 +186,10 @@
     "view": {
         "content": {
             "firstEpisode": "Erste Episode"
+        },
+        "season": {
+            "series": "Serien",
+            "movies": "Filme"
         }
     },
     "anime": {
@@ -245,6 +249,9 @@
     "components": {
         "description": {
             "source": "Quelle"
+        },
+        "animePanel": {
+            "addToListTooltip": "Zur Liste hinzufügen"
         }
     }
 }

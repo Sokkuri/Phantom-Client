@@ -7,4 +7,12 @@ export default class StringUtils {
         const pattern = new RegExp(expected, "i");
         return pattern.test(source);
     }
+
+    public static shorten(source: string, maxLenght: number) {
+        if (source.length <= maxLenght) {
+            return source;
+        } else {
+            return source.substr(0, source.lastIndexOf(" ", maxLenght));
+        }
+    }
 }

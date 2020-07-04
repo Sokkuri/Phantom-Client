@@ -34,6 +34,11 @@ const routes = [
         component: () => import("@/views/search/AnimeSearchView.vue")
     },
     {
+        path: "/season",
+        name: "seasonOverviewView",
+        component: () => import("@/views/SeasonOverviewView.vue")
+    },
+    {
         path: "/about",
         name: "about",
         // route level code-splitting

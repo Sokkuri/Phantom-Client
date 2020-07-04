@@ -1,0 +1,22 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
+
+@import "../colors";
+@import "../appearance";
+
+div.season-overview-view {
+    .season-select {
+        width: fit-content;
+        margin-right: auto;
+        margin-left: auto;
+        text-align: center;
+    }
+
+    .anime-seasons a {
+        &:hover p {
+            transition: $global-transition;
+            color: $color-primary;
+        }
+    }
+}
