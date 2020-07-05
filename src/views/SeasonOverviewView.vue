@@ -136,13 +136,13 @@ export default class SeasonOverviewView extends Vue {
     }
 
     private async loadSeasonAnimes(season: SeasonInfo) {
-        return this.seasonDataContext.getSeasonAnimes(season).then(x => {
+        return this.seasonDataContext.getSeasonAnimes(season.season, season.year).then(x => {
             if (x.successfully && x.data) {
                 this.series = x.data.filter(y => y.type == Constants.AnimeTypes.Series);
                 this.movies = x.data.filter(y => y.type == Constants.AnimeTypes.Movie);
 
                 if (new UserSessionManager().sessionExists()) {
-                    this.userListDataContext.getSeasonalAnimeEntries(this.currentSeason.season).then(y => {
+                    this.userListDataContext.getSeasonalAnimeEntries(season.season, season.year).then(y => {
                         if (y.successfully && y.data) {
                             this.userListAnimes = y.data;
                         }

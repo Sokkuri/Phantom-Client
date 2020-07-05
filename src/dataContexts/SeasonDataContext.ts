@@ -18,8 +18,8 @@ export default class SeasonDataContext extends BaseDataContext {
         });
     }
 
-    public async getSeasonAnimes(info: SeasonInfo): Promise<RequestResult<Anime[]>> {
-        return super.post<Anime[]>("getSeasonAnimes", info).then(x => {
+    public async getSeasonAnimes(season: String, year: string): Promise<RequestResult<Anime[]>> {
+        return super.post<Anime[]>("getSeasonAnimes", {season, year}).then(x => {
             return x;
         });
     }

@@ -11,12 +11,12 @@ export default class UserListDataContext extends BaseDataContext {
         super("userList");
     }
 
-    public async getSeasonalAnimeEntries(season: string): Promise<RequestResult<UserList[]>> {
-        return super.get(`getSeasonalAnimeEntries?season=${season}`);
-    }
-
     public async getAnimeEntry(animeId: number): Promise<RequestResult<UserList>> {
         return super.get("getAnimeEntry/" + animeId);
+    }
+
+    public async getSeasonalAnimeEntries(season: string, year: string): Promise<RequestResult<UserList[]>> {
+        return super.post("getSeasonalAnimeEntries", {season, year});
     }
 
     public async addAnime(id: number): Promise<RequestResult<void>> {
