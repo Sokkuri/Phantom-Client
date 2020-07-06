@@ -5,13 +5,13 @@
 @import "../../colors";
 
 div.rating {
-    span.icon i.fa {
-        &.fa-star {
-            color: $color-primary;
+    span.icon {
+        &.selected path {
+            color: $color-gold;
         }
 
-        &.fa-star-o {
-            color: $color-secondary-lighter;
+        path {
+            color: $color-secondary;
         }
     }
 }

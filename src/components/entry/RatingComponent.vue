@@ -4,15 +4,15 @@
 
 <template>
     <div v-if="selected || selected > -1" class="rating">
-        <span class="icon"
+        <span class="icon selected"
             v-for="n in selected"
             v-bind:key="n">
-            <i class="fa fa-star" />
+            <font-awesome-icon :icon="['fas', 'star']" />
         </span>
         <span class="icon"
             v-for="n in (10-selected)"
             v-bind:key="uuid + n">
-            <i class="fa fa-star-o" />
+            <font-awesome-icon :icon="['far', 'star']" />
         </span>
     </div>
 </template>
