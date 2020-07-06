@@ -5,10 +5,17 @@
 import { BaseDataContext } from "@/common/BaseDataContext";
 import Recension from "@/common/models/Recension";
 import RequestResult from "@/common/models/RequestResult";
+import RecensionViewModel from "@/common/viewModels/RecensionViewModel";
 
 export default class RecensionDataContext extends BaseDataContext {
     constructor() {
         super("recension");
+    }
+
+    public async getAllAnimeRecensions(id: number): Promise<RequestResult<RecensionViewModel[]>> {
+        return super.get<RecensionViewModel[]>(`getAllAnimeRecensions/${id}`).then(x => {
+            return x;
+        });
     }
 
     public async getAnimeRecension(id: number): Promise<RequestResult<Recension>> {

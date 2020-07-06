@@ -21,7 +21,6 @@
                     <div class="column is-10">
                         <div class="info-header-content">
                             <h1 class="title">{{ entryMainTitle.title }}</h1>
-                            <RatingComponent v-bind:selected="anime.overallRating" />
                             <DescriptionComponent
                                 v-bind:content="entryMainDescription.content"
                                 v-bind:source="entryMainDescription.source"
@@ -109,7 +108,7 @@
             <div class="container">
                 <div class="columns is-multiline">
                     <div class="column is-12">
-                        <h2 class="title">{{ $t("anime.heading.contents") }}</h2>
+                        <h2 class="subtitle">{{ $t("anime.heading.contents") }}</h2>
                     </div>
                     <div class="column is-4"
                         v-for="content in entryVideoContents"
@@ -118,6 +117,20 @@
                         <VideoComponent
                             v-bind:youtubeUrl="content.url"
                         />
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="section recensions" v-if="recensions.length > 0">
+            <div class="container">
+                <div class="columns is-multiline">
+                    <div class="column is-12">
+                        <h2 class="subtitle">{{ $t("anime.heading.recensions") }}</h2>
+                    </div>
+                    <div class="column is-6"
+                        v-for="recension in recensions"
+                        v-bind:key="recension.id">
+                        <RecensionComponent v-bind:username="recension.username" v-bind:stars="recension.overallRating" v-bind:content="recension.content" />
                     </div>
                 </div>
             </div>
@@ -135,7 +148,6 @@ import ImageComponent from "@/components/global/ImageComponent.vue";
 import DescriptionComponent from "@/components/entry/DescriptionComponent.vue";
 import Description from "@/common/models/Description";
 import SpinnerComponent from "@/components/SpinnerComponent.vue";
-import RatingComponent from "@/components/entry/RatingComponent.vue";
 import Anime from "@/common/models/Anime";
 import SelectListItem from "@/common/models/SelectListItem";
 import SelectListItemUtils from "@/common/utilities/SelectListItemUtils";
@@ -157,18 +169,22 @@ import EntryUtils from "@/common/utilities/EntryUtils";
 import AnimeUserListEditorComponent from "@/components/global/userListEditor/AnimeUserListEditorComponent.vue";
 import SelectComponent from "@/components/global/SelectComponent.vue";
 import StringUtils from "@/common/utilities/StringUtils";
+import RecensionComponent from "@/components/entry/RecensionComponent.vue"
+import Recension from "@/common/models/Recension";
+import RecensionViewModel from "@/common/viewModels/RecensionViewModel";
+import RecensionDataContext from "@/dataContexts/RecensionDataContext";
 
 @Component({
     components: {
         ImageComponent,
         DescriptionComponent,
         SpinnerComponent,
-        RatingComponent,
         InfoCardComponent,
         VideoComponent,
         AnimeGridComponent,
         AnimeUserListEditorComponent,
-        SelectComponent
+        SelectComponent,
+        RecensionComponent
     }
 })
 export default class AnimeView extends Vue {
@@ -176,6 +192,7 @@ export default class AnimeView extends Vue {
     private animeDataContext: AnimeDataContext = new AnimeDataContext();
     private userListDataContext: UserListDataContext = new UserListDataContext();
     private contentDataContext: ContentDataContext = new ContentDataContext();
+    private recensionDataContext: RecensionDataContext = new RecensionDataContext();
 
     private anime: Anime = new Anime();
     private entryVideoContents: Content[] = [];
@@ -186,6 +203,7 @@ export default class AnimeView extends Vue {
     private entryDetails: Array<KeyValuePair<string, string>> = [];
     private additionalEntryInfos: KeyValuePair<string, string[]>[] = [];
     private similiarAnimes: Anime[] = [];
+    private recensions: RecensionViewModel[] = [];
 
     private selectableRatings: SelectListItem[] = [];
     private selectableWatchingStates: SelectListItem[] = [];
@@ -220,7 +238,14 @@ export default class AnimeView extends Vue {
                 }
             });
 
-            Promise.all([getAnime, getContents]).finally(() => this.loading = false);
+            const getAllAnimeRecensions = this.recensionDataContext.getAllAnimeRecensions(animeId);
+            getAllAnimeRecensions.then(x => {
+                if (x.successfully && x.data) {
+                    this.recensions = x.data;
+                }
+            })
+
+            Promise.all([getAnime, getContents, getAllAnimeRecensions]).finally(() => this.loading = false);
 
             this.animeDataContext.getSimilarAnimes(animeId).then((similiarAnimesResult: RequestResult<Anime[]>) => {
                 if (similiarAnimesResult.successfully && similiarAnimesResult.data) {
@@ -256,10 +281,14 @@ export default class AnimeView extends Vue {
                 new KeyValuePair<string, string>({
                     key: "anime.details.airedSeason",
                     value: `${TranslationUtils.translate(this.anime.airedSeason)} ${this.anime.airedYear}`}),
-                new KeyValuePair<string, string>({
-                    key: "anime.details.endingSeason",
-                    value: `${TranslationUtils.translate(this.anime.endingSeason)} ${this.anime.endingYear}`}),
             ];
+
+            if (this.anime.endingSeason && this.anime.endingYear) {
+                details.push(new KeyValuePair<string, string>({
+                    key: "anime.details.endingSeason",
+                    value: `${TranslationUtils.translate(this.anime.endingSeason)} ${this.anime.endingYear}`})
+                );
+            }
 
             details.forEach((x: KeyValuePair<string, string>) => {
                 x.key = TranslationUtils.translate(x.key);

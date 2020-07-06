@@ -1,0 +1,26 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
+
+@import "../../colors";
+@import "../../appearance";
+
+div.recension {
+    background-color: $color-secondary-darker;
+    padding: 2rem;
+    border-radius: $global-border-radius;
+
+    a {
+        font-weight: bold;
+    }
+
+    .rating {
+        margin-top: 1rem;
+    }
+
+    p {
+        text-align: justify;
+        overflow-wrap: break-word;
+        margin-top: 1rem;
+    }
+}
