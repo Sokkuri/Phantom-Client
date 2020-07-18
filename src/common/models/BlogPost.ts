@@ -5,7 +5,7 @@
 export default class BlogPost {
     title: string;
     content: string;
-    creationDate: Date;
+    creationDate: string;
     imageUrl: string;
     url: string;
 }

@@ -3,7 +3,7 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 import "date-fns";
-import { addMinutes, addSeconds, isAfter, isBefore, parseISO } from "date-fns";
+import { addMinutes, addSeconds, format, isAfter, isBefore, parseISO } from "date-fns";
 
 export default class TimeUtils {
     public static parseISO(source: string): Date {
@@ -24,5 +24,9 @@ export default class TimeUtils {
 
     public static addSeconds(sourceDate: Date, amount: number): Date {
         return addSeconds(sourceDate, amount);
+    }
+
+    public static format(sourceDate: Date, dateFormat: string): string {
+        return format(sourceDate, dateFormat);
     }
 }
