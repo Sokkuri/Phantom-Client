@@ -9,8 +9,7 @@
                 <img class="logo" src="../assets/playperium-cg-web.png" />
             </a>
             <div id="global-search-container" class="navbar-item control">
-                <input id="global-search" type="search" class="input" placeholder="Suche..." />
-                <ul id="global-search-results"></ul>
+                <GlobalSearchComponent />
             </div>
 
             <a class="navbar-burger burger" role="button" aria-expanded="false">
@@ -65,8 +64,13 @@
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { UserSessionManager } from "kogitte";
+import GlobalSearchComponent from "@/components/global/search/GlobalSearchComponent.vue";
 
-@Component
+@Component({
+    components: {
+        GlobalSearchComponent
+    }
+})
 export default class HeaderComponent extends Vue {
     private userSessionExists: boolean = false;
 

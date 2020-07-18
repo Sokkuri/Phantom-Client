@@ -253,6 +253,9 @@
         },
         "animePanel": {
             "addToListTooltip": "Zur Liste hinzufügen"
+        },
+        "search": {
+            "noResults": "Keine Ergebnisse gefunden"
         }
     }
 }

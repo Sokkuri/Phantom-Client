@@ -88,6 +88,9 @@ export default {
         English: english,
         Japanese: japanese
     },
+    EntryTypes: {
+        Anime: "Anime"
+    },
     WatchingStates: {
         Planned: planned,
         Watching: watching,

@@ -1,0 +1,37 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
+
+@import "../../colors";
+@import "../../appearance";
+
+div.search {
+    position: relative;
+
+    .search-results {
+        display: block;
+        position: absolute;
+        min-width: 100%;
+        max-width: 100%;
+        margin-top: 0.5rem;
+        background-color: $color-secondary;
+        border-radius: $global-border-radius;
+
+        ol {
+            list-style: none;
+
+            li {
+                padding: 0.7rem;
+
+                a {
+                    display: block;
+                    width: 100%;
+                }
+            }
+
+            li:hover {
+                background-color: $color-secondary-darker;
+            }
+        }
+    }
+}
