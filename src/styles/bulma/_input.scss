@@ -10,4 +10,8 @@ $input-focus-border-color: $color-primary;
 
 input.input {
     min-height: 2.8rem;
+
+    &.errored {
+        border-color: $color-attention;
+    }
 }

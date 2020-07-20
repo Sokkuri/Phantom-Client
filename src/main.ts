@@ -3,6 +3,7 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 import FontAwesomeIcons from "@/FontAwesomeIcons";
+import VeeValidators from "@/VeeValidators";
 import Vue from "vue";
 import VueI18n from "vue-i18n";
 import VueRouter from "vue-router";
@@ -11,6 +12,7 @@ import i18n from "./i18n";
 import router from "./router";
 
 FontAwesomeIcons.init();
+VeeValidators.init();
 
 Vue.config.productionTip = false
 
