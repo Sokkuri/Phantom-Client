@@ -129,23 +129,29 @@ export default class AnimeSearchView extends Vue {
             }
         });
 
-        // Infinity Scroll
-        document.addEventListener("scroll", () => {
-            this.$nextTick(() => {
-                // Search only if search results are still possible.
-                if (this.searchSettings.page == 1 || this.lastSearchResultCount >= 20) {
-                    const lastEntry = document.querySelector("div.entry-grid div:last-of-type div.tooltip") as HTMLDivElement;
+        document.addEventListener("scroll", this.onScroll);
+    }
 
-                    if (lastEntry && !this.loading) {
-                        const elementOffset = lastEntry.offsetTop + lastEntry.clientHeight;
-                        const windowOffset = window.pageYOffset + window.innerHeight;
+    beforeDestroy() {
+        document.removeEventListener("scroll", this.onScroll);
+    }
 
-                        if (windowOffset > elementOffset) {
-                            this.loadNextPage();
-                        }
+    // Infinity Scroll
+    private onScroll() {
+        this.$nextTick(() => {
+            // Search only if search results are still possible.
+            if (this.searchSettings.page == 1 || this.lastSearchResultCount >= 20) {
+                const lastEntry = document.querySelector("div.entry-grid div:last-of-type div.tooltip") as HTMLDivElement;
+
+                if (lastEntry && !this.loading) {
+                    const elementOffset = lastEntry.offsetTop + lastEntry.clientHeight;
+                    const windowOffset = window.pageYOffset + window.innerHeight;
+
+                    if (windowOffset > elementOffset) {
+                        this.loadNextPage();
                     }
                 }
-            });
+            }
         });
     }
 
