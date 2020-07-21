@@ -190,6 +190,13 @@
         "season": {
             "series": "Serien",
             "movies": "Filme"
+        },
+        "login": {
+            "welcomeBack": "Willkommen zurück!",
+            "username": "Benutzername",
+            "password": "Passwort",
+            "login": "Anmelden",
+            "wrongLoginData": "Falsche Anmeldedaten!"
         }
     },
     "anime": {
