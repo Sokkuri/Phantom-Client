@@ -1,0 +1,7 @@
+{
+    "ApiUrl": "/api/",
+    "ClientId": "phantom",
+    "HCaptcha": {
+        "SiteKey": ""
+    }
+}

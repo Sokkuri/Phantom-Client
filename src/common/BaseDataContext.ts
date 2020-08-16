@@ -4,9 +4,9 @@
 
 import RequestResult from "@/common/models/RequestResult";
 import Notification from "@/common/Notification";
-import Settings from "@/common/Settings";
 import TranslationUtils from "@/common/utilities/TranslationUtils";
 import Main from "@/main";
+import Settings from "@/Settings";
 import Axios, { AxiosError, AxiosResponse } from "axios";
 import { UserSessionManager } from "kogitte";
 
@@ -52,7 +52,7 @@ export abstract class BaseDataContext {
         return instance.post(this.buildUrl(methode), data).then((x: AxiosResponse) => {
             return new RequestResult<T>({ successfully: true, statusCode: x.status, data: x.data });
         }).catch((error: AxiosError) => {
-            const result = new RequestResult<T>({ successfully: false, statusCode: error.response ? error.response.status : undefined });
+            const result = new RequestResult<T>({ successfully: false, statusCode: error.response ? error.response.status : undefined, data: error.response ? error.response.data : undefined });
 
             this.handleError(result);
 

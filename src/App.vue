@@ -37,7 +37,7 @@ import VersionInfo from "@/common/models/VersionInfo";
 import RequestResult from "@/common/models/RequestResult";
 import TranslationUtils from "@/common/utilities/TranslationUtils";
 import { AuthStore } from "kogitte";
-import Settings from "@/common/Settings";
+import Settings from "@/Settings";
 import Notification from "@/common/Notification";
 
 @Component({

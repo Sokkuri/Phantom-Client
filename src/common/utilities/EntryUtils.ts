@@ -4,7 +4,7 @@
 
 import Description from "@/common/models/Description";
 import EntryTitle from "@/common/models/EntryTitle";
-import Settings from "@/common/Settings";
+import Settings from "@/Settings";
 import _ from "lodash";
 
 export default class EntryUtils {
