@@ -12,8 +12,6 @@ export default class BlogDataContext extends BaseDataContext {
     }
 
     public getBlogPosts(): Promise<RequestResult<Array<BlogPost>>> {
-        return super.get<Array<BlogPost>>("getblogposts").then((x: RequestResult<Array<BlogPost>>) => {
-            return x;
-        });
+        return super.get<BlogPost[]>("getblogposts");
     }
 }

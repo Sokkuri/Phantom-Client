@@ -18,8 +18,6 @@ export default class SearchDataContext extends BaseDataContext {
     }
 
     public async animeSearch(settings: SearchSettings): Promise<RequestResult<Anime[]>> {
-        return super.post<Anime[]>("animeSearch", settings).then((x: RequestResult<Anime[]>) => {
-            return x;
-        });
+        return super.post<Anime[]>("animeSearch", settings);
     }
 }

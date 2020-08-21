@@ -11,24 +11,14 @@ import Axios, { AxiosError, AxiosResponse } from "axios";
 import { UserSessionManager } from "kogitte";
 
 export abstract class BaseDataContext {
-    private apiUrl: string = Settings.ApiUrl;
     private controllerName: string;
 
     constructor(controllerName: string) {
         this.controllerName = controllerName;
     }
 
-    public buildUrl(methode: string): string {
-        return this.apiUrl + this.controllerName + "/" + methode;
-    }
-
     protected async get<T>(methode: string): Promise<RequestResult<T>> {
-        const instance = Axios.create();
-        const session = await new UserSessionManager().getCurrentSession();
-
-        if (session) {
-            instance.defaults.headers.common["Authorization"] = (`Bearer ${session.access_token}`);
-        }
+        const instance = await this.getAxiosInstance();
 
         return instance.get(this.buildUrl(methode)).then((x: AxiosResponse) => {
             return new RequestResult<T>({ successfully: true, statusCode: x.status, data: x.data });
@@ -42,12 +32,7 @@ export abstract class BaseDataContext {
     }
 
     protected async post<T>(methode: string, data: any): Promise<RequestResult<T>> {
-        const instance = Axios.create();
-        const session = await new UserSessionManager().getCurrentSession();
-
-        if (session) {
-            instance.defaults.headers.common["Authorization"] = (`Bearer ${session.access_token}`);
-        }
+        const instance = await this.getAxiosInstance();
 
         return instance.post(this.buildUrl(methode), data).then((x: AxiosResponse) => {
             return new RequestResult<T>({ successfully: true, statusCode: x.status, data: x.data });
@@ -58,6 +43,21 @@ export abstract class BaseDataContext {
 
             return result;
         });
+    }
+
+    private async getAxiosInstance() {
+        const instance = Axios.create();
+        const session = await new UserSessionManager().getCurrentSession();
+
+        if (session) {
+            instance.defaults.headers.common["Authorization"] = (`Bearer ${session.access_token}`);
+        }
+
+        return instance;
+    }
+
+    private buildUrl(methode: string): string {
+        return `${Settings.ApiUrl}${this.controllerName}/${methode}`;
     }
 
     private handleError<T>(result: RequestResult<T>) {

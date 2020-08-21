@@ -12,8 +12,6 @@ export default class CompanyDataContext extends BaseDataContext {
     }
 
     public getCompaniesByType(type: string): Promise<RequestResult<Company[]>> {
-        return super.get<Company[]>(`getCompaniesByType?type=${type}`).then((x: RequestResult<Company[]>) => {
-            return x;
-        });
+        return super.get<Company[]>(`getCompaniesByType?type=${type}`);
     }
 }

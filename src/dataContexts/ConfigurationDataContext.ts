@@ -13,20 +13,10 @@ export default class ConfigurationContext extends BaseDataContext {
     }
 
     public getVersion(): Promise<RequestResult<VersionInfo>> {
-        return super.get<VersionInfo>("getVersion").then((result: RequestResult<VersionInfo>) => {
-            return result;
-        });
-    }
-
-    public getChangelog(): Promise<RequestResult<string>> {
-        return super.get<string>("getChangelog").then((result: RequestResult<string>) => {
-            return result;
-        });
+        return super.get<VersionInfo>("getVersion");
     }
 
     public getAvailableTags(): Promise<RequestResult<Tag[]>> {
-        return super.get<Tag[]>("getAvailableTags").then((result: RequestResult<Tag[]>) => {
-            return result;
-        });
+        return super.get<Tag[]>("getAvailableTags");
     }
 }

@@ -13,15 +13,11 @@ export default class RecensionDataContext extends BaseDataContext {
     }
 
     public async getAllAnimeRecensions(id: number): Promise<RequestResult<RecensionViewModel[]>> {
-        return super.get<RecensionViewModel[]>(`getAllAnimeRecensions/${id}`).then(x => {
-            return x;
-        });
+        return super.get<RecensionViewModel[]>(`getAllAnimeRecensions/${id}`);
     }
 
     public async getAnimeRecension(id: number): Promise<RequestResult<Recension>> {
-        return super.get<Recension>(`getAnimeRecension/${id}`).then((x: RequestResult<Recension>) => {
-            return x;
-        });
+        return super.get<Recension>(`getAnimeRecension/${id}`);
     }
 
     public async saveAnimeRecension(id: number, content: string): Promise<RequestResult<void>> {
