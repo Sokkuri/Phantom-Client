@@ -57,6 +57,7 @@ const series = animeTypePrefix + "series";
 const movie = animeTypePrefix + "movie";
 const special = animeTypePrefix + "special";
 const ova = animeTypePrefix + "ova";
+const ona = animeTypePrefix + "ona";
 
 //#endregion
 
@@ -104,7 +105,8 @@ export default {
         Movie: movie,
         Special: special,
         OVA: ova,
-        AnimeTypes: [ series, movie, special, ova ]
+        ONA: ona,
+        AnimeTypes: [ series, movie, special, ova, ona ]
     },
     ContentTypes: {
         Episode: episode,
