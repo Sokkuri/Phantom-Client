@@ -3,7 +3,7 @@
    - file, You can obtain one at https://mozilla.org/MPL/2.0/. -->
 
 <template>
-    <select @choice="onSelection" v-model="selected" class="dropdown-component" ref="dropdownElement" />
+    <select @change="onSelection" v-model="selected" class="dropdown-component" ref="dropdownElement" />
 </template>
 
 <script lang="ts">
