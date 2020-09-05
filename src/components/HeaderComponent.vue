@@ -42,7 +42,7 @@
                 </div>
             </div>
             <div class="navbar-end">
-                <div v-if="userSessionExists" class="navbar-item has-dropdown is-hoverable">
+                <div v-if="sessionExists" class="navbar-item has-dropdown is-hoverable">
                     <span class="icon is-large">
                         <i class="fa fa-user-circle-o fa-2x navbar-item is-centered" aria-hidden="true" />
                     </span>
@@ -65,6 +65,7 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { UserSessionManager } from "kogitte";
 import GlobalSearchComponent from "@/components/global/search/GlobalSearchComponent.vue";
+import GlobalEventBus from "@/common/GlobalEventBus";
 
 @Component({
     components: {
@@ -72,10 +73,31 @@ import GlobalSearchComponent from "@/components/global/search/GlobalSearchCompon
     }
 })
 export default class HeaderComponent extends Vue {
-    private userSessionExists: boolean = false;
+    private sessionExists = false;
 
     created() {
-        this.userSessionExists = new UserSessionManager().sessionExists();
+        GlobalEventBus.$on("updateLoginState", this.updateLoginState);
+
+        this.sessionExists = new UserSessionManager().sessionExists();
+    }
+
+    beforeDestroy() {
+        GlobalEventBus.$off("updateLoginState", this.updateLoginState);
+    }
+
+    private updateLoginState(value: string) {
+        switch (value) {
+            case "login":
+                this.sessionExists = true;
+                break;
+
+            case "logout":
+                this.sessionExists = false;
+                break;
+
+            default:
+                break;
+        }
     }
 }
 </script>
