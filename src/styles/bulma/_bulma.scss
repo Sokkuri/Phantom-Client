@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
-@import "./colors";
+@import "../colors";
 
 // Global
 $link: $color-white;
@@ -17,4 +17,4 @@ $subtitle-color: $color-white;
 @import "./modal";
 @import "./tag";
 
-@import "../../node_modules/bulma/bulma.sass";
+@import "../../../node_modules/bulma/bulma.sass";

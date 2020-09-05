@@ -19,10 +19,10 @@ $navbar-dropdown-item-hover-color: $color-white;
 $navbar-dropdown-item-hover-background-color: $color-secondary-darker;
 $navbar-dropdown-arrow: $color-white-medium;
 
-@import "../../node_modules/bulma/sass/components/navbar.sass";
-@import "../../node_modules/bulma/sass/form/shared.sass";
-@import "../../node_modules/bulma/sass/form/tools.sass";
-@import "../../node_modules/bulma/sass/form/input-textarea.sass";
+@import "../../../node_modules/bulma/sass/components/navbar.sass";
+@import "../../../node_modules/bulma/sass/form/shared.sass";
+@import "../../../node_modules/bulma/sass/form/tools.sass";
+@import "../../../node_modules/bulma/sass/form/input-textarea.sass";
 
 nav {
     div.navbar-brand {
