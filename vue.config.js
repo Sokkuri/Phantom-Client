@@ -23,6 +23,13 @@ module.exports = {
                 pathRewrite: {
                     "^/api": ""
                 }
+            },
+            "/files/": {
+                target: "http://localhost:5000/files/",
+                changeOrigin: true,
+                pathRewrite: {
+                    "^/files": ""
+                }
             }
         }
     }

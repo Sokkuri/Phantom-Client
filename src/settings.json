@@ -1,5 +1,6 @@
 {
     "ApiUrl": "/api/",
+    "FilesUrl": "/files/",
     "ClientId": "phantom",
     "HCaptcha": {
         "SiteKey": ""

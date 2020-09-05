@@ -25,7 +25,7 @@
                 </div>
             </div>
             <div class="column is-5 panel-image">
-                <ImageComponent v-bind:imageUrl="'/api/files/' + anime.systemFile.name" />
+                <ImageComponent v-bind:fileName="anime.systemFile.name" />
             </div>
             <div class="column is-7 panel-description">
                 <p>{{ getPrimaryDescription(anime.descriptions) }}</p>

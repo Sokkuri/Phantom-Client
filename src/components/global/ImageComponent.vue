@@ -3,16 +3,18 @@
    - file, You can obtain one at https://mozilla.org/MPL/2.0/. -->
 
 <template>
-    <img ref="imageElement" class="image clickable-image" v-bind:src="imageUrl" />
+    <img ref="imageElement" class="image clickable-image" v-bind:src="getUrl()" />
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import Viewer from "viewerjs";
+import Settings from "@/Settings";
 
 @Component
 export default class ImageComponent extends Vue {
     @Prop() private imageUrl!: string;
+    @Prop() private fileName!: string;
 
     mounted() {
         const element: HTMLImageElement = this.$refs.imageElement as HTMLImageElement;
@@ -25,6 +27,10 @@ export default class ImageComponent extends Vue {
                 movable: false
             });
         }
+    }
+
+    private getUrl() {
+        return this.fileName ? Settings.FilesUrl + this.fileName : this.imageUrl;
     }
 }
 </script>

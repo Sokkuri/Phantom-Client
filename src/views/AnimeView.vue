@@ -11,7 +11,7 @@
                     <div class="column is-2">
                         <ImageComponent
                             v-if="anime.systemFile"
-                            v-bind:imageUrl="'/api/files/' + anime.systemFile.name"
+                            v-bind:fileName="anime.systemFile.name"
                         />
                         <router-link class="button is-primary is-fullwidth" v-bind:to="'/anime/content/' + anime.id" tag="button">
                             <font-awesome-icon :icon="['far', 'play-circle']" size="2x" />

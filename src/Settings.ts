@@ -7,6 +7,7 @@ import Settings from "@/settings.json";
 
 export default {
     ApiUrl: Settings.ApiUrl,
+    FilesUrl: Settings.FilesUrl,
     ClientId: Settings.ClientId,
     FallbackPrimaryLanguage: Constants.Languages.English,
     HCaptcha: {
