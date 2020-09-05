@@ -16,7 +16,27 @@ const routes = [
     {
         path: "/login",
         name: "login",
-        component: () => import("@/views/LoginView.vue")
+        component: () => import("@/views/account/LoginView.vue")
+    },
+    {
+        path: "/register",
+        name: "register",
+        component: () => import("@/views/account/RegisterView.vue")
+    },
+    {
+        path: "/confirmEmail",
+        name: "confirmEmail",
+        component: () => import("@/views/account/ConfirmEmailView.vue")
+    },
+    {
+        path: "/forgotPassword",
+        name: "forgotPassword",
+        component: () => import("@/views/account/ForgotPasswordView.vue")
+    },
+    {
+        path: "/resetPassword",
+        name: "resetPassword",
+        component: () => import("@/views/account/ResetPasswordView.vue")
     },
     {
         path: "/anime/:id",

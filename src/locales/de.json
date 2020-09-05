@@ -28,7 +28,8 @@
                 "series": "Serie",
                 "movie": "Film",
                 "special": "Spezial",
-                "ova": "OVA"
+                "ova": "OVA",
+                "ona": "ONA"
             }
         },
         "season": {
@@ -196,7 +197,43 @@
             "username": "Benutzername",
             "password": "Passwort",
             "login": "Anmelden",
+            "register": "Registrieren",
+            "forgotPassword": "Passwort vergessen?",
             "wrongLoginData": "Falsche Anmeldedaten!"
+        },
+        "register": {
+            "heading": "Account erstellen",
+            "username": "Benutzername",
+            "email": "E-Mail",
+            "password": "Passwort",
+            "confirmPassword": "Passwort bestätigen",
+            "register": "Registrieren",
+            "duplicateUserName": "Nutzername bereits vergeben!",
+            "faultyEmail": "Die E-Mail-Adresse ist entweder nicht korrekt oder bereits vergeben!",
+            "invalidCaptcha": "Das Captcha ist ungültig!",
+            "passwordNotice": "Das Passwort muss mindestens aus 8 Zeichen bestehen, Großschreibung, Kleinschreibung, Zahlen und ein Sonderzeichen enthalten!",
+            "confirmEmail": {
+                "title": "Bestätige bitte jetzt deine E-Mail-Adresse",
+                "subtitle": "Dafür musst du den Link in der E-Mail anklicken, die wir dir gerade geschickt haben."
+            }
+        },
+        "confirmEmail": {
+            "successfully": "Deine E-Mail-Adresse wurde erfolgreich bestätigt",
+            "errored": "Deine E-Mail-Adresse konnte nicht bestätigt werden!"
+        },
+        "forgotPassword": {
+            "heading": "Passwort vergessen",
+            "forgotPassword": "Passwort zurücksetzen",
+            "changePassword": {
+                "title": "Jetzt kannst du dein Passwort ändern",
+                "subtitle": "Dafür musst du den Link in der E-Mail anklicken, die wir dir gerade geschickt haben."
+            }
+        },
+        "resetPassword": {
+            "heading": "Neues Passwort",
+            "password": "Passwort",
+            "confirmPassword": "Passwort bestätigen",
+            "submit": "Passwort ändern"
         }
     },
     "anime": {
@@ -263,6 +300,13 @@
         },
         "search": {
             "noResults": "Keine Ergebnisse gefunden"
+        },
+        "captcha": {
+            "notification": {
+                "title": "Geschützt durch hCaptcha",
+                "privacyPolicy": "Datenschutzerklärung",
+                "termsOfService": "Nutzungsbedingungen"
+            }
         }
     }
 }

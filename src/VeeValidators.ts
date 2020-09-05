@@ -3,13 +3,19 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 import { extend, ValidationObserver, ValidationProvider } from "vee-validate";
-import { email, required } from "vee-validate/dist/rules";
+import { confirmed, email, min, required } from "vee-validate/dist/rules";
 import Vue from "vue";
 
 export default class VeeValidators {
     public static init() {
         extend("required", required);
         extend("email", email);
+        extend("confirmed", confirmed);
+        extend("min", min);
+
+        extend("password", value => {
+            return /^.*(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!#$%&? ']).*$/.test(value);
+        });
 
         Vue.component("ValidationProvider", ValidationProvider);
         Vue.component("ValidationObserver", ValidationObserver);
