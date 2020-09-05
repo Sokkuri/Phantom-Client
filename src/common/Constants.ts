@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
-//#region Languages
+// #region Languages
 
 const applicationLanguagePrefix = "global.language.";
 
@@ -10,9 +10,9 @@ const german = applicationLanguagePrefix + "german";
 const english = applicationLanguagePrefix + "english";
 const japanese = applicationLanguagePrefix + "japanese";
 
-//#endregion
+// #endregion
 
-//#region Adaptions
+// #region Adaptions
 
 const adaptionPrefix = "global.adaption.";
 
@@ -24,9 +24,9 @@ const original = adaptionPrefix + "original";
 const game = adaptionPrefix + "game";
 const other = adaptionPrefix + "other";
 
-//#endregion
+// #endregion
 
-//#region States
+// #region States
 
 const entryStatePrefix = "global.state.";
 
@@ -35,9 +35,9 @@ const airing = entryStatePrefix + "airing";
 const finished = entryStatePrefix + "finished";
 const uncompleted = entryStatePrefix + "uncompleted";
 
-//#endregion
+// #endregion
 
-//#region WatchingStates
+// #region WatchingStates
 
 const watchingStatePrefix = "global.userList.entryState.";
 
@@ -47,9 +47,9 @@ const completed = watchingStatePrefix + "completed";
 const waiting = watchingStatePrefix + "waiting";
 const canceled = watchingStatePrefix + "canceled";
 
-//#endregion
+// #endregion
 
-//#region AnimeTypes
+// #region AnimeTypes
 
 const animeTypePrefix = "global.anime.type.";
 
@@ -59,9 +59,9 @@ const special = animeTypePrefix + "special";
 const ova = animeTypePrefix + "ova";
 const ona = animeTypePrefix + "ona";
 
-//#endregion
+// #endregion
 
-//#region ContentTypes
+// #region ContentTypes
 
 const contentTypePrefix = "global.content.type.";
 
@@ -69,9 +69,9 @@ const episode = contentTypePrefix + "episode";
 const video = contentTypePrefix + "video";
 const streamLinking = contentTypePrefix + "streamLinking";
 
-//#endregion
+// #endregion
 
-//#region CompanyTypes
+// #region CompanyTypes
 
 const companyTypePrefix = "global.company.type.";
 
@@ -81,7 +81,7 @@ const streamingService = companyTypePrefix + "streamingService";
 const developerStudio = companyTypePrefix + "developerStudio";
 const tvSender = companyTypePrefix + "tvSender";
 
-//#endregion
+// #endregion
 
 export default {
     Languages: {
