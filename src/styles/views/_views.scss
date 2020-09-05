@@ -6,4 +6,7 @@
 @import "./anime";
 @import "./content/anime";
 @import "./seasonOverview";
-@import "./login";
+@import "./account/login";
+@import "./account/register";
+@import "./account/forgotPassword";
+@import "./account/resetPassword";
