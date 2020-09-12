@@ -3,7 +3,7 @@
    - file, You can obtain one at https://mozilla.org/MPL/2.0/. -->
 
 <template>
-    <img ref="imageElement" class="image clickable-image" v-bind:src="getUrl()" />
+    <img ref="imageElement" class="image" v-bind:class="{ 'clickable-image': viewer }" v-bind:src="getUrl()" />
 </template>
 
 <script lang="ts">
@@ -15,11 +15,12 @@ import Settings from "@/Settings";
 export default class ImageComponent extends Vue {
     @Prop() private imageUrl!: string;
     @Prop() private fileName!: string;
+    @Prop({default: true}) private viewer!: boolean;
 
     mounted() {
         const element: HTMLImageElement = this.$refs.imageElement as HTMLImageElement;
 
-        if (element) {
+        if (element && this.viewer) {
             const viewer = new Viewer(element, {
                 title: false,
                 navbar: false,

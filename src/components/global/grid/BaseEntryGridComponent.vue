@@ -10,7 +10,7 @@
 
             <div class="tooltip" v-bind:data-id="content.value.id">
                 <router-link v-bind:to="'/' + entryType +'/' + content.value.id">
-                    <img class="image" v-bind:src="'/api/files/' + content.value.systemFile.name">
+                    <ImageComponent :fileName="content.value.systemFile.name" :viewer="false" />
                 </router-link>
 
                 <router-link class="link" v-bind:to="'/' + entryType +'/' + content.value.id">{{ content.key }}</router-link>
