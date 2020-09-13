@@ -234,6 +234,29 @@
             "password": "Passwort",
             "confirmPassword": "Passwort bestätigen",
             "submit": "Passwort ändern"
+        },
+        "settings": {
+            "tabsHub": {
+                "accountData": "Kontodaten",
+                "changePassword": "Passwort ändern"
+            },
+            "accountData": {
+                "title": "Kontodaten",
+                "userName": "Benutzername",
+                "email": "E-Mail",
+                "submit": "Speichern",
+                "savedSuccessfully": "Erfolgreich gespeichert! Eine neue E-Mail-Adresse muss noch bestätigt werden.",
+                "duplicateUserName": "Nutzername bereits vergeben!",
+                "faultyEmail": "Die E-Mail-Adresse ist entweder nicht korrekt oder bereits vergeben!"
+            },
+            "changePassword": {
+                "title": "Passwort ändern",
+                "newPassword": "Neues Passwort",
+                "confirmNewPassword": "Neues Passwort bestätigen",
+                "currentPassword": "Aktuelles Passwort",
+                "submit": "Passwort Ändern",
+                "wrongPassword": "Falsches Passwort!"
+            }
         }
     },
     "anime": {

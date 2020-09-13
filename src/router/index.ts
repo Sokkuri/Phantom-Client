@@ -39,6 +39,16 @@ const routes = [
         component: () => import("@/views/account/ResetPasswordView.vue")
     },
     {
+        path: "/settings/accountData",
+        name: "accountData",
+        component: () => import("@/views/account/settings/AccountDataView.vue")
+    },
+    {
+        path: "/settings/changePassword",
+        name: "changePassword",
+        component: () => import("@/views/account/settings/ChangePasswordView.vue")
+    },
+    {
         path: "/anime/:id",
         name: "anime",
         component: () => import("@/views/AnimeView.vue")
