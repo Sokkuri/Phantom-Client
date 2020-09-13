@@ -67,6 +67,7 @@ import AccountDataContext from "@/dataContexts/AccountDataContext";
 import Notification from "@/common/Notification";
 import StringUtils from "@/common/utilities/StringUtils";
 import CaptchaComponent from "@/components/global/CaptchaComponent.vue";
+import AccountErrors from "@/common/AccountErrors";
 
 @Component({
     components: {
@@ -100,15 +101,15 @@ export default class RegisterView extends Vue {
                         let errorContentKey: string|undefined;
 
                         switch (x.data) {
-                            case "DuplicateUserName":
+                            case AccountErrors.DuplicateUserName:
                                 errorContentKey = "view.register.duplicateUserName";
                                 break;
 
-                            case "FaultyEmail":
+                            case AccountErrors.FaultyEmail:
                                 errorContentKey = "view.register.faultyEmail";
                                 break;
 
-                            case "InvalidCaptcha":
+                            case AccountErrors.InvalidCaptcha:
                                 errorContentKey = "view.register.invalidCaptcha";
                                 break;
 
