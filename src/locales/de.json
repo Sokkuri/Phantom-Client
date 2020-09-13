@@ -322,6 +322,7 @@
             "addToListTooltip": "Zur Liste hinzufügen"
         },
         "search": {
+            "placeholder": "Suche...",
             "noResults": "Keine Ergebnisse gefunden"
         },
         "captcha": {

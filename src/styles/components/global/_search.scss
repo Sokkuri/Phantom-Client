@@ -8,6 +8,10 @@
 div.search {
     position: relative;
 
+    input::placeholder {
+        color: $color-white-medium;
+    }
+
     .search-results {
         display: block;
         position: absolute;

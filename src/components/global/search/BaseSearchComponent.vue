@@ -5,7 +5,7 @@
 <template>
     <div class="search">
         <div ref="inputContainer" class="control">
-            <input ref="inputElement" class="input" type="search" autocomplete="off" v-on:input="onInput()" v-on:focus="resultVisibility(true)" v-on:blur="resultVisibility(false)">
+            <input ref="inputElement" class="input" type="search" autocomplete="off" :placeholder="$t('components.search.placeholder')" v-on:input="onInput()" v-on:focus="resultVisibility(true)" v-on:blur="resultVisibility(false)">
         </div>
         <div ref="searchResults" class="search-results">
             <ol>
