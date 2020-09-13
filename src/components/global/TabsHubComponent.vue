@@ -3,7 +3,7 @@
    - file, You can obtain one at https://mozilla.org/MPL/2.0/. -->
 
 <template>
-    <div class="tabs-hub-component tabs is-centered">
+    <div class="tabs-hub-component tabs">
         <ul>
             <li v-for="tab in elements"
                 :key="tab.url"
