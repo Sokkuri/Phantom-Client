@@ -11,17 +11,18 @@ enum NotificationTypes {
 }
 
 const defaultTimeout: number = 5000;
+const theme: Noty.Theme = "metroui";
 
 export default class Notification {
     public static addSuccess(message: string, timeout: boolean = true): Noty {
-        return new Noty({ text: message, type: NotificationTypes.SUCCESS, layout: "bottomLeft", timeout: timeout ? defaultTimeout : false });
+        return new Noty({ text: message, type: NotificationTypes.SUCCESS, layout: "bottomLeft", timeout: timeout ? defaultTimeout : false, theme: theme });
     }
 
     public static addError(message: string, timeout: boolean = true): Noty {
-        return new Noty({ text: message, type: NotificationTypes.ERROR, layout: "bottomLeft", timeout: timeout ? defaultTimeout : false });
+        return new Noty({ text: message, type: NotificationTypes.ERROR, layout: "bottomLeft", timeout: timeout ? defaultTimeout : false, theme: theme });
     }
 
     public static addInfo(message: string, timeout: boolean = true): Noty {
-        return new Noty({ text: message, type: NotificationTypes.INFO, layout: "bottomLeft", timeout: timeout ? defaultTimeout : false });
+        return new Noty({ text: message, type: NotificationTypes.INFO, layout: "bottomLeft", timeout: timeout ? defaultTimeout : false, theme: theme });
     }
 }
