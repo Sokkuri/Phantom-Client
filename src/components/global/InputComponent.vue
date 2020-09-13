@@ -9,7 +9,7 @@
             v-slot="{ errors }"
             v-bind:vid="name">
             <label class="label" v-if="label">{{ label }}</label>
-            <input ref="inputElement" @input="onInput()" v-model="value" class="input is-error" v-bind:class="{ errored: errors.length > 0 }" v-bind:type="type" v-bind:name="name" v-bind:maxlength="maxlength" />
+            <input ref="inputElement" @input="onInput()" v-model="internalValue" class="input is-error" v-bind:class="{ errored: errors.length > 0 }" v-bind:type="type" v-bind:name="name" v-bind:maxlength="maxlength" />
         </ValidationProvider>
     </div>
 </template>
@@ -26,7 +26,8 @@ export default class InputComponent extends Vue {
     @Prop({default: false}) private focus: boolean;
     @Prop({default: ""}) private rules: string;
 
-    private value: unknown = null;
+    @Prop() private value: unknown;
+    private internalValue: unknown = null;
 
     mounted() {
         if (this.focus) {
@@ -35,8 +36,12 @@ export default class InputComponent extends Vue {
         }
     }
 
+    @Watch("value") onValueChange() {
+        this.internalValue = this.value;
+    }
+
     private onInput() {
-        this.$emit("input", this.value);
+        this.$emit("input", this.internalValue);
     }
 }
 </script>
