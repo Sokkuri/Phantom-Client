@@ -4,14 +4,14 @@
 
 import { BaseDataContext } from "@/common/BaseDataContext";
 import RequestResult from "@/common/models/RequestResult";
-import VersionInfo from "@/common/models/VersionInfo";
+import Tag from "@/common/models/Tag";
 
-export default class ConfigurationContext extends BaseDataContext {
+export default class TagDataContext extends BaseDataContext {
     constructor() {
-        super("configuration");
+        super("tag");
     }
 
-    public getVersion(): Promise<RequestResult<VersionInfo>> {
-        return super.get<VersionInfo>("getVersion");
+    public getAvailableTags(): Promise<RequestResult<Tag[]>> {
+        return super.get<Tag[]>("getAvailableTags");
     }
 }

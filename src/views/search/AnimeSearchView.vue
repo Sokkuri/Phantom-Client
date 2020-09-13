@@ -67,7 +67,6 @@ import { Component, Vue } from "vue-property-decorator";
 import SelecListItemUtils from "@/common/utilities/SelectListItemUtils";
 import Constants from "@/common/Constants";
 import SelectListItem from "@/common/models/SelectListItem";
-import ConfigurationDataContext from "@/dataContexts/ConfigurationDataContext";
 import SearchDataContext from "@/dataContexts/SearchDataContext";
 import SpinnerComponent from "@/components/SpinnerComponent.vue";
 import KeyValuePair from "@/common/models/KeyValuePair";
@@ -77,6 +76,7 @@ import _ from "lodash";
 import AnimeGridComponent from "@/components/global/grid/AnimeGridComponent.vue";
 import CompanyDataContext from "@/dataContexts/CompanyDataContext";
 import SelectComponent from "@/components/global/SelectComponent.vue";
+import TagDataContext from "@/dataContexts/TagDataContext";
 
 @Component({
     components: {
@@ -103,8 +103,8 @@ export default class AnimeSearchView extends Vue {
         this.selectableTypes = SelecListItemUtils.getTranslatedItems(Constants.AnimeTypes.AnimeTypes, [Constants.AnimeTypes.Series]);
         this.selectableStates = SelecListItemUtils.getTranslatedItems(Constants.States.States, [Constants.States.Airing, Constants.States.Finished]);
 
-        const configDataContext = new ConfigurationDataContext();
-        configDataContext.getAvailableTags().then(x => {
+        const tagDataContext = new TagDataContext();
+        tagDataContext.getAvailableTags().then(x => {
             if (x.successfully && x.data) {
                 let pairs: KeyValuePair<string, number>[] = [];
 
