@@ -67,7 +67,7 @@ export default class ResetPasswordView extends Vue {
                 if (x.successfully) {
                     Main.router.push({ name: "login" });
                 }
-            });
+            }).finally(() => this.loading = false);
         }
     }
 }
