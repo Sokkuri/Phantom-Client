@@ -236,6 +236,7 @@
             "submit": "Passwort ändern"
         },
         "settings": {
+            "title": "Einstellungen",
             "tabsHub": {
                 "accountData": "Kontodaten",
                 "changePassword": "Passwort ändern"

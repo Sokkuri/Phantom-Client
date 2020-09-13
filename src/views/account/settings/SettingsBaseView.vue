@@ -8,7 +8,7 @@
             <div class="container">
                 <div class="columns is-multiline">
                     <div class="column is-12">
-                        <h1 class="title">Einstellungen</h1>
+                        <h1 class="title">{{ $t("view.settings.title") }}</h1>
                         <TabsHubComponent :tabs="tabs" />
                     </div>
                 </div>
