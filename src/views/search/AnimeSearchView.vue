@@ -52,7 +52,7 @@
                 <div class="column is-12">
                     <h2 class="subtitle has-text-centered" v-if="searchResults.length == 0 && lastSearchResultCount == 0 && !initState">{{ $t("search.noResults") }}</h2>
                     <AnimeGridComponent
-                        v-bind:colspan="2"
+                        v-bind:columnWidth="2"
                         v-bind:entries="searchResults"
                     />
                     <SpinnerComponent v-if="loading" />
@@ -141,7 +141,7 @@ export default class AnimeSearchView extends Vue {
         this.$nextTick(() => {
             // Search only if search results are still possible.
             if (this.searchSettings.page == 1 || this.lastSearchResultCount >= 20) {
-                const lastEntry = document.querySelector("div.entry-grid div:last-of-type div.tooltip") as HTMLDivElement;
+                const lastEntry = document.querySelector("div.anime-grid-component .grid-card-component:last-of-type") as HTMLDivElement;
 
                 if (lastEntry && !this.loading) {
                     const elementOffset = lastEntry.offsetTop + lastEntry.clientHeight;
