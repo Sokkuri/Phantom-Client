@@ -34,7 +34,7 @@ export default class GridCardComponent extends Vue {
     private getTitle(shorten: boolean) {
         const title = EntryUtils.getTitle(this.entry.titles).title;
 
-        if (title.length > 40 && shorten) {
+        if (title.length > 50 && shorten) {
             return `${StringUtils.shorten(title, 40)} ...`;
         }
 
