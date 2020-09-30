@@ -8,8 +8,7 @@
             <router-link :to="`/${entryType}/${entry.id}`">
                 <ImageComponent :fileName="entry.systemFile.name" :viewer="false" />
             </router-link>
-
-            <router-link class="link" :to="`/${entryType}/${entry.id}`">{{ getTitle() }}</router-link>
+            <router-link class="link" :title="getTitle(false)" :to="`/${entryType}/${entry.id}`">{{ getTitle(true) }}</router-link>
             <slot />
         </div>
     </div>
@@ -20,6 +19,7 @@ import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import BaseEntry from "@/common/models/BaseEntry";
 import EntryUtils from "@/common/utilities/EntryUtils";
 import ImageComponent from "@/components/global/ImageComponent.vue";
+import StringUtils from "@/common/utilities/StringUtils";
 
 @Component({
     components: {
@@ -31,8 +31,14 @@ export default class GridCardComponent extends Vue {
     @Prop({ required: true }) private entryType: string;
     @Prop({ required: true }) private columnWidth: number;
 
-    private getTitle() {
-        return EntryUtils.getTitle(this.entry.titles).title;
+    private getTitle(shorten: boolean) {
+        const title = EntryUtils.getTitle(this.entry.titles).title;
+
+        if (title.length > 40 && shorten) {
+            return `${StringUtils.shorten(title, 40)} ...`;
+        }
+
+        return title;
     }
 
     private getColumnWidth() {

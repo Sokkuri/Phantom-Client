@@ -7,11 +7,14 @@
 
 // Global
 @import "./global/image";
-@import "./global/gridCard";
 @import "./global/modal";
 @import "./global/animePanel";
 @import "./global/search";
 @import "./global/captcha";
+
+// Grid
+@import "./global/grid/gridCard";
+@import "./global/grid/animeUserListGrid";
 
 // Blog
 @import "./blog/blogPost";

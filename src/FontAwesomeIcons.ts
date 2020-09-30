@@ -3,7 +3,7 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faPlayCircle, faStar as farStar, faTrashAlt } from "@fortawesome/free-regular-svg-icons";
+import { faPlayCircle, faStar as farStar, faTrashAlt, faUserCircle } from "@fortawesome/free-regular-svg-icons";
 import { faCheckCircle, faPlusCircle, faStar as fasStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import Vue from "vue";
@@ -16,7 +16,8 @@ export default class FontAwesomeIcons {
             faCheckCircle,
             faPlusCircle,
             farStar,
-            fasStar);
+            fasStar,
+            faUserCircle);
 
         Vue.component("font-awesome-icon", FontAwesomeIcon);
     }
