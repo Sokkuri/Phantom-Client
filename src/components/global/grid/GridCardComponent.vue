@@ -9,8 +9,8 @@
                 <ImageComponent :fileName="entry.systemFile.name" :viewer="false" />
             </router-link>
             <router-link class="link" :title="getTitle(false)" :to="`/${entryType}/${entry.id}`">{{ getTitle(true) }}</router-link>
-            <slot />
         </div>
+        <slot />
     </div>
 </template>
 
