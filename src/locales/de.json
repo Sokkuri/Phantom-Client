@@ -19,7 +19,7 @@
                 "planned": "Geplant",
                 "watching": "Am Schauen",
                 "completed": "Abgeschlossen",
-                "waiting": "Wartend",
+                "paused": "Pausiert",
                 "canceled": "Abgebrochen"
             }
         },

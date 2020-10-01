@@ -213,7 +213,7 @@ export default class AnimeView extends Vue {
         const animeId: number = +this.$route.params.id;
 
         this.selectableRatings = SelectListItemUtils.getItemsWithSameContent([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
-        this.selectableWatchingStates = SelectListItemUtils.getTranslatedItems(Constants.WatchingStates.WatchingStates);
+        this.selectableWatchingStates = SelectListItemUtils.getTranslatedItems(Constants.UserList.EntryState.AnimeStates);
 
         if (animeId) {
             this.loading = true;
@@ -316,7 +316,7 @@ export default class AnimeView extends Vue {
 
     private clearUserListData() {
         this.selectableRatings = SelectListItemUtils.getItemsWithSameContent([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
-        this.selectableWatchingStates = SelectListItemUtils.getTranslatedItems(Constants.WatchingStates.WatchingStates);
+        this.selectableWatchingStates = SelectListItemUtils.getTranslatedItems(Constants.UserList.EntryState.AnimeStates);
         this.userListEntry = new UserList();
     }
 

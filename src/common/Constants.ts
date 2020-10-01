@@ -44,7 +44,7 @@ const watchingStatePrefix = "global.userList.entryState.";
 const planned = watchingStatePrefix + "planned";
 const watching = watchingStatePrefix + "watching";
 const completed = watchingStatePrefix + "completed";
-const waiting = watchingStatePrefix + "waiting";
+const paused = watchingStatePrefix + "paused";
 const canceled = watchingStatePrefix + "canceled";
 
 // #endregion
@@ -92,13 +92,15 @@ export default {
     EntryTypes: {
         Anime: "Anime"
     },
-    WatchingStates: {
-        Planned: planned,
-        Watching: watching,
-        Completed: completed,
-        Waiting: waiting,
-        Canceled: canceled,
-        WatchingStates: [ planned, watching, completed, waiting, canceled ]
+    UserList: {
+        EntryState: {
+            Planned: planned,
+            Watching: watching,
+            Completed: completed,
+            Paused: paused,
+            Canceled: canceled,
+            AnimeStates: [ planned, watching, completed, paused, canceled ]
+        }
     },
     AnimeTypes: {
         Series: series,
