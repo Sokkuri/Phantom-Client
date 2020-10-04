@@ -139,4 +139,4 @@ export default {
         Uncompleted: uncompleted,
         States: [ preAiring, airing, finished, uncompleted ]
     }
-}
+};

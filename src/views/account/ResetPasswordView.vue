@@ -47,10 +47,10 @@ import Main from "@/main";
 export default class ResetPasswordView extends Vue {
     private accountDataContext: AccountDataContext = new AccountDataContext();
 
-    private loading: boolean = false;
+    private loading = false;
 
-    private password: string = "";
-    private confirmPassword: string = "";
+    private password = "";
+    private confirmPassword = "";
 
     public async onSubmit() {
         const id = this.$route.query.id as string;

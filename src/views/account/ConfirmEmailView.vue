@@ -28,8 +28,8 @@ import AccountDataContext from "@/dataContexts/AccountDataContext";
 export default class ConfirmEmailView extends Vue {
     private accountDataContext: AccountDataContext = new AccountDataContext();
 
-    private loading: boolean = false;
-    private result: string = "";
+    private loading = false;
+    private result = "";
 
     created() {
         const id = this.$route.query.id as string;

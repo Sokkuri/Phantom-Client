@@ -30,7 +30,7 @@ import { CancelTokenSource } from "axios";
 
 export default abstract class BaseSearchComponent extends Vue {
     private searchResults: SearchResult[] = [];
-    private initState: boolean = true;
+    private initState = true;
 
     private getUrl(result: SearchResult): string {
         return `/${result.dataType}/${result.dataId}`;
@@ -63,7 +63,7 @@ export default abstract class BaseSearchComponent extends Vue {
                     this.searchResults = x;
                 }
             }).finally(() => {
-                inputContainer.classList.remove("is-loading")
+                inputContainer.classList.remove("is-loading");
                 this.initState = false;
             });
         }

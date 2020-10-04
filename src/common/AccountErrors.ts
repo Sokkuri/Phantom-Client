@@ -7,4 +7,4 @@ export default {
     FaultyEmail: "FaultyEmail",
     InvalidCaptcha: "InvalidCaptcha",
     WrongPassword: "WrongPassword"
-}
+};

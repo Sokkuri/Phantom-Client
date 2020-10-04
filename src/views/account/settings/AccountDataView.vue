@@ -48,10 +48,10 @@ import AccountErrors from "@/common/AccountErrors";
 export default class AccountDataView extends Vue {
     private accountSettingsDataContext: AccountSettingsDataContext = new AccountSettingsDataContext();
 
-    private loading: boolean = false;
+    private loading = false;
 
-    private userName: string = "";
-    private email: string = "";
+    private userName = "";
+    private email = "";
 
     mounted() {
         this.loading = true;

@@ -31,7 +31,7 @@ export abstract class BaseDataContext {
         });
     }
 
-    protected async post<T>(methode: string, data: any): Promise<RequestResult<T>> {
+    protected async post<T>(methode: string, data: unknown): Promise<RequestResult<T>> {
         const instance = await this.getAxiosInstance();
 
         return instance.post(this.buildUrl(methode), data).then((x: AxiosResponse) => {

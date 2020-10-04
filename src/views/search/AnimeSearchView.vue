@@ -86,7 +86,7 @@ import TagDataContext from "@/dataContexts/TagDataContext";
     }
 })
 export default class AnimeSearchView extends Vue {
-    private loading: boolean = false;
+    private loading = false;
 
     private selectableTypes: SelectListItem[] = [];
     private selectableStates: SelectListItem[] = [];
@@ -96,8 +96,8 @@ export default class AnimeSearchView extends Vue {
 
     private searchSettings: SearchSettings = new SearchSettings({ types: [], states: [], includedTagIds: [], excludedTagIds: [], page: 1 });
 
-    private lastSearchResultCount: number = 0;
-    private initState: boolean = true;
+    private lastSearchResultCount = 0;
+    private initState = true;
 
     created() {
         this.selectableTypes = SelecListItemUtils.getTranslatedItems(Constants.AnimeTypes.AnimeTypes, [Constants.AnimeTypes.Series]);
@@ -109,7 +109,7 @@ export default class AnimeSearchView extends Vue {
                 let pairs: KeyValuePair<string, number>[] = [];
 
                 x.data.forEach((y => {
-                    pairs.push(new KeyValuePair<string, number>({ key: y.translationKey, value: y.id }))
+                    pairs.push(new KeyValuePair<string, number>({ key: y.translationKey, value: y.id }));
                 }));
 
                 this.selectableTags = SelecListItemUtils.getTranslatedPairItems<number>(pairs);
@@ -122,7 +122,7 @@ export default class AnimeSearchView extends Vue {
                 let items: SelectListItem[] = [];
 
                 x.data.forEach(y => {
-                    items.push(new SelectListItem({ label: y.name, value: y.id }))
+                    items.push(new SelectListItem({ label: y.name, value: y.id }));
                 });
 
                 this.selectableStreamingServices = items;

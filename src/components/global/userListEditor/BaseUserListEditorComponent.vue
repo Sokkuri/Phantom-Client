@@ -73,7 +73,7 @@ export default class BaseUserListEditorComponent extends Vue {
     private selectableWatchingStates: SelectListItem[] = [];
 
     private editedUserListEntry: UserList = new UserList();
-    protected recension: string = "";
+    protected recension = "";
 
     mounted() {
         this.selectableRatings = SelectListItemUtils.getItemsWithSameContent([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);

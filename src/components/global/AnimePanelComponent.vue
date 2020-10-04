@@ -71,7 +71,7 @@ export default class AnimePanelComponent extends Vue {
     @Prop({required: true}) private anime!: Anime;
     @Prop() private userListEntry: UserList;
 
-    private addedToList: boolean = false;
+    private addedToList = false;
 
     private userListDataContext = new UserListDataContext();
     private userSessionManager = new UserSessionManager();

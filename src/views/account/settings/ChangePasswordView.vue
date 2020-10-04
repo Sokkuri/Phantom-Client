@@ -56,10 +56,10 @@ import AccountErrors from "@/common/AccountErrors";
 export default class ChangePasswordView extends Vue {
     private accountSettingsDataContext: AccountSettingsDataContext = new AccountSettingsDataContext();
 
-    private loading: boolean = false;
+    private loading = false;
 
-    private password: string = "";
-    private currentPassword: string = "";
+    private password = "";
+    private currentPassword = "";
 
     private async onSubmit() {
         const observer = this.$refs.observer as InstanceType<typeof ValidationObserver>;

@@ -13,7 +13,7 @@ export default class BaseTooltip {
             allowHTML: true,
             theme: theme,
             onCreate: ((x: Instance) => this.onCreate(x))
-        }
+        };
     }
 
     public create(element: HTMLElement) {

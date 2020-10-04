@@ -42,7 +42,7 @@ import RequestResult from "@/common/models/RequestResult";
 export default class Blog extends Vue {
     private dataContext: BlogDataContext = new BlogDataContext();
     private posts: Array<BlogPost> = [];
-    private loading: boolean = false;
+    private loading = false;
 
     created() {
         this.loading = true;

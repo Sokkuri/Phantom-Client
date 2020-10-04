@@ -31,7 +31,7 @@ export default class AnimeTooltip extends BaseTooltip {
 
         infos.push(_.escape(TranslationUtils.translate(data.status)));
 
-        let tagElements: string = "";
+        let tagElements = "";
 
         if (data.tags.length > 0) {
             const tags = _.take(data.tags, 3);

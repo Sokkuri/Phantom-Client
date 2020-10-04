@@ -78,14 +78,14 @@ import AccountErrors from "@/common/AccountErrors";
 export default class RegisterView extends Vue {
     private accountDataContext: AccountDataContext = new AccountDataContext();
 
-    private loading: boolean = false;
+    private loading = false;
     private confirmEmail = false;
 
-    private username: string = "";
-    private email: string = "";
-    private password: string = "";
-    private confirmPassword: string = "";
-    private captchaResponse: string = "";
+    private username = "";
+    private email = "";
+    private password = "";
+    private confirmPassword = "";
+    private captchaResponse = "";
 
     private async onSubmit() {
         const observer = this.$refs.observer as InstanceType<typeof ValidationObserver>;

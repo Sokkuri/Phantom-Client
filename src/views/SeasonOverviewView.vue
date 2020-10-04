@@ -87,8 +87,8 @@ import UserListDataContext from "@/dataContexts/UserListDataContext";
     }
 })
 export default class SeasonOverviewView extends Vue {
-    private loading: boolean = false;
-    private initState: boolean = true;
+    private loading = false;
+    private initState = true;
 
     private seasons: SeasonInfo[] = [];
     private currentSeason: SeasonInfo = new SeasonInfo();
@@ -146,10 +146,10 @@ export default class SeasonOverviewView extends Vue {
                         if (y.successfully && y.data) {
                             this.userListAnimes = y.data;
                         }
-                    })
+                    });
                 }
 
-                this.initState = false
+                this.initState = false;
             }
         });
     }

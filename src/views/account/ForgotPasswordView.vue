@@ -51,11 +51,11 @@ import { ValidationObserver } from "vee-validate";
 export default class ForgotPasswordView extends Vue {
     private accountDataContext: AccountDataContext = new AccountDataContext();
 
-    private loading: boolean = false;
+    private loading = false;
     private changePassword = false;
 
-    private email: string = "";
-    private captchaResponse: string = "";
+    private email = "";
+    private captchaResponse = "";
 
     created() {
         const id = this.$route.query.id as string;

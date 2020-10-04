@@ -13,4 +13,4 @@ export default {
     HCaptcha: {
         SiteKey: Settings.HCaptcha.SiteKey
     }
-}
+};

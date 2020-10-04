@@ -51,7 +51,7 @@ import SpinnerComponent from "@/components/SpinnerComponent.vue";
     }
 })
 export default class BaseEntryContentView extends Vue {
-    private loading: boolean = false;
+    private loading = false;
     private animeDataContext: AnimeDataContext = new AnimeDataContext();
 
     protected entryId: number;

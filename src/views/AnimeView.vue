@@ -169,7 +169,7 @@ import EntryUtils from "@/common/utilities/EntryUtils";
 import AnimeUserListEditorComponent from "@/components/global/userListEditor/AnimeUserListEditorComponent.vue";
 import SelectComponent from "@/components/global/SelectComponent.vue";
 import StringUtils from "@/common/utilities/StringUtils";
-import RecensionComponent from "@/components/entry/RecensionComponent.vue"
+import RecensionComponent from "@/components/entry/RecensionComponent.vue";
 import Recension from "@/common/models/Recension";
 import RecensionViewModel from "@/common/viewModels/RecensionViewModel";
 import RecensionDataContext from "@/dataContexts/RecensionDataContext";
@@ -188,7 +188,7 @@ import RecensionDataContext from "@/dataContexts/RecensionDataContext";
     }
 })
 export default class AnimeView extends Vue {
-    private loading: boolean = false;
+    private loading = false;
     private animeDataContext: AnimeDataContext = new AnimeDataContext();
     private userListDataContext: UserListDataContext = new UserListDataContext();
     private contentDataContext: ContentDataContext = new ContentDataContext();
@@ -207,7 +207,7 @@ export default class AnimeView extends Vue {
 
     private selectableRatings: SelectListItem[] = [];
     private selectableWatchingStates: SelectListItem[] = [];
-    private selectedValue: string = "";
+    private selectedValue = "";
 
     created() {
         const animeId: number = +this.$route.params.id;
@@ -243,7 +243,7 @@ export default class AnimeView extends Vue {
                 if (x.successfully && x.data) {
                     this.recensions = x.data;
                 }
-            })
+            });
 
             Promise.all([getAnime, getContents, getAllAnimeRecensions]).finally(() => this.loading = false);
 
@@ -259,7 +259,7 @@ export default class AnimeView extends Vue {
         if (this.anime.descriptions && this.anime.descriptions.length > 0) {
             this.entryMainDescription = this.anime.descriptions
                 .some(x => x.language == Constants.Languages.German) ?
-                    (this.anime.descriptions.find(x => x.language == Constants.Languages.German) as Description) : (_.first(this.anime.descriptions) as Description)
+                    (this.anime.descriptions.find(x => x.language == Constants.Languages.German) as Description) : (_.first(this.anime.descriptions) as Description);
         }
     }
 
@@ -387,7 +387,7 @@ export default class AnimeView extends Vue {
                     this.setUserListData();
                     this.showSuccessfullySaveNotification();
                 }
-            })
+            });
         }
     }
 

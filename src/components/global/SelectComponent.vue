@@ -79,10 +79,10 @@ export default class SelectComponent extends Vue {
         elements.forEach(x =>{
             if (x.value == this.selected) {
                 x.selected = true;
-                updatedElements.push(x)
+                updatedElements.push(x);
             } else {
                 x.selected = false;
-                updatedElements.push(x)
+                updatedElements.push(x);
             }
         });
 

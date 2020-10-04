@@ -36,7 +36,7 @@ export default class SelectListItemUtils {
         const items: SelectListItem[] = [];
 
         pairs.forEach((x: KeyValuePair<string, T>) => {
-            items.push(new SelectListItem({label: TranslationUtils.translate(x.key), value: x.value }))
+            items.push(new SelectListItem({label: TranslationUtils.translate(x.key), value: x.value }));
         });
 
         return items;

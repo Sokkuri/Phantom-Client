@@ -3,6 +3,6 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 declare module "*.vue" {
-  import Vue from "vue"
-  export default Vue
+  import Vue from "vue";
+  export default Vue;
 }
