@@ -5,7 +5,7 @@
 <template>
     <div class="description">
         <p>{{ content }}</p>
-        <p v-if="source" class="source">{{ $t("components.description.source") }}: {{ source }}</p>
+        <p v-if="source" class="source">{{ $t("component.description.source") }}: {{ source }}</p>
     </div>
 </template>
 

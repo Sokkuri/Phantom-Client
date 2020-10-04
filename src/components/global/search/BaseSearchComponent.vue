@@ -5,11 +5,11 @@
 <template>
     <div class="search">
         <div ref="inputContainer" class="control">
-            <input ref="inputElement" class="input" type="search" autocomplete="off" :placeholder="$t('components.search.placeholder')" v-on:input="onInput()" v-on:focus="resultVisibility(true)" v-on:blur="resultVisibility(false)">
+            <input ref="inputElement" class="input" type="search" autocomplete="off" :placeholder="$t('component.search.placeholder')" v-on:input="onInput()" v-on:focus="resultVisibility(true)" v-on:blur="resultVisibility(false)">
         </div>
         <div ref="searchResults" class="search-results">
             <ol>
-                <li v-if="searchResults.length == 0 && !initState">{{ $t("components.search.noResults") }}</li>
+                <li v-if="searchResults.length == 0 && !initState">{{ $t("component.search.noResults") }}</li>
                 <li
                     v-for="result in searchResults"
                     v-bind:key="getUrl(result)">
@@ -23,10 +23,9 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Vue } from "vue-property-decorator";
 import SearchResult from "@/common/models/SearchResult";
 import _ from "lodash";
-import { CancelTokenSource } from "axios";
 
 export default abstract class BaseSearchComponent extends Vue {
     private searchResults: SearchResult[] = [];

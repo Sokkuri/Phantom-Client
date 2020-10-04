@@ -33,7 +33,7 @@
                     <span class="icon" v-if="userListEntry || addedToList">
                         <font-awesome-icon class="is-vcentered" :icon="['fas', 'check-circle']" />
                     </span>
-                    <span class="icon" v-bind:title="$t('components.animePanel.addToListTooltip')" @click="addToList" v-else>
+                    <span class="icon" v-bind:title="$t('component.animePanel.addToListTooltip')" @click="addToList" v-else>
                         <font-awesome-icon class="is-vcentered" :icon="['fas', 'plus-circle']" />
                     </span>
                 </div>

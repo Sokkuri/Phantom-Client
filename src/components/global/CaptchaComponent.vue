@@ -6,11 +6,11 @@
     <div class="captcha-component">
         <vue-hcaptcha ref="captcha" @verify="onVerify" :sitekey="sitekey" :theme="'dark'" :size="size"></vue-hcaptcha>
         <div class="notification" v-if="!visible">
-            <p class="has-text-centered">{{ $t("components.captcha.notification.title") }}</p>
+            <p class="has-text-centered">{{ $t("component.captcha.notification.title") }}</p>
             <div class="level">
                 <div class="level-item">
-                    <a href="https://hcaptcha.com/privacy" target="_blank" rel="noopener noreferrer">{{ $t("components.captcha.notification.privacyPolicy") }}</a>
-                    <a href="https://hcaptcha.com/terms" target="_blank" rel="noopener noreferrer">{{ $t("components.captcha.notification.termsOfService") }}</a>
+                    <a href="https://hcaptcha.com/privacy" target="_blank" rel="noopener noreferrer">{{ $t("component.captcha.notification.privacyPolicy") }}</a>
+                    <a href="https://hcaptcha.com/terms" target="_blank" rel="noopener noreferrer">{{ $t("component.captcha.notification.termsOfService") }}</a>
                 </div>
             </div>
         </div>
