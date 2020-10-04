@@ -4,17 +4,19 @@
 
 import FontAwesomeIcons from "@/FontAwesomeIcons";
 import VeeValidators from "@/VeeValidators";
+import { AuthConfig } from "kogitte";
 import Vue from "vue";
 import VueI18n from "vue-i18n";
 import VueRouter from "vue-router";
 import App from "./App.vue";
 import i18n from "./i18n";
 import router from "./router";
+import Settings from "./Settings";
 
 FontAwesomeIcons.init();
 VeeValidators.init();
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 export default class Main {
     public static router: VueRouter;
@@ -24,8 +26,10 @@ export default class Main {
 Main.router = router;
 Main.i18n = i18n;
 
+AuthConfig.init(Settings.ClientId, `${Settings.ApiUrl}authentication/login`, `${Settings.ApiUrl}authentication/logout`);
+
 new Vue({
   router,
   i18n,
   render: h => h(App)
-}).$mount("#app")
+}).$mount("#app");
