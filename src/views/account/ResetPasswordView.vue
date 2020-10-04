@@ -34,10 +34,10 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import InputComponent from "@/components/global/InputComponent.vue";
 import AccountDataContext from "@/dataContexts/AccountDataContext";
 import { ValidationObserver } from "vee-validate";
 import Main from "@/main";
+import { InputComponent } from "keiryo";
 
 @Component({
     components: {

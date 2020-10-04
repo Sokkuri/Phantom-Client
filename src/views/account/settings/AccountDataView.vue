@@ -29,15 +29,15 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue, Watch } from "vue-property-decorator";
+import { Component, Vue } from "vue-property-decorator";
 import TabsHubTab from "@/common/models/TabsHubTab";
 import SettingsBaseView from "@/views/account/settings/SettingsBaseView.vue";
-import InputComponent from "@/components/global/InputComponent.vue";
 import AccountSettingsDataContext from "@/dataContexts/AccountSettingsDataContext";
 import { ValidationObserver } from "vee-validate";
 import Notification from "@/common/Notification";
 import TranslationUtils from "@/common/utilities/TranslationUtils";
 import AccountErrors from "@/common/AccountErrors";
+import { InputComponent } from "keiryo";
 
 @Component({
     components: {

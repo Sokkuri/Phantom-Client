@@ -139,7 +139,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Watch } from "vue-property-decorator";
+import { Component, Vue } from "vue-property-decorator";
 import AnimeDataContext from "@/dataContexts/AnimeDataContext";
 import Constants from "@/common/Constants";
 import _ from "lodash";
@@ -149,7 +149,6 @@ import DescriptionComponent from "@/components/entry/DescriptionComponent.vue";
 import Description from "@/common/models/Description";
 import SpinnerComponent from "@/components/SpinnerComponent.vue";
 import Anime from "@/common/models/Anime";
-import SelectListItem from "@/common/models/SelectListItem";
 import SelectListItemUtils from "@/common/utilities/SelectListItemUtils";
 import Notification from "@/common/Notification";
 import UserListDataContext from "@/dataContexts/UserListDataContext";
@@ -167,7 +166,7 @@ import AnimeGridComponent from "@/components/global/grid/AnimeGridComponent.vue"
 import BaseEntry from "@/common/models/BaseEntry";
 import EntryUtils from "@/common/utilities/EntryUtils";
 import AnimeUserListEditorComponent from "@/components/global/userListEditor/AnimeUserListEditorComponent.vue";
-import SelectComponent from "@/components/global/SelectComponent.vue";
+import { SelectComponent, SelectListItem } from "keiryo";
 import StringUtils from "@/common/utilities/StringUtils";
 import RecensionComponent from "@/components/entry/RecensionComponent.vue";
 import Recension from "@/common/models/Recension";

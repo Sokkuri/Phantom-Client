@@ -46,7 +46,7 @@
 import { Component, Vue } from "vue-property-decorator";
 import AnimeDataContext from "@/dataContexts/AnimeDataContext";
 import { UserSessionManager } from "kogitte";
-import InputComponent from "@/components/global/InputComponent.vue";
+import { InputComponent } from "keiryo";
 import { ValidationObserver } from "vee-validate";
 import Main from "@/main";
 import Notification from "@/common/Notification";

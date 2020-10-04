@@ -39,7 +39,7 @@
 import { Component, Vue } from "vue-property-decorator";
 import AccountDataContext from "@/dataContexts/AccountDataContext";
 import CaptchaComponent from "@/components/global/CaptchaComponent.vue";
-import InputComponent from "@/components/global/InputComponent.vue";
+import { InputComponent } from "keiryo";
 import { ValidationObserver } from "vee-validate";
 
 @Component({

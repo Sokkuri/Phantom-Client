@@ -47,8 +47,7 @@
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import ModalComponent from "@/components/global/ModalComponent.vue";
-import SelectComponent from "@/components/global/SelectComponent.vue";
-import SelectListItem from "@/common/models/SelectListItem";
+import { SelectComponent, SelectListItem } from "keiryo";
 import SelectListItemUtils from "@/common/utilities/SelectListItemUtils";
 import Constants from "@/common/Constants";
 import UserListDataContext from "@/dataContexts/UserListDataContext";

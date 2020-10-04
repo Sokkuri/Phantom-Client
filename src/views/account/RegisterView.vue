@@ -60,7 +60,6 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import InputComponent from "@/components/global/InputComponent.vue";
 import TranslationUtils from "@/common/utilities/TranslationUtils";
 import { ValidationObserver } from "vee-validate";
 import AccountDataContext from "@/dataContexts/AccountDataContext";
@@ -68,6 +67,7 @@ import Notification from "@/common/Notification";
 import StringUtils from "@/common/utilities/StringUtils";
 import CaptchaComponent from "@/components/global/CaptchaComponent.vue";
 import AccountErrors from "@/common/AccountErrors";
+import { InputComponent } from "keiryo";
 
 @Component({
     components: {

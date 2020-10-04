@@ -66,7 +66,6 @@
 import { Component, Vue } from "vue-property-decorator";
 import SelecListItemUtils from "@/common/utilities/SelectListItemUtils";
 import Constants from "@/common/Constants";
-import SelectListItem from "@/common/models/SelectListItem";
 import SearchDataContext from "@/dataContexts/SearchDataContext";
 import SpinnerComponent from "@/components/SpinnerComponent.vue";
 import KeyValuePair from "@/common/models/KeyValuePair";
@@ -75,7 +74,7 @@ import Anime from "@/common/models/Anime";
 import _ from "lodash";
 import AnimeGridComponent from "@/components/global/grid/AnimeGridComponent.vue";
 import CompanyDataContext from "@/dataContexts/CompanyDataContext";
-import SelectComponent from "@/components/global/SelectComponent.vue";
+import { SelectComponent, SelectListItem } from "keiryo";
 import TagDataContext from "@/dataContexts/TagDataContext";
 
 @Component({

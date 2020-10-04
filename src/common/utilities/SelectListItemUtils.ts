@@ -3,8 +3,8 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 import KeyValuePair from "@/common/models/KeyValuePair";
-import SelectListItem from "@/common/models/SelectListItem";
 import TranslationUtils from "@/common/utilities/TranslationUtils";
+import { SelectListItem } from "keiryo";
 import { Vue } from "vue-property-decorator";
 
 export default class SelectListItemUtils {
