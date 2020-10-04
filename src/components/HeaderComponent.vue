@@ -42,14 +42,14 @@
                 </div>
             </div>
             <div class="navbar-end">
-                <div v-if="sessionExists" class="navbar-item has-dropdown is-hoverable">
+                <div v-if="sessionExists" class="navbar-item has-dropdown is-hoverable is-vcentered">
                     <span class="icon is-large">
-                        <i class="fa fa-user-circle-o fa-2x navbar-item is-centered" aria-hidden="true" />
+                        <font-awesome-icon :icon="['far', 'user-circle']" size="2x" />
                     </span>
                     <div class="navbar-dropdown is-right is-boxed">
-                        <a href="/UserList/Anime/Details/@User.Identity.Name" class="navbar-item">{{ $t("header.user.myAnimeList") }}</a>
-                        <a class="navbar-item">{{ $t("header.user.settings") }}</a>
-                        <a class="navbar-item">{{ $t("header.user.logout") }}</a>
+                        <router-link :to="`/profile/${userInfo.userName}`" tag="a" class="navbar-item">{{ $t("header.user.profile") }}</router-link>
+                        <router-link to="/settings/accountData" tag="a" class="navbar-item">{{ $t("header.user.settings") }}</router-link>
+                        <a class="navbar-item" @click="logout()">{{ $t("header.user.logout") }}</a>
                     </div>
                 </div>
 
@@ -62,10 +62,13 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Vue } from "vue-property-decorator";
 import { UserSessionManager } from "kogitte";
 import GlobalSearchComponent from "@/components/global/search/GlobalSearchComponent.vue";
 import GlobalEventBus from "@/common/GlobalEventBus";
+import CurrentUser from "@/common/CurrentUser";
+import UserInfo from "@/common/models/UserInfo";
+import StringUtils from "@/common/utilities/StringUtils";
 
 @Component({
     components: {
@@ -74,29 +77,45 @@ import GlobalEventBus from "@/common/GlobalEventBus";
 })
 export default class HeaderComponent extends Vue {
     private sessionExists = false;
+    private userInfo: UserInfo = new UserInfo();
+
+    private userSessionManager = new UserSessionManager();
 
     created() {
         GlobalEventBus.$on("updateLoginState", this.updateLoginState);
 
         this.sessionExists = new UserSessionManager().sessionExists();
+        this.loadUserInfo();
     }
 
     beforeDestroy() {
         GlobalEventBus.$off("updateLoginState", this.updateLoginState);
     }
 
-    private updateLoginState(value: string) {
-        switch (value) {
-            case "login":
-                this.sessionExists = true;
-                break;
+    private updateLoginState(state: string) {
+        if (StringUtils.equalsIgnoreCase(state, "login")) {
+            this.sessionExists = true;
+            this.loadUserInfo();
+        }
 
-            case "logout":
+        if (StringUtils.equalsIgnoreCase(state, "logout")) {
+            this.sessionExists = false;
+        }
+    }
+
+    private async logout() {
+        this.userSessionManager.logout().then(x => {
+            if (x.successfully) {
                 this.sessionExists = false;
-                break;
+            }
+        });
+    }
 
-            default:
-                break;
+    private loadUserInfo() {
+        const userInfo = CurrentUser.getUserInfo();
+
+        if (userInfo) {
+            this.userInfo = userInfo;
         }
     }
 }

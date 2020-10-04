@@ -53,6 +53,8 @@ import Notification from "@/common/Notification";
 import TranslationUtils from "@/common/utilities/TranslationUtils";
 import GlobalEventBus from "@/common/GlobalEventBus";
 import CaptchaComponent from "@/components/global/CaptchaComponent.vue";
+import UserDataContext from "@/dataContexts/UserDataContext";
+import CurrentUser from "@/common/CurrentUser";
 
 @Component({
     components: {
@@ -62,12 +64,13 @@ import CaptchaComponent from "@/components/global/CaptchaComponent.vue";
 })
 export default class LoginView extends Vue {
     private sessionManager: UserSessionManager = new UserSessionManager();
+    private userDataContext: UserDataContext = new UserDataContext();
 
-    private loading: boolean = false;
+    private loading = false;
 
-    private username: string = "";
-    private password: string = "";
-    private captchaResponse: string = "";
+    private username = "";
+    private password = "";
+    private captchaResponse = "";
 
     private async onSubmit() {
         const observer = this.$refs.observer as InstanceType<typeof ValidationObserver>;
@@ -75,14 +78,18 @@ export default class LoginView extends Vue {
         if (this.captchaResponse && await observer.validate()) {
             this.loading = true;
 
-            this.sessionManager.login(this.username, this.password, this.captchaResponse).then(x => {
-                if (x.successfully) {
-                    GlobalEventBus.$emit("updateLoginState", "login");
-                    Main.router.push({ name: "home" });
-                } else {
-                    Notification.addError(TranslationUtils.translate("view.login.wrongLoginData")).show();
-                }
-            }).finally(() => this.loading = false)
+            const authResult = await this.sessionManager.login(this.username, this.password, this.captchaResponse);
+
+            if (authResult.successfully && authResult.data) {
+                await CurrentUser.saveUserInfo();
+
+                GlobalEventBus.$emit("updateLoginState", "login");
+                Main.router.push({ name: "home" });
+            } else {
+                Notification.addError(TranslationUtils.translate("view.login.wrongLoginData")).show();
+            }
+
+            this.loading = false;
         }
     }
 }

@@ -38,6 +38,11 @@ nav {
         text-decoration: unset;
     }
 
+    span.icon {
+        margin-top: 0.5rem;
+        margin-right: 0.5rem;
+    }
+
     i:hover {
         color: $navbar-item-hover-color;
     }
