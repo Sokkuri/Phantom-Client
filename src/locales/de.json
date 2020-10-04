@@ -175,7 +175,7 @@
             "teamspeak": "TeamSpeak"
         },
         "user": {
-            "myAnimeList": "Meine Animeliste",
+            "profile": "Profil",
             "settings": "Einstellungen",
             "login": "Anmelden",
             "logout": "Abmelden"
@@ -258,6 +258,16 @@
                 "submit": "Passwort Ändern",
                 "wrongPassword": "Falsches Passwort!"
             }
+        },
+        "profile": {
+            "tabsHub": {
+                "overview": "Übersicht",
+                "animeList": "Animeliste"
+            },
+            "animeList": {
+                "rating": "Bewertung",
+                "progress": "Fortschritt"
+            }
         }
     },
     "anime": {
@@ -315,7 +325,7 @@
             "review": "Rezension"
         }
     },
-    "components": {
+    "component": {
         "description": {
             "source": "Quelle"
         },
@@ -332,6 +342,11 @@
                 "privacyPolicy": "Datenschutzerklärung",
                 "termsOfService": "Nutzungsbedingungen"
             }
+        },
+        "userlistStats": {
+            "totalEntries": "Einträge insgesamt",
+            "totalEpisodes": "Gesehene Episoden",
+            "averageRating": "Durchschnittsbewertung"
         }
     }
 }

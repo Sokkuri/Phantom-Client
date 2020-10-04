@@ -5,7 +5,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
     {
@@ -44,14 +44,24 @@ const routes = [
         component: () => import("@/views/account/settings/AccountDataView.vue")
     },
     {
+        path: "/anime/:id",
+        name: "anime",
+        component: () => import("@/views/AnimeView.vue")
+    },
+    {
         path: "/settings/changePassword",
         name: "changePassword",
         component: () => import("@/views/account/settings/ChangePasswordView.vue")
     },
     {
-        path: "/anime/:id",
-        name: "anime",
-        component: () => import("@/views/AnimeView.vue")
+        path: "/profile/:userName",
+        name: "profile",
+        component: () => import("@/views/account/profile/OverviewView.vue")
+    },
+    {
+        path: "/profile/:userName/animeList",
+        name: "animeList",
+        component: () => import("@/views/account/profile/AnimeListView.vue")
     },
     {
         path: "/anime/content/:id",
@@ -76,14 +86,14 @@ const routes = [
         // which is lazy-loaded when the route is visited.
         component: () => import(/* webpackChunkName: "about" */ "../views/About.vue")
     }
-]
+];
 
 const router = new VueRouter({
     routes,
     mode: "history",
     scrollBehavior() {
-        return { x: 0, y: 0 }
+        return { x: 0, y: 0 };
     }
 });
 
-export default router
+export default router;

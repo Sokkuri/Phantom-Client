@@ -32,11 +32,10 @@
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import BaseEntryGrid from "@/components/global/grid/BaseEntryGrid";
-import Anime from "@/common/models/Anime";
+import UserList from "@/common/models/UserList";
 import AnimeTooltip from "@/common/tooltips/AnimeTooltip";
 import GridCardComponent from "@/components/global/grid/GridCardComponent.vue";
-import UserList from "@/common/models/UserList";
-import _ from "lodash";
+import Anime from "@/common/models/Anime";
 
 @Component({
     components: {
@@ -46,10 +45,20 @@ import _ from "lodash";
 export default class AnimeUserListGridComponent extends BaseEntryGrid {
     @Prop() protected entries: UserList[];
 
-    protected entryType: string = "anime";
+    protected entryType = "anime";
+
+    /*
+        ToDo: Investigate later
+        The watch for the entries here don't get trigger on a change.
+        I think it is because the entries come from a for and this doesn't trigger the watch.
+        So I init the tooltips manually here.
+    */
+    mounted() {
+        this.initTooltips();
+    }
 
     protected initTooltips() {
-        const elements = document.querySelectorAll("div.anime-user-list-grid-component div.tooltip");
+        const elements = this.$el.querySelectorAll("div.grid-card-component div.tooltip");
 
         if (elements) {
             new AnimeTooltip(this.entries.map(x => x.anime)).createMany(elements);

@@ -8,7 +8,7 @@ export default abstract class BaseEntryGrid extends Vue {
     @Prop() protected columnWidth: number;
 
     protected abstract entryType: string;
-    protected abstract entries: object[];
+    protected abstract entries: unknown[];
 
     @Watch("entries") onEntryChange() {
         this.$nextTick(() => {

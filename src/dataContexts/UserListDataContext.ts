@@ -5,6 +5,7 @@
 import { BaseDataContext } from "@/common/BaseDataContext";
 import RequestResult from "@/common/models/RequestResult";
 import UserList from "@/common/models/UserList";
+import UserListStatsViewModel from "@/common/viewModels/UserListStatsViewModel";
 
 export default class UserListDataContext extends BaseDataContext {
     constructor() {
@@ -17,6 +18,10 @@ export default class UserListDataContext extends BaseDataContext {
 
     public async getSeasonalAnimeEntries(season: string, year: string): Promise<RequestResult<UserList[]>> {
         return super.post("getSeasonalAnimeEntries", {season, year});
+    }
+
+    public async getAnimeEntries(userName: string): Promise<RequestResult<UserList[]>> {
+        return super.get(`getAnimeEntries?userName=${userName}`);
     }
 
     public async addAnime(id: number): Promise<RequestResult<void>> {
@@ -37,5 +42,9 @@ export default class UserListDataContext extends BaseDataContext {
 
     public async saveChanges(id: number, overallRating: number, state: string, currentEpisode: number): Promise<RequestResult<void>> {
         return super.post("saveChanges", {id, overallRating, state, currentEpisode});
+    }
+
+    public async getAnimeUserListStats(userName: string): Promise<RequestResult<UserListStatsViewModel>> {
+        return super.get(`getAnimeUserListStats?userName=${userName}`);
     }
 }

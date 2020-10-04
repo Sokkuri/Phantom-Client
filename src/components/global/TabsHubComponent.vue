@@ -15,10 +15,11 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue, Watch } from "vue-property-decorator";
+import { Component, Prop, Vue } from "vue-property-decorator";
 import TabsHubTab from "@/common/models/TabsHubTab";
 import Main from "@/main";
 import _ from "lodash";
+import StringUtils from "@/common/utilities/StringUtils";
 
 @Component
 export default class TabsHubComponent extends Vue {
@@ -29,7 +30,7 @@ export default class TabsHubComponent extends Vue {
     mounted() {
         this.elements = this.tabs;
 
-        const currentTab = _.find(this.elements, x => x.url == Main.router.currentRoute.path);
+        const currentTab = _.find(this.elements, x => StringUtils.equalsIgnoreCase(x.url, Main.router.currentRoute.path));
 
         if (currentTab) {
             this.selectTab(currentTab);

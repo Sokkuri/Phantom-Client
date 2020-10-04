@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import BaseEntryGrid from "@/components/global/grid/BaseEntryGrid";
 import Anime from "@/common/models/Anime";
 import AnimeTooltip from "@/common/tooltips/AnimeTooltip";
@@ -31,10 +31,10 @@ import GridCardComponent from "@/components/global/grid/GridCardComponent.vue";
 export default class AnimeGridComponent extends BaseEntryGrid {
     @Prop() protected entries: Anime[];
 
-    protected entryType: string = "anime";
+    protected entryType = "anime";
 
     protected initTooltips() {
-        const elements = document.querySelectorAll("div.anime-grid-component div.tooltip");
+        const elements = this.$el.querySelectorAll("div.grid-card-component div.tooltip");
 
         if (elements) {
             new AnimeTooltip(this.entries).createMany(elements);
