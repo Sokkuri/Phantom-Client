@@ -26,7 +26,7 @@ export default class Main {
 Main.router = router;
 Main.i18n = i18n;
 
-AuthConfig.init(Settings.ClientId, `${Settings.ApiUrl}authentication/login`, `${Settings.ApiUrl}authentication/logout`);
+AuthConfig.init(Settings.ClientId, `${Settings.ApiUrl}authentication/token`, `${Settings.ApiUrl}authentication/logout`);
 
 new Vue({
   router,
