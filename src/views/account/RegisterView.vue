@@ -46,7 +46,7 @@
                             </div>
                             <div class="level">
                                 <div class="level-item">
-                                    <CaptchaComponent v-model="captchaResponse" />
+                                    <CaptchaComponent v-model="captchaResponse" :siteKey="siteKey" />
                                 </div>
                             </div>
                             <button class="button is-primary is-fullwidth" :class="{ 'is-loading': loading }" v-bind:disabled="invalid" v-on:click="onSubmit">{{ $t("view.register.register") }}</button>
@@ -65,9 +65,10 @@ import { ValidationObserver } from "vee-validate";
 import AccountDataContext from "@/dataContexts/AccountDataContext";
 import Notification from "@/common/Notification";
 import StringUtils from "@/common/utilities/StringUtils";
-import CaptchaComponent from "@/components/global/CaptchaComponent.vue";
+import { CaptchaComponent } from "keiryo";
 import AccountErrors from "@/common/AccountErrors";
 import { InputComponent } from "keiryo";
+import Settings from "@/Settings";
 
 @Component({
     components: {
@@ -86,6 +87,8 @@ export default class RegisterView extends Vue {
     private password = "";
     private confirmPassword = "";
     private captchaResponse = "";
+
+    private siteKey = Settings.HCaptcha.SiteKey;
 
     private async onSubmit() {
         const observer = this.$refs.observer as InstanceType<typeof ValidationObserver>;

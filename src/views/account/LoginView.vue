@@ -25,7 +25,7 @@
                         />
                         <div class="level">
                             <div class="level-item">
-                                <CaptchaComponent v-model="captchaResponse" />
+                                <CaptchaComponent v-model="captchaResponse" :siteKey="siteKey" />
                             </div>
                         </div>
                         <button class="button is-primary is-fullwidth" :class="{ 'is-loading': loading }" v-bind:disabled="invalid" v-on:click="onSubmit">{{ $t("view.login.login") }}</button>
@@ -52,9 +52,10 @@ import Main from "@/main";
 import Notification from "@/common/Notification";
 import TranslationUtils from "@/common/utilities/TranslationUtils";
 import GlobalEventBus from "@/common/GlobalEventBus";
-import CaptchaComponent from "@/components/global/CaptchaComponent.vue";
+import { CaptchaComponent } from "keiryo";
 import UserDataContext from "@/dataContexts/UserDataContext";
 import CurrentUser from "@/common/CurrentUser";
+import Settings from "@/Settings";
 
 @Component({
     components: {
@@ -71,6 +72,8 @@ export default class LoginView extends Vue {
     private username = "";
     private password = "";
     private captchaResponse = "";
+
+    private siteKey = Settings.HCaptcha.SiteKey;
 
     private async onSubmit() {
         const observer = this.$refs.observer as InstanceType<typeof ValidationObserver>;

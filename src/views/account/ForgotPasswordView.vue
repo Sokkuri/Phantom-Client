@@ -23,7 +23,7 @@
                             />
                             <div class="level">
                                 <div class="level-item">
-                                    <CaptchaComponent v-model="captchaResponse" />
+                                    <CaptchaComponent v-model="captchaResponse" :siteKey="siteKey" />
                                 </div>
                             </div>
                             <button class="button is-primary is-fullwidth" :class="{ 'is-loading': loading }" v-bind:disabled="invalid" v-on:click="onSubmit">{{ $t("view.forgotPassword.forgotPassword") }}</button>
@@ -38,9 +38,10 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import AccountDataContext from "@/dataContexts/AccountDataContext";
-import CaptchaComponent from "@/components/global/CaptchaComponent.vue";
+import { CaptchaComponent } from "keiryo";
 import { InputComponent } from "keiryo";
 import { ValidationObserver } from "vee-validate";
+import Settings from "@/Settings";
 
 @Component({
     components: {
@@ -56,6 +57,8 @@ export default class ForgotPasswordView extends Vue {
 
     private email = "";
     private captchaResponse = "";
+
+    private siteKey = Settings.HCaptcha.SiteKey;
 
     created() {
         const id = this.$route.query.id as string;
