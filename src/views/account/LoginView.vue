@@ -86,7 +86,7 @@ export default class LoginView extends Vue {
             if (authResult.successfully && authResult.data) {
                 await CurrentUser.saveUserInfo();
 
-                GlobalEventBus.$emit("updateLoginState", "login");
+                GlobalEventBus.$emit("update-login-state", "login");
                 Main.router.push({ name: "home" });
             } else {
                 Notification.addError(TranslationUtils.translate("view.login.wrongLoginData")).show();

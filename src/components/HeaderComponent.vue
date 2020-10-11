@@ -82,14 +82,14 @@ export default class HeaderComponent extends Vue {
     private userSessionManager = new UserSessionManager();
 
     created() {
-        GlobalEventBus.$on("updateLoginState", this.updateLoginState);
+        GlobalEventBus.$on("update-login-state", this.updateLoginState);
 
         this.sessionExists = new UserSessionManager().sessionExists();
         this.loadUserInfo();
     }
 
     beforeDestroy() {
-        GlobalEventBus.$off("updateLoginState", this.updateLoginState);
+        GlobalEventBus.$off("update-login-state", this.updateLoginState);
     }
 
     private updateLoginState(state: string) {
