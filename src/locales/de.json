@@ -262,7 +262,7 @@
         "profile": {
             "tabsHub": {
                 "overview": "Übersicht",
-                "animeList": "Animeliste"
+                "animeList": "Anime-Liste"
             },
             "animeList": {
                 "rating": "Bewertung",
@@ -346,7 +346,8 @@
         "userlistStats": {
             "totalEntries": "Einträge insgesamt",
             "totalEpisodes": "Gesehene Episoden",
-            "averageRating": "Durchschnittsbewertung"
+            "averageRating": "Durchschnittsbewertung",
+            "daysWatched": "Gesehene Tage"
         }
     }
 }

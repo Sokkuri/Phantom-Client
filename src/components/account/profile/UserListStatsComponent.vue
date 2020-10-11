@@ -7,8 +7,7 @@
         <nav class="level">
             <div class="level-item has-text-centered"
                 v-for="entry in entries"
-                :key="entry.title"
-            >
+                :key="entry.title">
                 <div class="columns is-multiline">
                     <div class="column is-12">
                         <p class="heading">{{ $t(entry.title) }}</p>
@@ -47,15 +46,22 @@ export default class UserListStatsComponent extends Vue {
 
         this.entries.push({
             title: keyPrefix + "totalEntries",
-            value: this.stats.totalEntries,
+            value: this.stats.totalEntries
         });
+
         this.entries.push({
             title: keyPrefix + "totalEpisodes",
-            value: this.stats.totalEpisodes,
+            value: this.stats.totalEpisodes
         });
+
         this.entries.push({
             title: keyPrefix + "averageRating",
-            value: this.stats.averageRating,
+            value: this.stats.averageRating
+        });
+
+        this.entries.push({
+            title: keyPrefix + "daysWatched",
+            value: this.stats.daysWatched
         });
     }
 }

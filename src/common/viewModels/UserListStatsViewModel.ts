@@ -6,4 +6,5 @@ export default class UserListStatsViewModel {
     totalEntries: number;
     totalEpisodes: number;
     averageRating: number;
+    daysWatched: number;
 }
