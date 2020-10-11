@@ -23,7 +23,7 @@ export abstract class BaseDataContext {
         return instance.get(this.buildUrl(methode)).then((x: AxiosResponse) => {
             return new RequestResult<T>({ successfully: true, statusCode: x.status, data: x.data });
         }).catch((error: AxiosError) => {
-            const result = new RequestResult<T>({ successfully: false, statusCode: error.response ? error.response.status : undefined });
+            const result = new RequestResult<T>({ successfully: false, statusCode: error.response ? error.response.status : undefined, data: error.response ? error.response.data : undefined });
 
             this.handleError(result);
 
