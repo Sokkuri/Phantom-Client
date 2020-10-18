@@ -3,7 +3,7 @@
    - file, You can obtain one at https://mozilla.org/MPL/2.0/. -->
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component } from "vue-property-decorator";
 import BaseSearchComponent from "@/components/global/search/BaseSearchComponent.vue";
 import SearchResult from "@/common/models/SearchResult";
 import SearchDataContext from "@/dataContexts/SearchDataContext";
@@ -14,7 +14,12 @@ export default class GlobalSearchComponent extends BaseSearchComponent {
 
     protected async executeSearch(searchTerm: string): Promise<SearchResult[] | undefined> {
         const result = await this.searchDataContext.globalSearch(searchTerm);
-        return result.data;
+
+        if (result.successfully) {
+            return result.data;
+        }
+
+        return undefined;
     }
 }
 </script>
