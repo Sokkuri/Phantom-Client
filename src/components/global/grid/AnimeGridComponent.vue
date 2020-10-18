@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue, Watch } from "vue-property-decorator";
+import { Component, Prop } from "vue-property-decorator";
 import BaseEntryGrid from "@/components/global/grid/BaseEntryGrid";
 import Anime from "@/common/models/Anime";
 import AnimeTooltip from "@/common/tooltips/AnimeTooltip";

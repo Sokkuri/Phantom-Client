@@ -348,6 +348,12 @@
             "totalEpisodes": "Gesehene Episoden",
             "averageRating": "Durchschnittsbewertung",
             "daysWatched": "Gesehene Tage"
+        },
+        "footer": {
+            "imprint": "Impressum",
+            "privacyPolicy": "Datenschutzerklärung",
+            "contact": "Kontakt",
+            "version": "Version"
         }
     }
 }

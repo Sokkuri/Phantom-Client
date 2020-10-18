@@ -2,6 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
+@import "./offline";
 @import "./home";
 @import "./anime";
 @import "./content/entry";
@@ -12,3 +13,6 @@
 @import "./account/resetPassword";
 @import "./account/settingsBase";
 @import "./account/profileBase";
+
+// Search
+@import "./search/animeSearch";
