@@ -4,62 +4,49 @@
 
 <template>
     <div id="app">
-        <div ref="apiOffline" class="offline" hidden>
-            <div class="container">
-                <div class="columns is-multiline">
-                    <div class="column is-12">
-                        <h1 class="title">{{ $t("offline.title") }}</h1>
-                    </div>
-                    <div class="column is-12">
-                        <h2 class="subtitle">{{ $t("offline.message") }}</h2>
-                    </div>
-                    <div class="column is-12">
-                        <div class="link-container">
-                            <a href="https://twitter.com/playperium" target="blank" rel="noopener noreferrer">{{ $t("offline.twitter") }}</a>
-                            <a href="https://status.sokkuri.eu" target="blank" rel="noopener noreferrer">{{ $t("offline.serverState") }}</a>
-                        </div>
-                    </div>
-                </div>
+        <OfflineView v-if="apiOffline" />
+        <template v-else>
+            <div class="main-content">
+                <HeaderComponent />
+                <router-view v-bind:key="$route.path" />
             </div>
-        </div>
-        <div ref="mainContent" class="main-content">
-            <Header />
-            <router-view v-bind:key="$route.path" />
-        </div>
+            <FooterComponent />
+        </template>
     </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import Header from "@/components/HeaderComponent.vue";
+import HeaderComponent from "@/components/HeaderComponent.vue";
 import ConfigurationContext from "@/dataContexts/ConfigurationDataContext";
 import VersionInfo from "@/common/models/VersionInfo";
 import RequestResult from "@/common/models/RequestResult";
 import TranslationUtils from "@/common/utilities/TranslationUtils";
 import Settings from "@/Settings";
 import Notification from "@/common/Notification";
+import FooterComponent from "@/components/FooterComponent.vue";
+import OfflineView from "@/views/OfflineView.vue";
+import GlobalEventBus from "@/common/GlobalEventBus";
 
 @Component({
-  components: {
-    Header
-  }
+    components: {
+        HeaderComponent,
+        FooterComponent,
+        OfflineView
+    }
 })
 export default class App extends Vue {
     private dataContext: ConfigurationContext = new ConfigurationContext();
-    private showChangelogModal = false;
+    private apiOffline = false;
 
-    mounted() {
+    created() {
         this.startup();
     }
 
     private startup(): void {
-        const offlineMessage: HTMLElement = this.$refs.apiOffline as HTMLElement;
-        const mainContent: HTMLElement = this.$refs.mainContent as HTMLElement;
-
-        this.dataContext.getVersion().then((result: RequestResult<VersionInfo>) => {
+        this.dataContext.getVersion().then((result) => {
             if (!result.successfully || !result.data) {
-                offlineMessage.hidden = false;
-                mainContent.hidden = true;
+                this.apiOffline = true;
             } else {
                 const savedVersion = localStorage.getItem("ProductVersion");
 
@@ -67,10 +54,14 @@ export default class App extends Vue {
                     localStorage.setItem("ProductVersion", result.data.productVersion);
 
                     if (savedVersion) {
-                        Notification.addInfo(TranslationUtils.translate("changelog.message").replace("%PRODUCTVERSION%", result.data.productVersion), false).show();
+                        Notification.addInfo(TranslationUtils.translate("changelog.message")
+                            .replace("%PRODUCTVERSION%", result.data.productVersion),false)
+                            .show();
                     }
                 }
             }
+
+            GlobalEventBus.$emit("startup-finished");
         });
     }
 }
