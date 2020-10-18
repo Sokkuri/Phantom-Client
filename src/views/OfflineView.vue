@@ -43,6 +43,6 @@ import Viewer from "viewerjs";
 import Settings from "@/Settings";
 
 @Component
-export default class ImageComponent extends Vue {
+export default class OfflineView extends Vue {
 }
 </script>
