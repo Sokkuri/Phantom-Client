@@ -8,7 +8,7 @@
             <div class="column is-12 panel-header">
                 <div class="level">
                     <div class="level-item">
-                        <router-link v-bind:to="'/anime/' + anime.id">
+                        <router-link v-bind:to="'/anime/' + anime.id" :title="getPrimaryTitle(anime.titles)">
                             {{ getPrimaryTitle(anime.titles) }}
                         </router-link>
                     </div>
@@ -59,7 +59,7 @@ import Constants from "@/common/Constants";
 import UserListDataContext from "@/dataContexts/UserListDataContext";
 import Notification from "@/common/Notification";
 import TranslationUtils from "@/common/utilities/TranslationUtils";
-import { UserSessionManager, AuthData } from "kogitte";
+import { UserSessionManager } from "kogitte";
 import UserList from "@/common/models/UserList";
 
 @Component({
