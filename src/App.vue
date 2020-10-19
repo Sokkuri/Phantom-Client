@@ -6,6 +6,7 @@
     <div id="app">
         <OfflineView v-if="apiOffline" />
         <template v-else>
+            <ErrorModalComponent />
             <div class="main-content">
                 <HeaderComponent />
                 <router-view v-bind:key="$route.path" />
@@ -27,12 +28,14 @@ import Notification from "@/common/Notification";
 import FooterComponent from "@/components/FooterComponent.vue";
 import OfflineView from "@/views/OfflineView.vue";
 import GlobalEventBus from "@/common/GlobalEventBus";
+import ErrorModalComponent from "@/components/ErrorModalComponent.vue";
 
 @Component({
     components: {
         HeaderComponent,
         FooterComponent,
-        OfflineView
+        OfflineView,
+        ErrorModalComponent
     }
 })
 export default class App extends Vue {

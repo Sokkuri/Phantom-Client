@@ -2,6 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
+import GlobalEventBus from "@/common/GlobalEventBus";
 import RequestResult from "@/common/models/RequestResult";
 import Notification from "@/common/Notification";
 import TranslationUtils from "@/common/utilities/TranslationUtils";
@@ -72,7 +73,8 @@ export abstract class BaseDataContext {
                 break;
 
             case 500:
-                // ToDo: Errorpage
+                // Show error modal
+                GlobalEventBus.$emit("server-error");
                 break;
 
             default:

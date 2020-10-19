@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue, Watch } from "vue-property-decorator";
+import { Component, Vue, } from "vue-property-decorator";
 
 @Component
 export default class ModalComponent extends Vue {
@@ -34,6 +34,12 @@ export default class ModalComponent extends Vue {
         } else {
             element.classList.add("is-active");
         }
+    }
+
+    public isVisible() {
+        const element: HTMLDivElement = this.$refs.modalElement as HTMLDivElement;
+
+        return element.classList.contains("is-active");
     }
 }
 </script>

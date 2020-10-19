@@ -8,6 +8,10 @@
     "changelog": {
         "message": "Wir haben die Version %PRODUCTVERSION% unserer Seite veröffentlicht! Schaue dir doch die Erneuerungen in unserem Blog an! ^^"
     },
+    "error": {
+        "title": "Das hätte nicht passieren dürfen!",
+        "description": "Es ist ein unerwarteter Fehler aufgetreten."
+    },
     "global": {
         "language": {
             "german": "Deutsch",
