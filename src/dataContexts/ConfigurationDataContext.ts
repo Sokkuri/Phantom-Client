@@ -4,7 +4,7 @@
 
 import { BaseDataContext } from "@/common/BaseDataContext";
 import RequestResult from "@/common/models/RequestResult";
-import VersionInfo from "@/common/models/VersionInfo";
+import { VersionInfo } from "@sokkuri/common";
 
 export default class ConfigurationContext extends BaseDataContext {
     constructor() {

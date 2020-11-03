@@ -4,7 +4,7 @@
 
 import { BaseDataContext } from "@/common/BaseDataContext";
 import RequestResult from "@/common/models/RequestResult";
-import UserInfo from "@/common/models/UserInfo";
+import { UserInfo } from "@sokkuri/common";
 
 export default class UserDataContext extends BaseDataContext {
     constructor() {

@@ -65,17 +65,15 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import SelecListItemUtils from "@/common/utilities/SelectListItemUtils";
-import Constants from "@/common/Constants";
 import SearchDataContext from "@/dataContexts/SearchDataContext";
 import SpinnerComponent from "@/components/SpinnerComponent.vue";
 import KeyValuePair from "@/common/models/KeyValuePair";
-import SearchSettings from "@/common/models/SearchSettings";
-import Anime from "@/common/models/Anime";
 import _ from "lodash";
 import AnimeGridComponent from "@/components/global/grid/AnimeGridComponent.vue";
 import CompanyDataContext from "@/dataContexts/CompanyDataContext";
 import { SelectComponent, SelectListItem } from "keiryo";
 import TagDataContext from "@/dataContexts/TagDataContext";
+import { Constants, Anime, SearchSettings } from "@sokkuri/common";
 
 @Component({
     components: {
@@ -93,7 +91,7 @@ export default class AnimeSearchView extends Vue {
     private selectableStreamingServices: SelectListItem[] = [];
     private searchResults: Anime[] = [];
 
-    private searchSettings: SearchSettings = new SearchSettings({ types: [], states: [], includedTagIds: [], excludedTagIds: [], page: 1 });
+    private searchSettings: SearchSettings =  { types: [], states: [], includedTagIds: [], excludedTagIds: [], page: 1 } as SearchSettings;
 
     private lastSearchResultCount = 0;
     private initState = true;

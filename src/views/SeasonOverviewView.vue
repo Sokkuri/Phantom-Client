@@ -63,21 +63,15 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import SeasonDataContext from "@/dataContexts/SeasonDataContext";
-import SeasonInfo from "@/common/models/SeasonInfo";
-import Anime from "@/common/models/Anime";
 import SpinnerComponent from "@/components/SpinnerComponent.vue";
 import ImageComponent from "@/components/global/ImageComponent.vue";
 import EntryUtils from "@/common/utilities/EntryUtils";
-import EntryTitle from "@/common/models/EntryTitle";
-import Tag from "@/common/models/Tag";
 import _ from "lodash";
-import Description from "@/common/models/Description";
 import StringUtils from "@/common/utilities/StringUtils";
-import Constants from "@/common/Constants";
 import AnimePanelComponent from "@/components/global/AnimePanelComponent.vue";
-import UserList from "@/common/models/UserList";
 import { UserSessionManager } from "kogitte";
 import UserListDataContext from "@/dataContexts/UserListDataContext";
+import { SeasonInfo, Anime, Constants, UserListEntry } from "@sokkuri/common";
 
 @Component({
     components: {
@@ -95,7 +89,7 @@ export default class SeasonOverviewView extends Vue {
     private series: Anime[] = [];
     private movies: Anime[] = [];
 
-    private userListAnimes: UserList[] = [];
+    private userListAnimes: UserListEntry[] = [];
 
     private seasonDataContext = new SeasonDataContext();
     private userListDataContext = new UserListDataContext();

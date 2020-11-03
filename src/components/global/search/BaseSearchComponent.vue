@@ -24,7 +24,7 @@
 
 <script lang="ts">
 import { Vue } from "vue-property-decorator";
-import SearchResult from "@/common/models/SearchResult";
+import { SearchResult } from "@sokkuri/common";
 import _ from "lodash";
 
 export default abstract class BaseSearchComponent extends Vue {

@@ -49,15 +49,13 @@ import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import ModalComponent from "@/components/global/ModalComponent.vue";
 import { SelectComponent, SelectListItem } from "keiryo";
 import SelectListItemUtils from "@/common/utilities/SelectListItemUtils";
-import Constants from "@/common/Constants";
 import UserListDataContext from "@/dataContexts/UserListDataContext";
-import UserList from "@/common/models/UserList";
 import _ from "lodash";
 import StringUtils from "@/common/utilities/StringUtils";
 import RequestResult from "@/common/models/RequestResult";
 import Notification from "@/common/Notification";
 import TranslationUtils from "@/common/utilities/TranslationUtils";
-import Recension from "@/common/models/Recension";
+import { Constants, Recension, UserListEntry } from "@sokkuri/common";
 
 @Component({
     components: {
@@ -66,12 +64,12 @@ import Recension from "@/common/models/Recension";
     }
 })
 export default class BaseUserListEditorComponent extends Vue {
-    @Prop() private userListEntry!: UserList;
+    @Prop() private userListEntry!: UserListEntry;
 
     private selectableRatings: SelectListItem[] = [];
     private selectableWatchingStates: SelectListItem[] = [];
 
-    private editedUserListEntry: UserList = new UserList();
+    private editedUserListEntry: UserListEntry = new UserListEntry();
     protected recension = "";
 
     mounted() {

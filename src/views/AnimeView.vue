@@ -141,37 +141,29 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import AnimeDataContext from "@/dataContexts/AnimeDataContext";
-import Constants from "@/common/Constants";
 import _ from "lodash";
-import EntryTitle from "@/common/models/EntryTitle";
 import ImageComponent from "@/components/global/ImageComponent.vue";
 import DescriptionComponent from "@/components/entry/DescriptionComponent.vue";
-import Description from "@/common/models/Description";
 import SpinnerComponent from "@/components/SpinnerComponent.vue";
-import Anime from "@/common/models/Anime";
 import SelectListItemUtils from "@/common/utilities/SelectListItemUtils";
 import Notification from "@/common/Notification";
 import UserListDataContext from "@/dataContexts/UserListDataContext";
 import RequestResult from "@/common/models/RequestResult";
-import UserList from "@/common/models/UserList";
 import { UserSessionManager } from "kogitte";
 import InfoCardComponent from "@/components/entry/InfoCardComponent.vue";
 import KeyValuePair from "@/common/models/KeyValuePair";
 import TranslationUtils from "@/common/utilities/TranslationUtils";
-import Tag from "@/common/models/Tag";
 import VideoComponent from "@/components/global/VideoComponent.vue";
 import ContentDataContext from "@/dataContexts/ContentDataContext";
-import Content from "@/common/models/Content";
 import AnimeGridComponent from "@/components/global/grid/AnimeGridComponent.vue";
-import BaseEntry from "@/common/models/BaseEntry";
 import EntryUtils from "@/common/utilities/EntryUtils";
 import AnimeUserListEditorComponent from "@/components/global/userListEditor/AnimeUserListEditorComponent.vue";
 import { SelectComponent, SelectListItem } from "keiryo";
 import StringUtils from "@/common/utilities/StringUtils";
 import RecensionComponent from "@/components/entry/RecensionComponent.vue";
-import Recension from "@/common/models/Recension";
 import RecensionViewModel from "@/common/viewModels/RecensionViewModel";
 import RecensionDataContext from "@/dataContexts/RecensionDataContext";
+import { Constants, EntryTitle, Description, Anime, UserListEntry, Tag, Content, BaseEntry } from "@sokkuri/common";
 
 @Component({
     components: {
@@ -195,7 +187,7 @@ export default class AnimeView extends Vue {
 
     private anime: Anime = new Anime();
     private entryVideoContents: Content[] = [];
-    private userListEntry: UserList = new UserList();
+    private userListEntry: UserListEntry = new UserListEntry();
     private entryMainTitle: EntryTitle = new EntryTitle();
     private entryMainDescription: Description = new Description();
     private entryTags: Tag[] = [];
@@ -301,7 +293,7 @@ export default class AnimeView extends Vue {
         // Only load the userlist date when there is a session.
         new UserSessionManager().getCurrentSession().then((session => {
             if (session) {
-                this.userListDataContext.getAnimeEntry(this.anime.id).then((userListResult: RequestResult<UserList>) => {
+                this.userListDataContext.getAnimeEntry(this.anime.id).then((userListResult: RequestResult<UserListEntry>) => {
                     if (userListResult.successfully && userListResult.data) {
                         this.userListEntry = userListResult.data;
 
@@ -316,7 +308,7 @@ export default class AnimeView extends Vue {
     private clearUserListData() {
         this.selectableRatings = SelectListItemUtils.getItemsWithSameContent([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
         this.selectableWatchingStates = SelectListItemUtils.getTranslatedItems(Constants.UserList.EntryState.AnimeStates);
-        this.userListEntry = new UserList();
+        this.userListEntry = new UserListEntry();
     }
 
     private setAdditionalInformation() {

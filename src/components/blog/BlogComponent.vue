@@ -26,12 +26,11 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import Axios, { AxiosResponse } from "axios";
 import BlogDataContext from "@/dataContexts/BlogDataContext";
 import BlogPostComponent from "@/components/blog/BlogPostComponent.vue";
 import Spinner from "@/components/SpinnerComponent.vue";
-import BlogPost from "@/common/models/BlogPost";
 import RequestResult from "@/common/models/RequestResult";
+import { BlogPost } from "@sokkuri/common";
 
 @Component({
     components: {

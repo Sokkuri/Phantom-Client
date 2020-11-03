@@ -34,15 +34,14 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import RequestResult from "@/common/models/RequestResult";
-import Content from "@/common/models/Content";
-import Constants from "@/common/Constants";
 import VideoComponent from "@/components/global/VideoComponent.vue";
 import _ from "lodash";
 import StringUtils from "@/common/utilities/StringUtils";
-import EntryTitle from "@/common/models/EntryTitle";
+import { EntryTitle } from "@sokkuri/common";
 import AnimeDataContext from "@/dataContexts/AnimeDataContext";
 import EntryUtils from "@/common/utilities/EntryUtils";
 import SpinnerComponent from "@/components/SpinnerComponent.vue";
+import { Content,  Constants } from "@sokkuri/common";
 
 @Component({
     components: {

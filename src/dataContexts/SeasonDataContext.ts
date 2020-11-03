@@ -3,9 +3,8 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 import { BaseDataContext } from "@/common/BaseDataContext";
-import Anime from "@/common/models/Anime";
 import RequestResult from "@/common/models/RequestResult";
-import SeasonInfo from "@/common/models/SeasonInfo";
+import { Anime, SeasonInfo } from "@sokkuri/common";
 
 export default class SeasonDataContext extends BaseDataContext {
     constructor() {

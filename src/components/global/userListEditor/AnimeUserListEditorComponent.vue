@@ -3,12 +3,12 @@
    - file, You can obtain one at https://mozilla.org/MPL/2.0/. -->
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Prop } from "vue-property-decorator";
 import BaseUserListEditorComponent from "@/components/global/userListEditor/BaseUserListEditorComponent.vue";
 import RecensionDataContext from "@/dataContexts/RecensionDataContext";
 import RequestResult from "@/common/models/RequestResult";
-import Recension from "@/common/models/Recension";
 import UserListDataContext from "@/dataContexts/UserListDataContext";
+import { Recension } from "@sokkuri/common";
 
 @Component
 export default class AnimeUserListEditorComponent extends BaseUserListEditorComponent {

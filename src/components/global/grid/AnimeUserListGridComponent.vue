@@ -32,10 +32,9 @@
 <script lang="ts">
 import { Component, Prop } from "vue-property-decorator";
 import BaseEntryGrid from "@/components/global/grid/BaseEntryGrid";
-import UserList from "@/common/models/UserList";
 import AnimeTooltip from "@/common/tooltips/AnimeTooltip";
 import GridCardComponent from "@/components/global/grid/GridCardComponent.vue";
-import Anime from "@/common/models/Anime";
+import { UserListEntry } from "@sokkuri/common";
 
 @Component({
     components: {
@@ -43,7 +42,7 @@ import Anime from "@/common/models/Anime";
     }
 })
 export default class AnimeUserListGridComponent extends BaseEntryGrid {
-    @Prop() protected entries: UserList[];
+    @Prop() protected entries: UserListEntry[];
 
     protected entryType = "anime";
 

@@ -4,7 +4,7 @@
 
 import { BaseDataContext } from "@/common/BaseDataContext";
 import RequestResult from "@/common/models/RequestResult";
-import Tag from "@/common/models/Tag";
+import { Tag } from "@sokkuri/common";
 
 export default class TagDataContext extends BaseDataContext {
     constructor() {

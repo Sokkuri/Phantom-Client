@@ -2,9 +2,8 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
-import Description from "@/common/models/Description";
-import EntryTitle from "@/common/models/EntryTitle";
 import Settings from "@/Settings";
+import { Description, EntryTitle } from "@sokkuri/common";
 import _ from "lodash";
 
 export default class EntryUtils {

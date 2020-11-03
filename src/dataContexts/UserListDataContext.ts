@@ -4,23 +4,23 @@
 
 import { BaseDataContext } from "@/common/BaseDataContext";
 import RequestResult from "@/common/models/RequestResult";
-import UserList from "@/common/models/UserList";
 import UserListStatsViewModel from "@/common/viewModels/UserListStatsViewModel";
+import { UserListEntry } from "@sokkuri/common";
 
 export default class UserListDataContext extends BaseDataContext {
     constructor() {
         super("userList");
     }
 
-    public async getAnimeEntry(animeId: number): Promise<RequestResult<UserList>> {
+    public async getAnimeEntry(animeId: number): Promise<RequestResult<UserListEntry>> {
         return super.get("getAnimeEntry/" + animeId);
     }
 
-    public async getSeasonalAnimeEntries(season: string, year: string): Promise<RequestResult<UserList[]>> {
+    public async getSeasonalAnimeEntries(season: string, year: string): Promise<RequestResult<UserListEntry[]>> {
         return super.post("getSeasonalAnimeEntries", {season, year});
     }
 
-    public async getAnimeEntries(userName: string): Promise<RequestResult<UserList[]>> {
+    public async getAnimeEntries(userName: string): Promise<RequestResult<UserListEntry[]>> {
         return super.get(`getAnimeEntries?userName=${userName}`);
     }
 

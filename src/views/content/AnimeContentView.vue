@@ -3,11 +3,11 @@
    - file, You can obtain one at https://mozilla.org/MPL/2.0/. -->
 
 <script lang="ts">
-import Content from "@/common/models/Content";
 import RequestResult from "@/common/models/RequestResult";
 import ContentDataContext from "@/dataContexts/ContentDataContext";
 import BaseEntryContentView from "@/views/content/BaseEntryContentView.vue";
 import { Component } from "vue-property-decorator";
+import { Content } from "@sokkuri/common";
 
 @Component
 export default class AnimeContentView extends BaseEntryContentView {

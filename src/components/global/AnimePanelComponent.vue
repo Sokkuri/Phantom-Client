@@ -44,23 +44,17 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import Anime from "@/common/models/Anime";
 import SeasonDataContext from "@/dataContexts/SeasonDataContext";
-import SeasonInfo from "@/common/models/SeasonInfo";
 import SpinnerComponent from "@/components/SpinnerComponent.vue";
 import ImageComponent from "@/components/global/ImageComponent.vue";
 import EntryUtils from "@/common/utilities/EntryUtils";
-import EntryTitle from "@/common/models/EntryTitle";
-import Tag from "@/common/models/Tag";
 import _ from "lodash";
-import Description from "@/common/models/Description";
 import StringUtils from "@/common/utilities/StringUtils";
-import Constants from "@/common/Constants";
 import UserListDataContext from "@/dataContexts/UserListDataContext";
 import Notification from "@/common/Notification";
 import TranslationUtils from "@/common/utilities/TranslationUtils";
 import { UserSessionManager } from "kogitte";
-import UserList from "@/common/models/UserList";
+import { Anime, EntryTitle, Tag, Description, UserListEntry } from "@sokkuri/common";
 
 @Component({
     components: {
@@ -69,7 +63,7 @@ import UserList from "@/common/models/UserList";
 })
 export default class AnimePanelComponent extends Vue {
     @Prop({required: true}) private anime!: Anime;
-    @Prop() private userListEntry: UserList;
+    @Prop() private userListEntry: UserListEntry;
 
     private addedToList = false;
 

@@ -67,8 +67,8 @@ import { UserSessionManager } from "kogitte";
 import GlobalSearchComponent from "@/components/global/search/GlobalSearchComponent.vue";
 import GlobalEventBus from "@/common/GlobalEventBus";
 import CurrentUser from "@/common/CurrentUser";
-import UserInfo from "@/common/models/UserInfo";
 import StringUtils from "@/common/utilities/StringUtils";
+import { UserInfo } from "@sokkuri/common";
 
 @Component({
     components: {

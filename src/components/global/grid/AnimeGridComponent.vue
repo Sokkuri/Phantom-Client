@@ -19,7 +19,7 @@
 <script lang="ts">
 import { Component, Prop } from "vue-property-decorator";
 import BaseEntryGrid from "@/components/global/grid/BaseEntryGrid";
-import Anime from "@/common/models/Anime";
+import { Anime } from "@sokkuri/common";
 import AnimeTooltip from "@/common/tooltips/AnimeTooltip";
 import GridCardComponent from "@/components/global/grid/GridCardComponent.vue";
 

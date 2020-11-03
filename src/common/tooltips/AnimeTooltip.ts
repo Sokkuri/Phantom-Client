@@ -2,9 +2,8 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
-import Constants from "@/common/Constants";
-import Anime from "@/common/models/Anime";
 import TranslationUtils from "@/common/utilities/TranslationUtils";
+import { Anime, Constants } from "@sokkuri/common";
 import _ from "lodash";
 import { Instance } from "tippy.js";
 import BaseTooltip from "./BaseTooltip";

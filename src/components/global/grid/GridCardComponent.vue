@@ -16,7 +16,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import BaseEntry from "@/common/models/BaseEntry";
+import { BaseEntry } from "@sokkuri/common";
 import EntryUtils from "@/common/utilities/EntryUtils";
 import ImageComponent from "@/components/global/ImageComponent.vue";
 import StringUtils from "@/common/utilities/StringUtils";

@@ -3,10 +3,8 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 import { BaseDataContext } from "@/common/BaseDataContext";
-import Anime from "@/common/models/Anime";
 import RequestResult from "@/common/models/RequestResult";
-import SearchResult from "@/common/models/SearchResult";
-import SearchSettings from "@/common/models/SearchSettings";
+import { Anime, SearchResult, SearchSettings } from "@sokkuri/common";
 
 export default class SearchDataContext extends BaseDataContext {
     constructor() {

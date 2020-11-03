@@ -23,16 +23,14 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue, Watch } from "vue-property-decorator";
+import { Component, Vue } from "vue-property-decorator";
 import TranslationUtils from "@/common/utilities/TranslationUtils";
 import ProfileBaseView from "@/views/account/profile/ProfileBaseView.vue";
 import AnimeUserListGridComponent from "@/components/global/grid/AnimeUserListGridComponent.vue";
 import UserListDataContext from "@/dataContexts/UserListDataContext";
-import UserList from "@/common/models/UserList";
-import Anime from "@/common/models/Anime";
-import Constants from "@/common/Constants";
 import StringUtils from "@/common/utilities/StringUtils";
 import KeyValuePair from "@/common/models/KeyValuePair";
+import { UserListEntry, Constants } from "@sokkuri/common";
 
 @Component({
     components: {
@@ -45,7 +43,7 @@ export default class AnimeListView extends Vue {
 
     private loading = false;
 
-    private entries: KeyValuePair<string, UserList[]>[] = [];
+    private entries: KeyValuePair<string, UserListEntry[]>[] = [];
 
     created() {
         const userName = this.$route.params.userName;
@@ -59,10 +57,10 @@ export default class AnimeListView extends Vue {
         }).finally(() => this.loading = false);
     }
 
-    private mapEntries(entries: UserList[]) {
+    private mapEntries(entries: UserListEntry[]) {
         Constants.UserList.EntryState.AnimeStates.forEach(state => {
             const filteredEntries = entries.filter(x => StringUtils.equalsIgnoreCase(x.status, state));
-            this.entries.push(new KeyValuePair<string, UserList[]>({ key: TranslationUtils.translate(state), value: filteredEntries }));
+            this.entries.push(new KeyValuePair<string, UserListEntry[]>({ key: TranslationUtils.translate(state), value: filteredEntries }));
         });
     }
 }

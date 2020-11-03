@@ -5,8 +5,8 @@
 <script lang="ts">
 import { Component } from "vue-property-decorator";
 import BaseSearchComponent from "@/components/global/search/BaseSearchComponent.vue";
-import SearchResult from "@/common/models/SearchResult";
 import SearchDataContext from "@/dataContexts/SearchDataContext";
+import { SearchResult } from "@sokkuri/common";
 
 @Component
 export default class GlobalSearchComponent extends BaseSearchComponent {

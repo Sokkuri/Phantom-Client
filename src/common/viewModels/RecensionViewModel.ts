@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
-import Recension from "@/common/models/Recension";
+import { Recension } from "@sokkuri/common";
 
 export default class RecensionViewModel extends Recension {
     username: string;

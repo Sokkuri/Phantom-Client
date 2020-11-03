@@ -20,7 +20,6 @@
 import { Component, Vue } from "vue-property-decorator";
 import HeaderComponent from "@/components/HeaderComponent.vue";
 import ConfigurationContext from "@/dataContexts/ConfigurationDataContext";
-import VersionInfo from "@/common/models/VersionInfo";
 import RequestResult from "@/common/models/RequestResult";
 import TranslationUtils from "@/common/utilities/TranslationUtils";
 import Settings from "@/Settings";

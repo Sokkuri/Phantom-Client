@@ -26,13 +26,13 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue, Watch } from "vue-property-decorator";
+import { Component, Vue } from "vue-property-decorator";
 import TabsHubTab from "@/common/models/TabsHubTab";
 import TabsHubComponent from "@/components/global/TabsHubComponent.vue";
 import TranslationUtils from "@/common/utilities/TranslationUtils";
 import UserDataContext from "@/dataContexts/UserDataContext";
-import UserInfo from "@/common/models/UserInfo";
 import SpinnerComponent from "@/components/SpinnerComponent.vue";
+import { UserInfo } from "@sokkuri/common";
 
 @Component({
     components: {

@@ -3,9 +3,9 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 import { BaseDataContext } from "@/common/BaseDataContext";
-import Recension from "@/common/models/Recension";
 import RequestResult from "@/common/models/RequestResult";
 import RecensionViewModel from "@/common/viewModels/RecensionViewModel";
+import { Recension } from "@sokkuri/common";
 
 export default class RecensionDataContext extends BaseDataContext {
     constructor() {

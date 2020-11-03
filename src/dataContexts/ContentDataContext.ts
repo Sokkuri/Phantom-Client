@@ -3,8 +3,8 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 import { BaseDataContext } from "@/common/BaseDataContext";
-import Content from "@/common/models/Content";
 import RequestResult from "@/common/models/RequestResult";
+import { Content } from "@sokkuri/common";
 
 export default class ContentDataContext extends BaseDataContext {
     constructor() {
