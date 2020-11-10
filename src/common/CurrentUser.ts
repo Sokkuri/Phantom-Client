@@ -19,7 +19,7 @@ export default class CurrentUser {
     public static async saveUserInfo() {
         const userDataContext: UserDataContext = new UserDataContext();
 
-        userDataContext.getCurrentUserInfo().then(x => {
+        await userDataContext.getCurrentUserInfo().then(x => {
             if (x.successfully && x.data) {
                 window.localStorage.setItem("CurrentUser", JSON.stringify(x.data));
             }
