@@ -5,7 +5,7 @@
 <template>
     <div class="tabs-hub-component tabs">
         <ul>
-            <li v-for="tab in elements"
+            <li v-for="tab in internalTabs"
                 :key="tab.url"
                 :class="{ 'is-active': tab.active }">
                 <a @click="changeTab(tab)">{{ tab.label }}</a>
@@ -25,12 +25,12 @@ import StringUtils from "@/common/utilities/StringUtils";
 export default class TabsHubComponent extends Vue {
     @Prop({required: true}) private tabs: TabsHubTab[];
 
-    private elements: TabsHubTab[] = [];
+    private internalTabs: TabsHubTab[] = [];
 
     mounted() {
-        this.elements = this.tabs;
+        this.internalTabs = this.tabs;
 
-        const currentTab = _.find(this.elements, x => StringUtils.equalsIgnoreCase(x.url, Main.router.currentRoute.path));
+        const currentTab = this.getSelectedTab();
 
         if (currentTab) {
             this.selectTab(currentTab);
@@ -38,22 +38,28 @@ export default class TabsHubComponent extends Vue {
     }
 
     private selectTab(tab: TabsHubTab) {
-        this.elements.forEach(x => {
+        this.internalTabs.forEach(x => {
             if (x.active) {
                 x.active = false;
             }
         });
 
-        this.elements.forEach(x => {
+        this.internalTabs.forEach(x => {
             if (x === tab) {
                 x.active = true;
             }
         });
     }
 
+    private getSelectedTab() {
+        return this.internalTabs.find(x => StringUtils.equalsIgnoreCase(x.url, this.$router.currentRoute.path));
+    }
+
     private changeTab(tab: TabsHubTab) {
-        this.selectTab(tab);
-        Main.router.push({ path: tab.url });
+        if (tab !== this.getSelectedTab()) {
+            this.selectTab(tab);
+            this.$router.push({ path: tab.url });
+        }
     }
 }
 </script>
