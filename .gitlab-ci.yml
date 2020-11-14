@@ -1,7 +1,9 @@
 include:
     - "https://gitlab.com/sokkuri/CI/-/raw/master/.gitlab/ci/publish-image.gitlab-ci.yml"
+    - "https://gitlab.com/sokkuri/CI/-/raw/master/.gitlab/ci/linter.gitlab-ci.yml"
 
 stages:
+    - test
     - build
     - publish
 
@@ -11,7 +13,6 @@ build:
     before_script:
         - npm install
     script:
-        - npm run lint
         - npm run build
     artifacts:
         paths:
