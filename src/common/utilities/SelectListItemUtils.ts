@@ -13,9 +13,9 @@ export default class SelectListItemUtils {
 
         translationKeys.forEach((x) => {
             if (preselectedKeys && preselectedKeys.some(y => y == x)) {
-                items.push(new SelectListItem({label: TranslationUtils.translate(x), value: x, selected: true }));
+                items.push(new SelectListItem({ label: TranslationUtils.translate(x), value: x, selected: true }));
             } else {
-                items.push(new SelectListItem({label: TranslationUtils.translate(x), value: x }));
+                items.push(new SelectListItem({ label: TranslationUtils.translate(x), value: x }));
             }
         });
 
@@ -26,7 +26,7 @@ export default class SelectListItemUtils {
         const items: SelectListItem[] = [];
 
         values.forEach((x: T) => {
-            items.push(new SelectListItem({label: x.toString(), value: x}));
+            items.push(new SelectListItem({ label: x.toString(), value: x }));
         });
 
         return items;
@@ -36,7 +36,7 @@ export default class SelectListItemUtils {
         const items: SelectListItem[] = [];
 
         pairs.forEach((x: KeyValuePair<string, T>) => {
-            items.push(new SelectListItem({label: TranslationUtils.translate(x.key), value: x.value }));
+            items.push(new SelectListItem({ label: TranslationUtils.translate(x.key), value: x.value }));
         });
 
         return items;

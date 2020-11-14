@@ -21,7 +21,7 @@ export default class RecensionDataContext extends BaseDataContext {
     }
 
     public async saveAnimeRecension(id: number, content: string): Promise<RequestResult<void>> {
-        return super.post("saveAnimeRecension", {id, content});
+        return super.post("saveAnimeRecension", { id, content });
     }
 
     public async removeAnimeRecension(id: number): Promise<RequestResult<void>> {

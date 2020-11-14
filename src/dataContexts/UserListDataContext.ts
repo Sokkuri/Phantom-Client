@@ -17,7 +17,7 @@ export default class UserListDataContext extends BaseDataContext {
     }
 
     public async getSeasonalAnimeEntries(season: string, year: string): Promise<RequestResult<UserListEntry[]>> {
-        return super.post("getSeasonalAnimeEntries", {season, year});
+        return super.post("getSeasonalAnimeEntries", { season, year });
     }
 
     public async getAnimeEntries(userName: string): Promise<RequestResult<UserListEntry[]>> {
@@ -33,15 +33,15 @@ export default class UserListDataContext extends BaseDataContext {
     }
 
     public async setAnimeState(id: number, state: string): Promise<RequestResult<void>> {
-        return super.post("setAnimeState", {id, state});
+        return super.post("setAnimeState", { id, state });
     }
 
     public async setAnimeRating(id: number, rating: number): Promise<RequestResult<void>> {
-        return super.post("setAnimeRating", {id, rating});
+        return super.post("setAnimeRating", { id, rating });
     }
 
     public async saveChanges(id: number, overallRating: number, state: string, currentEpisode: number): Promise<RequestResult<void>> {
-        return super.post("saveChanges", {id, overallRating, state, currentEpisode});
+        return super.post("saveChanges", { id, overallRating, state, currentEpisode });
     }
 
     public async getAnimeUserListStats(userName: string): Promise<RequestResult<UserListStatsViewModel>> {

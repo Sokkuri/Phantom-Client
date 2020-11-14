@@ -39,8 +39,6 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import Viewer from "viewerjs";
-import Settings from "@/Settings";
 
 @Component
 export default class OfflineView extends Vue {

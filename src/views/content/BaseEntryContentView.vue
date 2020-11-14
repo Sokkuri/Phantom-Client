@@ -84,7 +84,7 @@ export default class BaseEntryContentView extends Vue {
                 }
             });
 
-            Promise.all([getTitles, getContents]).finally(() => this.loading = false);
+            Promise.all([ getTitles, getContents ]).finally(() => this.loading = false);
         }
     }
 

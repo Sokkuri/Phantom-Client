@@ -18,7 +18,6 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import TranslationUtils from "@/common/utilities/TranslationUtils";
 import ProfileBaseView from "@/views/account/profile/ProfileBaseView.vue";
 import UserListDataContext from "@/dataContexts/UserListDataContext";
 import UserListStatsComponent from "@/components/account/profile/UserListStatsComponent.vue";

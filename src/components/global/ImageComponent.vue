@@ -15,13 +15,13 @@ import Settings from "@/Settings";
 export default class ImageComponent extends Vue {
     @Prop() private imageUrl!: string;
     @Prop() private fileName!: string;
-    @Prop({default: true}) private viewer!: boolean;
+    @Prop({ default: true }) private viewer!: boolean;
 
     mounted() {
         const element: HTMLImageElement = this.$refs.imageElement as HTMLImageElement;
 
         if (element && this.viewer) {
-            const viewer = new Viewer(element, {
+            new Viewer(element, {
                 title: false,
                 navbar: false,
                 toolbar: false,

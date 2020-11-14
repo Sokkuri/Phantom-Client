@@ -17,13 +17,11 @@
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import TabsHubTab from "@/common/models/TabsHubTab";
-import Main from "@/main";
-import _ from "lodash";
 import StringUtils from "@/common/utilities/StringUtils";
 
 @Component
 export default class TabsHubComponent extends Vue {
-    @Prop({required: true}) private tabs: TabsHubTab[];
+    @Prop({ required: true }) private tabs: TabsHubTab[];
 
     private internalTabs: TabsHubTab[] = [];
 

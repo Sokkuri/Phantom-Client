@@ -20,9 +20,7 @@
 import { Component, Vue } from "vue-property-decorator";
 import HeaderComponent from "@/components/HeaderComponent.vue";
 import ConfigurationContext from "@/dataContexts/ConfigurationDataContext";
-import RequestResult from "@/common/models/RequestResult";
 import TranslationUtils from "@/common/utilities/TranslationUtils";
-import Settings from "@/Settings";
 import Notification from "@/common/Notification";
 import FooterComponent from "@/components/FooterComponent.vue";
 import OfflineView from "@/views/OfflineView.vue";

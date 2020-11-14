@@ -60,11 +60,6 @@ export default class ForgotPasswordView extends Vue {
 
     private siteKey = Settings.HCaptcha.SiteKey;
 
-    created() {
-        const id = this.$route.query.id as string;
-        const token = this.$route.query.token as string;
-    }
-
     private async onSubmit() {
         const observer = this.$refs.observer as InstanceType<typeof ValidationObserver>;
 

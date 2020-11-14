@@ -97,8 +97,8 @@ export default class AnimeSearchView extends Vue {
     private initState = true;
 
     created() {
-        this.selectableTypes = SelecListItemUtils.getTranslatedItems(Constants.AnimeTypes.AnimeTypes, [Constants.AnimeTypes.Series]);
-        this.selectableStates = SelecListItemUtils.getTranslatedItems(Constants.States.States, [Constants.States.Airing, Constants.States.Finished]);
+        this.selectableTypes = SelecListItemUtils.getTranslatedItems(Constants.AnimeTypes.AnimeTypes, [ Constants.AnimeTypes.Series ]);
+        this.selectableStates = SelecListItemUtils.getTranslatedItems(Constants.States.States, [ Constants.States.Airing, Constants.States.Finished ]);
 
         const tagDataContext = new TagDataContext();
         tagDataContext.getAvailableTags().then(x => {

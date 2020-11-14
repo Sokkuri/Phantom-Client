@@ -40,8 +40,8 @@ export default class SettingsBaseView extends Vue {
 
     created() {
         this.tabs = [
-            new TabsHubTab({label: TranslationUtils.translate("view.settings.tabsHub.accountData"), url: "/settings/accountData"}),
-            new TabsHubTab({label: TranslationUtils.translate("view.settings.tabsHub.changePassword"), url: "/settings/changePassword"})
+            new TabsHubTab({ label: TranslationUtils.translate("view.settings.tabsHub.accountData"), url: "/settings/accountData" }),
+            new TabsHubTab({ label: TranslationUtils.translate("view.settings.tabsHub.changePassword"), url: "/settings/changePassword" })
         ];
     }
 }

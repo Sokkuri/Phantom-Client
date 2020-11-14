@@ -52,8 +52,8 @@ export default class ProfileBaseView extends Vue {
         const userName = this.$route.params.userName;
 
         this.tabs = [
-            new TabsHubTab({label: TranslationUtils.translate("view.profile.tabsHub.overview"), url: `/profile/${userName}`}),
-            new TabsHubTab({label: TranslationUtils.translate("view.profile.tabsHub.animeList"), url: `/profile/${userName}/animeList`})
+            new TabsHubTab({ label: TranslationUtils.translate("view.profile.tabsHub.overview"), url: `/profile/${userName}` }),
+            new TabsHubTab({ label: TranslationUtils.translate("view.profile.tabsHub.animeList"), url: `/profile/${userName}/animeList` })
         ];
 
         if (userName) {

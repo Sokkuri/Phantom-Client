@@ -16,7 +16,6 @@
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import ImageComponent from "@/components/global/ImageComponent.vue";
-import TimeUtils from "@/common/utilities/TimeUtils";
 import TimeFormatUtils from "@/common/utilities/TimeFormatUtils";
 
 @Component({

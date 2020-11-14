@@ -163,7 +163,7 @@ import StringUtils from "@/common/utilities/StringUtils";
 import RecensionComponent from "@/components/entry/RecensionComponent.vue";
 import RecensionViewModel from "@/common/viewModels/RecensionViewModel";
 import RecensionDataContext from "@/dataContexts/RecensionDataContext";
-import { Constants, EntryTitle, Description, Anime, UserListEntry, Tag, Content, BaseEntry } from "@sokkuri/common";
+import { Constants, EntryTitle, Description, Anime, UserListEntry, Tag, Content } from "@sokkuri/common";
 
 @Component({
     components: {
@@ -203,7 +203,7 @@ export default class AnimeView extends Vue {
     created() {
         const animeId: number = +this.$route.params.id;
 
-        this.selectableRatings = SelectListItemUtils.getItemsWithSameContent([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+        this.selectableRatings = SelectListItemUtils.getItemsWithSameContent([ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]);
         this.selectableWatchingStates = SelectListItemUtils.getTranslatedItems(Constants.UserList.EntryState.AnimeStates);
 
         if (animeId) {
@@ -236,7 +236,7 @@ export default class AnimeView extends Vue {
                 }
             });
 
-            Promise.all([getAnime, getContents, getAllAnimeRecensions]).finally(() => this.loading = false);
+            Promise.all([ getAnime, getContents, getAllAnimeRecensions ]).finally(() => this.loading = false);
 
             this.animeDataContext.getSimilarAnimes(animeId).then((similiarAnimesResult: RequestResult<Anime[]>) => {
                 if (similiarAnimesResult.successfully && similiarAnimesResult.data) {
@@ -259,25 +259,25 @@ export default class AnimeView extends Vue {
             let details: Array<KeyValuePair<string, string>> = [
                 new KeyValuePair<string, string>({
                     key: "anime.details.format",
-                    value: TranslationUtils.translate(this.anime.type)}),
+                    value: TranslationUtils.translate(this.anime.type) }),
                 new KeyValuePair<string, string>({
                     key: "anime.details.state",
-                    value: TranslationUtils.translate(this.anime.status)}),
+                    value: TranslationUtils.translate(this.anime.status) }),
                 new KeyValuePair<string, string>({
                     key: "anime.details.episodes",
-                    value: this.anime.episodes.toString()}),
+                    value: this.anime.episodes.toString() }),
                 new KeyValuePair<string, string>({
                     key: "anime.details.adaption",
-                    value: TranslationUtils.translate(this.anime.adaptation)}),
+                    value: TranslationUtils.translate(this.anime.adaptation) }),
                 new KeyValuePair<string, string>({
                     key: "anime.details.airedSeason",
-                    value: `${TranslationUtils.translate(this.anime.airedSeason)} ${this.anime.airedYear}`}),
+                    value: `${TranslationUtils.translate(this.anime.airedSeason)} ${this.anime.airedYear}` }),
             ];
 
             if (this.anime.endingSeason && this.anime.endingYear) {
                 details.push(new KeyValuePair<string, string>({
                     key: "anime.details.endingSeason",
-                    value: `${TranslationUtils.translate(this.anime.endingSeason)} ${this.anime.endingYear}`})
+                    value: `${TranslationUtils.translate(this.anime.endingSeason)} ${this.anime.endingYear}` })
                 );
             }
 
@@ -306,7 +306,7 @@ export default class AnimeView extends Vue {
     }
 
     private clearUserListData() {
-        this.selectableRatings = SelectListItemUtils.getItemsWithSameContent([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+        this.selectableRatings = SelectListItemUtils.getItemsWithSameContent([ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]);
         this.selectableWatchingStates = SelectListItemUtils.getTranslatedItems(Constants.UserList.EntryState.AnimeStates);
         this.userListEntry = new UserListEntry();
     }
@@ -319,7 +319,7 @@ export default class AnimeView extends Vue {
         otherTitles.forEach(x => {
             infos.push(new KeyValuePair<string, string[]> ({
                 key: x.language,
-                value: [x.title]
+                value: [ x.title ]
             }));
         });
 

@@ -18,8 +18,6 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import Viewer from "viewerjs";
-import Settings from "@/Settings";
 import GlobalEventBus from "@/common/GlobalEventBus";
 import ModalComponent from "@/components/global/ModalComponent.vue";
 

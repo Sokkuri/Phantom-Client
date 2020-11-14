@@ -44,7 +44,6 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import AnimeDataContext from "@/dataContexts/AnimeDataContext";
 import { UserSessionManager } from "kogitte";
 import { InputComponent } from "keiryo";
 import { ValidationObserver } from "vee-validate";

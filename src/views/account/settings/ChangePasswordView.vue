@@ -38,7 +38,6 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import TabsHubTab from "@/common/models/TabsHubTab";
 import SettingsBaseView from "@/views/account/settings/SettingsBaseView.vue";
 import AccountSettingsDataContext from "@/dataContexts/AccountSettingsDataContext";
 import { ValidationObserver } from "vee-validate";

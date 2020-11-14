@@ -50,7 +50,6 @@ import ModalComponent from "@/components/global/ModalComponent.vue";
 import { SelectComponent, SelectListItem } from "keiryo";
 import SelectListItemUtils from "@/common/utilities/SelectListItemUtils";
 import UserListDataContext from "@/dataContexts/UserListDataContext";
-import _ from "lodash";
 import StringUtils from "@/common/utilities/StringUtils";
 import RequestResult from "@/common/models/RequestResult";
 import Notification from "@/common/Notification";
@@ -73,13 +72,13 @@ export default class BaseUserListEditorComponent extends Vue {
     protected recension = "";
 
     mounted() {
-        this.selectableRatings = SelectListItemUtils.getItemsWithSameContent([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+        this.selectableRatings = SelectListItemUtils.getItemsWithSameContent([ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]);
         this.selectableWatchingStates = SelectListItemUtils.getTranslatedItems(Constants.UserList.EntryState.AnimeStates);
 
         this.setData();
     }
 
-    @Watch("userListEntry", {deep: true}) onUserListEntryChange() {
+    @Watch("userListEntry", { deep: true }) onUserListEntryChange() {
         this.setData();
     }
 

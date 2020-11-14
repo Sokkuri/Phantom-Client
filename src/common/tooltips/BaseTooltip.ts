@@ -24,5 +24,6 @@ export default class BaseTooltip {
         Tippy(elements, this.options);
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     protected onCreate(instance: Instance) {}
 }

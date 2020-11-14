@@ -64,7 +64,6 @@ import TranslationUtils from "@/common/utilities/TranslationUtils";
 import { ValidationObserver } from "vee-validate";
 import AccountDataContext from "@/dataContexts/AccountDataContext";
 import Notification from "@/common/Notification";
-import StringUtils from "@/common/utilities/StringUtils";
 import { CaptchaComponent } from "keiryo";
 import AccountErrors from "@/common/AccountErrors";
 import { InputComponent } from "keiryo";

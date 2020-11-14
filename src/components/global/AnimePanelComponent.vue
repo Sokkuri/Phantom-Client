@@ -44,8 +44,6 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import SeasonDataContext from "@/dataContexts/SeasonDataContext";
-import SpinnerComponent from "@/components/SpinnerComponent.vue";
 import ImageComponent from "@/components/global/ImageComponent.vue";
 import EntryUtils from "@/common/utilities/EntryUtils";
 import _ from "lodash";
@@ -62,7 +60,7 @@ import { Anime, EntryTitle, Tag, Description, UserListEntry } from "@sokkuri/com
     }
 })
 export default class AnimePanelComponent extends Vue {
-    @Prop({required: true}) private anime!: Anime;
+    @Prop({ required: true }) private anime!: Anime;
     @Prop() private userListEntry: UserListEntry;
 
     private addedToList = false;
@@ -89,7 +87,7 @@ export default class AnimePanelComponent extends Vue {
     }
 
     private addToList() {
-        const addAnime = this.userListDataContext.addAnime(this.anime.id).then(x => {
+        this.userListDataContext.addAnime(this.anime.id).then(x => {
             if (x.successfully) {
                 this.addedToList = true;
                 Notification.addSuccess(TranslationUtils.translate("global.notification.savedSuccessfully")).show();
