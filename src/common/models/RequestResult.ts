@@ -2,17 +2,8 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
-export default class RequestResult<T> {
+export default interface RequestResult<T> {
     successfully: boolean;
     statusCode?: number;
     data?: T;
-
-    constructor(options: {
-        successfully: boolean,
-        statusCode?: number,
-        data?: T, }) {
-            this.successfully = options.successfully;
-            this.data = options.data;
-            this.statusCode = options.statusCode;
-        }
 }

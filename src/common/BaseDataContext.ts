@@ -8,7 +8,7 @@ import Notification from "@/common/Notification";
 import TranslationUtils from "@/common/utilities/TranslationUtils";
 import Main from "@/main";
 import Settings from "@/Settings";
-import Axios, { AxiosError, AxiosResponse } from "axios";
+import Axios, { AxiosError } from "axios";
 import { UserSessionManager } from "kogitte";
 
 export abstract class BaseDataContext {
@@ -19,30 +19,34 @@ export abstract class BaseDataContext {
     }
 
     protected async get<T>(methode: string): Promise<RequestResult<T>> {
-        const instance = await this.getAxiosInstance();
-
-        return instance.get(this.buildUrl(methode)).then((x: AxiosResponse) => {
-            return new RequestResult<T>({ successfully: true, statusCode: x.status, data: x.data });
+        return (await this.getAxiosInstance()).get(this.buildUrl(methode)).then(x => {
+            return Promise.resolve<RequestResult<T>>({
+                successfully: true,
+                statusCode: x.status,
+                data: x.data
+            });
         }).catch((error: AxiosError) => {
-            const result = new RequestResult<T>({ successfully: false, statusCode: error.response ? error.response.status : undefined, data: error.response ? error.response.data : undefined });
-
-            this.handleError(result);
-
-            return result;
+            return Promise.resolve<RequestResult<T>>({
+                successfully: false,
+                statusCode: error.response ? error.response.status : undefined,
+                data: error.response ? error.response.data : undefined
+            });
         });
     }
 
     protected async post<T>(methode: string, data: unknown): Promise<RequestResult<T>> {
-        const instance = await this.getAxiosInstance();
-
-        return instance.post(this.buildUrl(methode), data).then((x: AxiosResponse) => {
-            return new RequestResult<T>({ successfully: true, statusCode: x.status, data: x.data });
+        return (await this.getAxiosInstance()).post(this.buildUrl(methode), data).then(x => {
+            return Promise.resolve<RequestResult<T>>({
+                successfully: true,
+                statusCode: x.status,
+                data: x.data
+            });
         }).catch((error: AxiosError) => {
-            const result = new RequestResult<T>({ successfully: false, statusCode: error.response ? error.response.status : undefined, data: error.response ? error.response.data : undefined });
-
-            this.handleError(result);
-
-            return result;
+            return Promise.resolve<RequestResult<T>>({
+                successfully: false,
+                statusCode: error.response ? error.response.status : undefined,
+                data: error.response ? error.response.data : undefined
+            });
         });
     }
 
