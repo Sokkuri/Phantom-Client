@@ -1,85 +1,57 @@
 {
-  "name": "phantom",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "i18n:report": "vue-cli-service i18n:report --src './src/**/*.?(js|vue)' --locales './src/locales/**/*.json'"
-  },
-  "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.30",
-    "@fortawesome/free-regular-svg-icons": "^5.14.0",
-    "@fortawesome/free-solid-svg-icons": "^5.14.0",
-    "@fortawesome/vue-fontawesome": "^2.0.0",
-    "@sokkuri/common": "^1.1.0",
-    "kogitte": "^4.0.0",
-    "keiryo": "^0.2.0",
-    "axios": "^0.20.0",
-    "bulma": "^0.9.0",
-    "normalize.css": "^8.0.1",
-    "vue": "^2.6.12",
-    "vue-class-component": "^7.2.6",
-    "vue-i18n": "^8.21.1",
-    "vue-property-decorator": "^9.0.0",
-    "vue-router": "^3.4.5",
-    "uuid": "^8.3.0",
-    "lodash": "^4.17.20",
-    "viewerjs": "^1.7.0",
-    "date-fns": "^2.16.1",
-    "noty": "^3.2.0-beta",
-    "tippy.js": "^6.2.6",
-    "vee-validate": "^3.4.0"
-  },
-  "devDependencies": {
-    "@types/webpack": "^4.1.4",
-    "@types/uuid": "^3.4.3",
-    "@types/lodash": "^4.14.108",
-    "@vue/cli-plugin-eslint": "^4.5.6",
-    "@vue/cli-plugin-router": "^4.5.6",
-    "@vue/cli-plugin-typescript": "^4.5.6",
-    "@vue/cli-service": "^4.5.6",
-    "@vue/eslint-config-typescript": "^5.1.0",
-    "@typescript-eslint/parser": "^4.2.0",
-    "@typescript-eslint/eslint-plugin": "^4.2.0",
-    "eslint": "^7.10.0",
-    "eslint-plugin-vue": "^6.2.2",
-    "sass": "^1.29.0",
-    "sass-loader": "^10.1.0",
-    "typescript": "^3.4.3",
-    "vue-cli-plugin-i18n": "^1.0.1",
-    "vue-template-compiler": "^2.6.12"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
+    "name": "phantom",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "serve": "vue-cli-service serve",
+        "build": "vue-cli-service build",
+        "lint": "vue-cli-service lint",
+        "i18n:report": "vue-cli-service i18n:report --src './src/**/*.?(js|vue)' --locales './src/locales/**/*.json'"
     },
-    "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended",
-      "@vue/typescript"
-    ],
-    "rules": {
-      "no-console": "off",
-      "quotes": [
-        2,
-        "double"
-      ],
-      "no-unused-vars": 1,
-      "spaced-comment": 2,
-      "semi": [
-        "error",
-        "always"
-      ]
+    "dependencies": {
+        "@fortawesome/fontawesome-svg-core": "^1.2.30",
+        "@fortawesome/free-regular-svg-icons": "^5.14.0",
+        "@fortawesome/free-solid-svg-icons": "^5.14.0",
+        "@fortawesome/vue-fontawesome": "^2.0.0",
+        "@sokkuri/common": "^1.1.0",
+        "kogitte": "^4.0.0",
+        "keiryo": "^0.2.0",
+        "axios": "^0.20.0",
+        "bulma": "^0.9.0",
+        "normalize.css": "^8.0.1",
+        "vue": "^2.6.12",
+        "vue-class-component": "^7.2.6",
+        "vue-i18n": "^8.21.1",
+        "vue-property-decorator": "^9.0.0",
+        "vue-router": "^3.4.5",
+        "uuid": "^8.3.0",
+        "lodash": "^4.17.20",
+        "viewerjs": "^1.7.0",
+        "date-fns": "^2.16.1",
+        "noty": "^3.2.0-beta",
+        "tippy.js": "^6.2.6",
+        "vee-validate": "^3.4.0"
     },
-    "parserOptions": {
-      "parser": "@typescript-eslint/parser"
-    }
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions"
-  ]
+    "devDependencies": {
+        "@types/webpack": "^4.1.4",
+        "@types/uuid": "^3.4.3",
+        "@types/lodash": "^4.14.108",
+        "@vue/cli-plugin-eslint": "^4.5.6",
+        "@vue/cli-plugin-router": "^4.5.6",
+        "@vue/cli-plugin-typescript": "^4.5.6",
+        "@vue/cli-service": "^4.5.6",
+        "@typescript-eslint/parser": "^4.2.0",
+        "@typescript-eslint/eslint-plugin": "^4.2.0",
+        "@sokkuri/eslint-config": "^2.0.0",
+        "eslint": "^7.12.1",
+        "sass": "^1.29.0",
+        "sass-loader": "^10.1.0",
+        "typescript": "^3.4.3",
+        "vue-cli-plugin-i18n": "^1.0.1",
+        "vue-template-compiler": "^2.6.12"
+    },
+    "browserslist": [
+        "> 1%",
+        "last 2 versions"
+    ]
 }
