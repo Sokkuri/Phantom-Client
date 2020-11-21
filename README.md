@@ -1,4 +1,5 @@
 # Phantom Client
+[![ci](https://gitlab.com/sokkuri/Phantom-Client/badges/master/pipeline.svg?style=flat)](https://gitlab.com/sokkuri/Phantom-Client/-/commits/master)
 
 **Currently not stable and under heavy development!**
 
