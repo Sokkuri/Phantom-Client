@@ -26,11 +26,11 @@ export abstract class BaseDataContext {
                 data: x.data
             });
         }).catch((error: AxiosError) => {
-            return Promise.resolve<RequestResult<T>>({
-                successfully: false,
-                statusCode: error.response ? error.response.status : undefined,
-                data: error.response ? error.response.data : undefined
-            });
+            const result = this.convertError<T>(error);
+
+            this.handleError(result);
+
+            return result;
         });
     }
 
@@ -42,11 +42,11 @@ export abstract class BaseDataContext {
                 data: x.data
             });
         }).catch((error: AxiosError) => {
-            return Promise.resolve<RequestResult<T>>({
-                successfully: false,
-                statusCode: error.response ? error.response.status : undefined,
-                data: error.response ? error.response.data : undefined
-            });
+            const result = this.convertError<T>(error);
+
+            this.handleError(result);
+
+            return result;
         });
     }
 
@@ -63,6 +63,14 @@ export abstract class BaseDataContext {
 
     private buildUrl(methode: string): string {
         return `${Settings.ApiUrl}${this.controllerName}/${methode}`;
+    }
+
+    private convertError<T>(error: AxiosError): RequestResult<T> {
+        return {
+            successfully: false,
+            statusCode: error.response ? error.response.status : undefined,
+            data: error.response ? error.response.data : undefined
+        };
     }
 
     private handleError<T>(result: RequestResult<T>) {
