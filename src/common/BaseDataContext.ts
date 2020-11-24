@@ -81,7 +81,7 @@ export abstract class BaseDataContext {
                 break;
 
             case 400:
-                Notification.addError(TranslationUtils.translate("global.notification.actionError"), false).show();
+                Notification.addError(TranslationUtils.translate("notification.actionError"), false).show();
                 break;
 
             case 500:
