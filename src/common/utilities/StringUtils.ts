@@ -4,8 +4,7 @@
 
 export default class StringUtils {
     public static equalsIgnoreCase(source: string, expected: string): boolean {
-        const pattern = new RegExp(expected, "i");
-        return pattern.test(source);
+        return source.toLowerCase() == expected.toLowerCase();
     }
 
     public static shorten(source: string, maxLenght: number) {
