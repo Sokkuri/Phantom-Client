@@ -12,19 +12,19 @@ export default class RecensionDataContext extends BaseDataContext {
         super("recension");
     }
 
-    public async getAllAnimeRecensions(id: number): Promise<RequestResult<RecensionViewModel[]>> {
-        return super.get<RecensionViewModel[]>(`getAllAnimeRecensions/${id}`);
+    public async getAnimeRecensions(id: number): Promise<RequestResult<RecensionViewModel[]>> {
+        return super.get<RecensionViewModel[]>(`getAnimeRecensions?id=${id}`);
     }
 
     public async getAnimeRecension(id: number): Promise<RequestResult<Recension>> {
-        return super.get<Recension>(`getAnimeRecension/${id}`);
+        return super.get<Recension>(`getAnimeRecension?id=${id}`);
     }
 
     public async saveAnimeRecension(id: number, content: string): Promise<RequestResult<void>> {
         return super.post("saveAnimeRecension", { id, content });
     }
 
-    public async removeAnimeRecension(id: number): Promise<RequestResult<void>> {
-        return super.post(`removeAnimeRecension/${id}`, null);
+    public async deleteAnimeRecension(animeId: number): Promise<RequestResult<void>> {
+        return super.delete(`deleteAnimeRecension?animeId=${animeId}`);
     }
 }

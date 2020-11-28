@@ -69,6 +69,7 @@ import AnimePanelComponent from "@/components/global/AnimePanelComponent.vue";
 import { UserSessionManager } from "kogitte";
 import UserListDataContext from "@/dataContexts/UserListDataContext";
 import { SeasonInfo, Anime, Constants, UserListEntry } from "@sokkuri/common";
+import AnimeDataContext from "@/dataContexts/AnimeDataContext";
 
 @Component({
     components: {
@@ -89,6 +90,7 @@ export default class SeasonOverviewView extends Vue {
     private userListAnimes: UserListEntry[] = [];
 
     private seasonDataContext = new SeasonDataContext();
+    private animeDataContext = new AnimeDataContext();
     private userListDataContext = new UserListDataContext();
 
     created() {
@@ -127,13 +129,13 @@ export default class SeasonOverviewView extends Vue {
     }
 
     private async loadSeasonAnimes(season: SeasonInfo) {
-        return this.seasonDataContext.getSeasonAnimes(season.season, season.year).then(x => {
+        return this.animeDataContext.getAnimesBySeason(season.season, season.year).then(x => {
             if (x.successfully && x.data) {
                 this.series = x.data.filter(y => y.type == Constants.AnimeTypes.Series);
                 this.movies = x.data.filter(y => y.type == Constants.AnimeTypes.Movie);
 
                 if (new UserSessionManager().sessionExists()) {
-                    this.userListDataContext.getSeasonalAnimeEntries(season.season, season.year).then(y => {
+                    this.userListDataContext.getAnimeEntriesBySeason(season.season, season.year).then(y => {
                         if (y.successfully && y.data) {
                             this.userListAnimes = y.data;
                         }

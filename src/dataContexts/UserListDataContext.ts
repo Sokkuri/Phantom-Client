@@ -13,23 +13,23 @@ export default class UserListDataContext extends BaseDataContext {
     }
 
     public async getAnimeEntry(animeId: number): Promise<RequestResult<UserListEntry>> {
-        return super.get("getAnimeEntry/" + animeId);
+        return super.get(`getAnimeEntry?id=${animeId}`);
     }
 
-    public async getSeasonalAnimeEntries(season: string, year: string): Promise<RequestResult<UserListEntry[]>> {
-        return super.post("getSeasonalAnimeEntries", { season, year });
+    public async getAnimeEntriesBySeason(season: string, year: string): Promise<RequestResult<UserListEntry[]>> {
+        return super.post("getAnimeEntriesBySeason", { season, year });
     }
 
     public async getAnimeEntries(userName: string): Promise<RequestResult<UserListEntry[]>> {
         return super.get(`getAnimeEntries?userName=${userName}`);
     }
 
-    public async addAnime(id: number): Promise<RequestResult<void>> {
-        return super.post("addAnime/" + id, null);
+    public async addAnime(animeId: number): Promise<RequestResult<void>> {
+        return super.post(`addAnime?id=${animeId}`, null);
     }
 
-    public async removeAnime(id: number): Promise<RequestResult<void>> {
-        return super.post("removeAnime/" + id, null);
+    public async deleteAnimeEntry(animeId: number): Promise<RequestResult<void>> {
+        return super.delete(`deleteAnimeEntry?animeId=${animeId}`);
     }
 
     public async setAnimeState(id: number, state: string): Promise<RequestResult<void>> {

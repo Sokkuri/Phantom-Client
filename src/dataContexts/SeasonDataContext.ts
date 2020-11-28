@@ -4,7 +4,7 @@
 
 import { BaseDataContext } from "@/common/BaseDataContext";
 import RequestResult from "@/common/models/RequestResult";
-import { Anime, SeasonInfo } from "@sokkuri/common";
+import { SeasonInfo } from "@sokkuri/common";
 
 export default class SeasonDataContext extends BaseDataContext {
     constructor() {
@@ -13,9 +13,5 @@ export default class SeasonDataContext extends BaseDataContext {
 
     public async getSeasonInfo(): Promise<RequestResult<SeasonInfo[]>> {
         return super.get<SeasonInfo[]>("getSeasonInfo");
-    }
-
-    public async getSeasonAnimes(season: string, year: string): Promise<RequestResult<Anime[]>> {
-        return super.post<Anime[]>("getSeasonAnimes", { season, year });
     }
 }

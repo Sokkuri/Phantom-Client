@@ -12,14 +12,18 @@ export default class AnimeDataContext extends BaseDataContext {
     }
 
     public async getAnime(id: number): Promise<RequestResult<Anime>> {
-        return super.get<Anime>(`getAnime/${id}`);
+        return super.get<Anime>(`getAnime?id=${id}`);
     }
 
     public async getSimilarAnimes(id: number): Promise<RequestResult<Anime[]>> {
-        return super.get<Anime[]>(`getSimilarAnimes/${id}`);
+        return super.get<Anime[]>(`getSimilarAnimes?id=${id}`);
     }
 
     public async getTitles(id: number): Promise<RequestResult<EntryTitle[]>> {
-        return super.get<EntryTitle[]>(`getTitles/${id}`);
+        return super.get<EntryTitle[]>(`getTitles?id=${id}`);
+    }
+
+    public async getAnimesBySeason(season: string, year: string): Promise<RequestResult<Anime[]>> {
+        return super.post<Anime[]>("getAnimesBySeason", { season, year });
     }
 }

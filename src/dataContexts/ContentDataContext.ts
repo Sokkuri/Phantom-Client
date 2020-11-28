@@ -12,6 +12,6 @@ export default class ContentDataContext extends BaseDataContext {
     }
 
     public async getAnimeContents(animeId: number): Promise<RequestResult<Array<Content>>> {
-        return super.get("getAnimeContents/" + animeId);
+        return super.get(`getAnimeContents?id=${animeId}`);
     }
 }

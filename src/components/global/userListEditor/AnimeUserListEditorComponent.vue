@@ -28,11 +28,11 @@ export default class AnimeUserListEditorComponent extends BaseUserListEditorComp
     }
 
     protected async deleteUserListEntry(): Promise<RequestResult<void>> {
-        return this.userListDataContext.removeAnime(this.animeId);
+        return this.userListDataContext.deleteAnimeEntry(this.animeId);
     }
 
     protected async deleteUserRecension(): Promise<RequestResult<void>> {
-        return this.recensionDataContext.removeAnimeRecension(this.animeId);
+        return this.recensionDataContext.deleteAnimeRecension(this.animeId);
     }
 }
 </script>

@@ -50,6 +50,22 @@ export abstract class BaseDataContext {
         });
     }
 
+    protected async delete(methode: string): Promise<RequestResult<void>> {
+        return (await this.getAxiosInstance()).delete(this.buildUrl(methode)).then(x => {
+            return Promise.resolve<RequestResult<void>>({
+                successfully: true,
+                statusCode: x.status,
+                data: x.data
+            });
+        }).catch((error: AxiosError) => {
+            const result = this.convertError<void>(error);
+
+            this.handleError(result);
+
+            return result;
+        });
+    }
+
     private async getAxiosInstance() {
         const instance = Axios.create();
         const session = await new UserSessionManager().getCurrentSession();
