@@ -90,7 +90,7 @@ export default class AnimePanelComponent extends Vue {
         this.userListDataContext.addAnime(this.anime.id).then(x => {
             if (x.successfully) {
                 this.addedToList = true;
-                Notification.addSuccess(TranslationUtils.translate("global.notification.savedSuccessfully")).show();
+                Notification.addSuccess(TranslationUtils.translate("notification.savedSuccessfully")).show();
             }
         });
     }

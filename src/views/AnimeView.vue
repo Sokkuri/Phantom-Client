@@ -229,7 +229,7 @@ export default class AnimeView extends Vue {
                 }
             });
 
-            const getAllAnimeRecensions = this.recensionDataContext.getAllAnimeRecensions(animeId);
+            const getAllAnimeRecensions = this.recensionDataContext.getAnimeRecensions(animeId);
             getAllAnimeRecensions.then(x => {
                 if (x.successfully && x.data) {
                     this.recensions = x.data;
@@ -392,7 +392,7 @@ export default class AnimeView extends Vue {
     }
 
     private showSuccessfullySaveNotification() {
-        Notification.addSuccess(TranslationUtils.translate("global.notification.savedSuccessfully")).show();
+        Notification.addSuccess(TranslationUtils.translate("notification.savedSuccessfully")).show();
     }
 }
 </script>

@@ -13,6 +13,8 @@
         "description": "Es ist ein unerwarteter Fehler aufgetreten."
     },
     "notification": {
+        "savedSuccessfully": "Erfolgreich gespeichert",
+        "deletedSuccessfully": "Erfolgreich gelöscht",
         "actionError": "Die Aktion konnte nicht durchgeführt werden!"
     },
     "header": {

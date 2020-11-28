@@ -139,14 +139,14 @@ export default class BaseUserListEditorComponent extends Vue {
 
         if (userListEntryDeleteResult.successfully && userRecensionDeleteResult.successfully) {
             this.$emit("deleted-entry");
-            Notification.addSuccess(TranslationUtils.translate("global.notification.deletedSuccessfully")).show();
+            Notification.addSuccess(TranslationUtils.translate("notification.deletedSuccessfully")).show();
             this.toggleVisibility();
         }
     }
 
     private handleSuccessfullySave() {
         this.$emit("saved-changes", this.editedUserListEntry);
-        Notification.addSuccess(TranslationUtils.translate("global.notification.savedSuccessfully")).show();
+        Notification.addSuccess(TranslationUtils.translate("notification.savedSuccessfully")).show();
     }
 
     private async saveUserListData(): Promise<RequestResult<void>> {

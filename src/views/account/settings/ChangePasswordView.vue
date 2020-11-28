@@ -68,7 +68,7 @@ export default class ChangePasswordView extends Vue {
 
             this.accountSettingsDataContext.changePassword(this.password, this.currentPassword).then(x => {
                 if (x.successfully) {
-                    Notification.addSuccess(TranslationUtils.translate("global.notification.savedSuccessfully")).show();
+                    Notification.addSuccess(TranslationUtils.translate("notification.savedSuccessfully")).show();
                 } else {
                     if (x.data) {
                         let errorContentKey: string|undefined;
