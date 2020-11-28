@@ -4,7 +4,7 @@
 
 export default class StringUtils {
     public static equalsIgnoreCase(source: string, expected: string): boolean {
-        return source.toLowerCase() == expected.toLowerCase();
+        return source?.toLowerCase() == expected?.toLowerCase();
     }
 
     public static shorten(source: string, maxLenght: number) {
