@@ -1,22 +1,22 @@
 include:
-    - "https://gitlab.com/sokkuri/CI/-/raw/master/.gitlab/ci/publish-image.gitlab-ci.yml"
-    - "https://gitlab.com/sokkuri/CI/-/raw/master/.gitlab/ci/linter.gitlab-ci.yml"
+  - "https://gitlab.com/sokkuri/CI/-/raw/master/.gitlab/ci/publish-image.gitlab-ci.yml"
+  - "https://gitlab.com/sokkuri/CI/-/raw/master/.gitlab/ci/linter.gitlab-ci.yml"
 
 stages:
-    - test
-    - build
-    - publish
+  - test
+  - build
+  - publish
 
 build:
-    stage: build
-    image: "node:lts-stretch"
-    before_script:
-        - npm install
-    script:
-        - npm run build
-    artifacts:
-        paths:
-            - dist/
-    cache:
-        paths:
-            - node_modules/
+  stage: build
+  image: "node:lts-stretch"
+  before_script:
+    - npm install
+  script:
+    - npm run build
+  artifacts:
+    paths:
+      - dist/
+  cache:
+    paths:
+      - node_modules/
