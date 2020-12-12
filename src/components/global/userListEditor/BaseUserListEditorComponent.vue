@@ -10,18 +10,20 @@
                     <div class="column is-4">
                         <label class="label">{{ $t("userListEntryEditor.label.state") }}</label>
                         <SelectComponent
-                            v-bind:elements="selectableWatchingStates"
-                            v-bind:searchEnabled="false"
-                            v-bind:placeholder="true"
+                            :name="'editorState'"
+                            :elements="selectableWatchingStates"
+                            :searchEnabled="false"
+                            :placeholder="true"
                             v-model="editedUserListEntry.status"
                         />
                     </div>
                     <div class="column is-4">
                         <label class="label">{{ $t("userListEntryEditor.label.rating") }}</label>
                         <SelectComponent
-                            v-bind:elements="selectableRatings"
-                            v-bind:searchEnabled="false"
-                            v-bind:placeholder="true"
+                            :name="'editorRating'"
+                            :elements="selectableRatings"
+                            :searchEnabled="false"
+                            :placeholder="true"
                             v-model="editedUserListEntry.overallRating"
                         />
                     </div>
@@ -47,10 +49,8 @@
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import ModalComponent from "@/components/global/ModalComponent.vue";
-import { SelectComponent, SelectListItem } from "keiryo";
-import SelectListItemUtils from "@/common/utilities/SelectListItemUtils";
+import { SelectComponent, SelectListItem, SelectListItemUtils } from "keiryo";
 import UserListDataContext from "@/dataContexts/UserListDataContext";
-import StringUtils from "@/common/utilities/StringUtils";
 import RequestResult from "@/common/models/RequestResult";
 import Notification from "@/common/Notification";
 import TranslationUtils from "@/common/utilities/TranslationUtils";
@@ -72,8 +72,8 @@ export default class BaseUserListEditorComponent extends Vue {
     protected recension = "";
 
     mounted() {
-        this.selectableRatings = SelectListItemUtils.getItemsWithSameContent([ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]);
-        this.selectableWatchingStates = SelectListItemUtils.getTranslatedItems(Constants.UserList.EntryState.AnimeStates);
+        this.selectableRatings = SelectListItemUtils.getItems<number>([ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ], (x) => x.toString(), (x) => x.toString());
+        this.selectableWatchingStates = SelectListItemUtils.getItems(Constants.UserList.EntryState.AnimeStates, TranslationUtils.translate, (x) => x);
 
         this.setData();
     }
@@ -101,19 +101,11 @@ export default class BaseUserListEditorComponent extends Vue {
     }
 
     private overrideWatchingStateWithUserlistData() {
-        let element = this.selectableWatchingStates.find(x => StringUtils.equalsIgnoreCase(x.value, this.userListEntry.status)) as SelectListItem;
-
-        if (element) {
-            SelectListItemUtils.updateSingleSelectSelection(this.selectableWatchingStates, element);
-        }
+        SelectListItemUtils.updateSelection(this.selectableWatchingStates, [ this.userListEntry.status ]);
     }
 
     private overrideRatingWithUserlistData() {
-        let element = this.selectableRatings.find(x => (+x.value) == this.userListEntry.overallRating) as SelectListItem;
-
-        if (element) {
-            SelectListItemUtils.updateSingleSelectSelection(this.selectableRatings, element);
-        }
+        SelectListItemUtils.updateSelection(this.selectableRatings, [ this.userListEntry.overallRating?.toString() ]);
     }
 
     private async onSaveClick() {

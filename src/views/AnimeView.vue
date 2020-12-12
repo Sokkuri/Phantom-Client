@@ -41,18 +41,20 @@
 
                         <label class="label">{{ $t("anime.label.state") }}</label>
                         <SelectComponent
-                            v-bind:elements="selectableWatchingStates"
-                            v-bind:searchEnabled="false"
-                            v-bind:placeholder="true"
+                            :name="'state'"
+                            :elements="selectableWatchingStates"
+                            :searchEnabled="false"
+                            :placeholder="true"
                             v-model="userListEntry.status"
                             @selection="saveUserListWatchingState"
                         />
 
                         <label class="label">{{ $t("anime.label.rating") }}</label>
                         <SelectComponent
-                            v-bind:elements="selectableRatings"
-                            v-bind:searchEnabled="false"
-                            v-bind:placeholder="true"
+                            :name="'rating'"
+                            :elements="selectableRatings"
+                            :searchEnabled="false"
+                            :placeholder="true"
                             v-model="userListEntry.overallRating"
                             @selection="saveUserListRating"
                         />
@@ -145,7 +147,6 @@ import _ from "lodash";
 import ImageComponent from "@/components/global/ImageComponent.vue";
 import DescriptionComponent from "@/components/entry/DescriptionComponent.vue";
 import SpinnerComponent from "@/components/SpinnerComponent.vue";
-import SelectListItemUtils from "@/common/utilities/SelectListItemUtils";
 import Notification from "@/common/Notification";
 import UserListDataContext from "@/dataContexts/UserListDataContext";
 import RequestResult from "@/common/models/RequestResult";
@@ -158,8 +159,7 @@ import ContentDataContext from "@/dataContexts/ContentDataContext";
 import AnimeGridComponent from "@/components/global/grid/AnimeGridComponent.vue";
 import EntryUtils from "@/common/utilities/EntryUtils";
 import AnimeUserListEditorComponent from "@/components/global/userListEditor/AnimeUserListEditorComponent.vue";
-import { SelectComponent, SelectListItem } from "keiryo";
-import StringUtils from "@/common/utilities/StringUtils";
+import { SelectComponent, SelectListItem, SelectListItemUtils } from "keiryo";
 import RecensionComponent from "@/components/entry/RecensionComponent.vue";
 import RecensionViewModel from "@/common/viewModels/RecensionViewModel";
 import RecensionDataContext from "@/dataContexts/RecensionDataContext";
@@ -203,8 +203,8 @@ export default class AnimeView extends Vue {
     created() {
         const animeId: number = +this.$route.params.id;
 
-        this.selectableRatings = SelectListItemUtils.getItemsWithSameContent([ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]);
-        this.selectableWatchingStates = SelectListItemUtils.getTranslatedItems(Constants.UserList.EntryState.AnimeStates);
+        this.selectableRatings = SelectListItemUtils.getItems<number>([ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ], (x) => x.toString(), (x) => x.toString());
+        this.selectableWatchingStates = SelectListItemUtils.getItems(Constants.UserList.EntryState.AnimeStates, TranslationUtils.translate, (x) => x);
 
         if (animeId) {
             this.loading = true;
@@ -306,8 +306,8 @@ export default class AnimeView extends Vue {
     }
 
     private clearUserListData() {
-        this.selectableRatings = SelectListItemUtils.getItemsWithSameContent([ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]);
-        this.selectableWatchingStates = SelectListItemUtils.getTranslatedItems(Constants.UserList.EntryState.AnimeStates);
+        this.selectableRatings = SelectListItemUtils.getItems<number>([ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ], (x) => x.toString(), (x) => x.toString());
+        this.selectableWatchingStates = SelectListItemUtils.getItems(Constants.UserList.EntryState.AnimeStates, TranslationUtils.translate, (x) => x);
         this.userListEntry = new UserListEntry();
     }
 
@@ -345,19 +345,11 @@ export default class AnimeView extends Vue {
     }
 
     private overrideRatingWithUserlistData() {
-        let element = this.selectableRatings.find(x => (+x.value) == this.userListEntry.overallRating) as SelectListItem;
-
-        if (element) {
-            SelectListItemUtils.updateSingleSelectSelection(this.selectableRatings, element);
-        }
+        SelectListItemUtils.updateSelection(this.selectableRatings, [ this.userListEntry.overallRating?.toString() ]);
     }
 
     private overrideWatchingStateWithUserlistData() {
-        let element = this.selectableWatchingStates.find(x => StringUtils.equalsIgnoreCase(x.value, this.userListEntry.status)) as SelectListItem;
-
-        if (element) {
-            SelectListItemUtils.updateSingleSelectSelection(this.selectableWatchingStates, element);
-        }
+        SelectListItemUtils.updateSelection(this.selectableWatchingStates, [ this.userListEntry.status ]);
     }
 
     private saveUserListWatchingState(value: string): void {

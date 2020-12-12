@@ -12,37 +12,42 @@
                 <div class="column is-6">
                     <label class="label">{{ $t("search.anime.label.format") }}</label>
                     <SelectComponent
-                        v-bind:multiple="true"
-                        v-bind:elements="selectableTypes"
+                        :name="'types'"
+                        :multiple="true"
+                        :elements="selectableTypes"
                         v-model="searchSettings.types"
                     />
 
                     <label class="label">{{ $t("search.anime.label.includedTags") }}</label>
                     <SelectComponent
-                        v-bind:multiple="true"
-                        v-bind:elements="selectableTags"
+                        :name="'includedTagIds'"
+                        :multiple="true"
+                        :elements="selectableTags"
                         v-model="searchSettings.includedTagIds"
                     />
 
                     <label class="label">{{ $t("search.anime.label.includedContentCompanies") }}</label>
                     <SelectComponent
-                        v-bind:multiple="true"
-                        v-bind:elements="selectableStreamingServices"
+                        :name="'includedContentCompanyIds'"
+                        :multiple="true"
+                        :elements="selectableStreamingServices"
                         v-model="searchSettings.includedContentCompanyIds"
                     />
                 </div>
                 <div class="column is-6">
                     <label class="label">{{ $t("search.anime.label.state") }}</label>
                     <SelectComponent
-                        v-bind:multiple="true"
-                        v-bind:elements="selectableStates"
+                        :name="'states'"
+                        :multiple="true"
+                        :elements="selectableStates"
                         v-model="searchSettings.states"
                     />
 
                     <label class="label">{{ $t("search.anime.label.excludedTags") }}</label>
                     <SelectComponent
-                        v-bind:multiple="true"
-                        v-bind:elements="selectableTags"
+                        :name="'excludedTagIds'"
+                        :multiple="true"
+                        :elements="selectableTags"
                         v-model="searchSettings.excludedTagIds"
                     />
                 </div>
@@ -64,16 +69,15 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import SelecListItemUtils from "@/common/utilities/SelectListItemUtils";
 import SearchDataContext from "@/dataContexts/SearchDataContext";
 import SpinnerComponent from "@/components/SpinnerComponent.vue";
-import KeyValuePair from "@/common/models/KeyValuePair";
 import _ from "lodash";
 import AnimeGridComponent from "@/components/global/grid/AnimeGridComponent.vue";
 import CompanyDataContext from "@/dataContexts/CompanyDataContext";
-import { SelectComponent, SelectListItem } from "keiryo";
+import { SelectComponent, SelectListItem, SelectListItemUtils } from "keiryo";
 import TagDataContext from "@/dataContexts/TagDataContext";
-import { Constants, Anime, SearchSettings } from "@sokkuri/common";
+import { Constants, Anime, SearchSettings, Tag, Company } from "@sokkuri/common";
+import TranslationUtils from "@/common/utilities/TranslationUtils";
 
 @Component({
     components: {
@@ -97,32 +101,20 @@ export default class AnimeSearchView extends Vue {
     private initState = true;
 
     created() {
-        this.selectableTypes = SelecListItemUtils.getTranslatedItems(Constants.AnimeTypes.AnimeTypes, [ Constants.AnimeTypes.Series ]);
-        this.selectableStates = SelecListItemUtils.getTranslatedItems(Constants.States.States, [ Constants.States.Airing, Constants.States.Finished ]);
+        this.selectableTypes = SelectListItemUtils.getItems(Constants.AnimeTypes.AnimeTypes, TranslationUtils.translate, (x) => x, [ Constants.AnimeTypes.Series ]);
+        this.selectableStates = SelectListItemUtils.getItems(Constants.States.States, TranslationUtils.translate, (x) => x, [ Constants.States.Airing, Constants.States.Finished ]);
 
         const tagDataContext = new TagDataContext();
         tagDataContext.getAvailableTags().then(x => {
             if (x.successfully && x.data) {
-                let pairs: KeyValuePair<string, number>[] = [];
-
-                x.data.forEach((y => {
-                    pairs.push(new KeyValuePair<string, number>({ key: y.translationKey, value: y.id }));
-                }));
-
-                this.selectableTags = SelecListItemUtils.getTranslatedPairItems<number>(pairs);
+                this.selectableTags = SelectListItemUtils.getItems<Tag>(x.data, (y) => TranslationUtils.translate(y.translationKey), (y) => y.id.toString());
             }
         });
 
         const companyDataContext = new CompanyDataContext();
         companyDataContext.getCompaniesByType(Constants.CompanyTypes.StreamingService).then(x => {
             if (x.successfully && x.data) {
-                let items: SelectListItem[] = [];
-
-                x.data.forEach(y => {
-                    items.push(new SelectListItem({ label: y.name, value: y.id }));
-                });
-
-                this.selectableStreamingServices = items;
+                this.selectableStreamingServices = SelectListItemUtils.getItems<Company>(x.data, (y) => y.name, (y) => y.id.toString());
             }
         });
 
