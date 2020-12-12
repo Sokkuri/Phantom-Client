@@ -24,7 +24,7 @@
         "vue-i18n": "^8.21.1",
         "vue-property-decorator": "^9.0.0",
         "vue-router": "^3.4.9",
-        "uuid": "^8.3.0",
+        "uuid": "^8.3.2",
         "lodash": "^4.17.20",
         "viewerjs": "^1.9.0",
         "date-fns": "^2.16.1",
