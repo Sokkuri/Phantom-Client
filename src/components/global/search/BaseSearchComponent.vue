@@ -68,6 +68,6 @@ export default abstract class BaseSearchComponent extends Vue {
         }
     }
 
-    protected abstract async executeSearch(searchTerm: string): Promise<SearchResult[] | undefined>;
+    protected abstract executeSearch(searchTerm: string): Promise<SearchResult[] | undefined>;
 }
 </script>
