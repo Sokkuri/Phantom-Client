@@ -12,7 +12,7 @@
         "@fortawesome/fontawesome-svg-core": "^1.2.30",
         "@fortawesome/free-regular-svg-icons": "^5.14.0",
         "@fortawesome/free-solid-svg-icons": "^5.14.0",
-        "@fortawesome/vue-fontawesome": "^2.0.0",
+        "@fortawesome/vue-fontawesome": "^2.0.2",
         "@sokkuri/common": "^1.2.4",
         "kogitte": "^4.1.0",
         "keiryo": "^2.3.1",
