@@ -24,6 +24,6 @@ export default class AnimeDataContext extends BaseDataContext {
     }
 
     public async getAnimesBySeason(season: string, year: string): Promise<RequestResult<Anime[]>> {
-        return super.post<Anime[]>("getAnimesBySeason", { season, year });
+        return super.get<Anime[]>(`getAnimesBySeason?season=${season}&year=${year}`);
     }
 }
