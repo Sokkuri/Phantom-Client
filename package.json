@@ -16,7 +16,7 @@
         "@sokkuri/common": "^1.2.4",
         "kogitte": "^4.1.0",
         "keiryo": "^2.3.1",
-        "axios": "^0.21.0",
+        "axios": "^0.21.1",
         "bulma": "^0.9.0",
         "normalize.css": "^8.0.1",
         "vue": "^2.6.12",
