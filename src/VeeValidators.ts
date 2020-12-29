@@ -14,7 +14,7 @@ export default class VeeValidators {
         extend("min", min);
 
         extend("password", value => {
-            return /^.*(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!#$%&? ']).*$/.test(value);
+            return /^.*(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*?']).*$/.test(value);
         });
 
         Vue.component("ValidationProvider", ValidationProvider);
