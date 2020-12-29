@@ -9,51 +9,57 @@
                 <div class="column is-12">
                     <h1 class="title">{{ $t("search.anime.title")}}</h1>
                 </div>
-                <div class="column is-6">
-                    <label class="label">{{ $t("search.anime.label.format") }}</label>
-                    <SelectComponent
-                        :name="'types'"
-                        :multiple="true"
-                        :elements="selectableTypes"
-                        v-model="searchSettings.types"
-                    />
+                <ValidationObserver ref="observer" v-slot="{ invalid }" tag="div" class="column is-12">
+                    <div class="columns is-multiline">
+                        <div class="column is-6">
+                            <label class="label">{{ $t("search.anime.label.format") }}</label>
+                            <SelectComponent
+                                :name="'types'"
+                                :multiple="true"
+                                :elements="selectableTypes"
+                                :rules="'required'"
+                                v-model="searchSettings.types"
+                            />
 
-                    <label class="label">{{ $t("search.anime.label.includedTags") }}</label>
-                    <SelectComponent
-                        :name="'includedTagIds'"
-                        :multiple="true"
-                        :elements="selectableTags"
-                        v-model="searchSettings.includedTagIds"
-                    />
+                            <label class="label">{{ $t("search.anime.label.includedTags") }}</label>
+                            <SelectComponent
+                                :name="'includedTagIds'"
+                                :multiple="true"
+                                :elements="selectableTags"
+                                v-model="searchSettings.includedTagIds"
+                            />
 
-                    <label class="label">{{ $t("search.anime.label.includedContentCompanies") }}</label>
-                    <SelectComponent
-                        :name="'includedContentCompanyIds'"
-                        :multiple="true"
-                        :elements="selectableStreamingServices"
-                        v-model="searchSettings.includedContentCompanyIds"
-                    />
-                </div>
-                <div class="column is-6">
-                    <label class="label">{{ $t("search.anime.label.state") }}</label>
-                    <SelectComponent
-                        :name="'states'"
-                        :multiple="true"
-                        :elements="selectableStates"
-                        v-model="searchSettings.states"
-                    />
+                            <label class="label">{{ $t("search.anime.label.includedContentCompanies") }}</label>
+                            <SelectComponent
+                                :name="'includedContentCompanyIds'"
+                                :multiple="true"
+                                :elements="selectableStreamingServices"
+                                v-model="searchSettings.includedContentCompanyIds"
+                            />
+                        </div>
+                        <div class="column is-6">
+                            <label class="label">{{ $t("search.anime.label.state") }}</label>
+                            <SelectComponent
+                                :name="'states'"
+                                :multiple="true"
+                                :elements="selectableStates"
+                                :rules="'required'"
+                                v-model="searchSettings.states"
+                            />
 
-                    <label class="label">{{ $t("search.anime.label.excludedTags") }}</label>
-                    <SelectComponent
-                        :name="'excludedTagIds'"
-                        :multiple="true"
-                        :elements="selectableTags"
-                        v-model="searchSettings.excludedTagIds"
-                    />
-                </div>
-                <div class="column is-12">
-                    <button class="button is-primary" v-on:click="submitSearch">{{ $t("search.anime.button.search") }}</button>
-                </div>
+                            <label class="label">{{ $t("search.anime.label.excludedTags") }}</label>
+                            <SelectComponent
+                                :name="'excludedTagIds'"
+                                :multiple="true"
+                                :elements="selectableTags"
+                                v-model="searchSettings.excludedTagIds"
+                            />
+                        </div>
+                        <div class="column is-12">
+                            <button class="button is-primary" :disabled="invalid" v-on:click="submitSearch">{{ $t("search.anime.button.search") }}</button>
+                        </div>
+                    </div>
+                </ValidationObserver>
                 <div class="column is-12">
                     <h2 class="subtitle has-text-centered" v-if="searchResults.length == 0 && lastSearchResultCount == 0 && !initState">{{ $t("search.noResults") }}</h2>
                     <AnimeGridComponent
@@ -78,6 +84,7 @@ import { SelectComponent, SelectListItem, SelectListItemUtils } from "keiryo";
 import TagDataContext from "@/dataContexts/TagDataContext";
 import { Constants, Anime, SearchSettings, Tag, Company } from "@sokkuri/common";
 import TranslationUtils from "@/common/utilities/TranslationUtils";
+import { ValidationObserver } from "vee-validate";
 
 @Component({
     components: {
@@ -152,8 +159,14 @@ export default class AnimeSearchView extends Vue {
     }
 
     private loadNextPage() {
-        this.searchSettings.page = this.searchSettings.page +1;
-        this.search();
+        const observer = this.$refs.observer as InstanceType<typeof ValidationObserver>;
+
+        observer.validate().then(x => {
+            if (x) {
+                this.searchSettings.page = this.searchSettings.page +1;
+                this.search();
+            }
+        });
     }
 
     private async search() {
