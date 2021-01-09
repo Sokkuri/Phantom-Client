@@ -6,7 +6,7 @@
     <nav class="navbar is-fixed-top" role="navigation">
         <div class="navbar-brand">
             <router-link class="navbar-item" to="/">
-                <img class="logo" src="../assets/playperium-cg-web.png" />
+                <img class="logo" src="../assets/sok-cg-web.png" />
             </router-link>
             <div id="global-search-container" class="navbar-item control">
                 <GlobalSearchComponent />
