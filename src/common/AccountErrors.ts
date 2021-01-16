@@ -6,5 +6,6 @@ export default {
     DuplicateUserName: "DuplicateUserName",
     FaultyEmail: "FaultyEmail",
     InvalidCaptcha: "InvalidCaptcha",
-    WrongPassword: "WrongPassword"
+    WrongPassword: "WrongPassword",
+    InvalidToken: "InvalidToken"
 };

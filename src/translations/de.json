@@ -75,7 +75,8 @@
         },
         "confirmEmail": {
             "successfully": "Deine E-Mail-Adresse wurde erfolgreich bestätigt",
-            "errored": "Deine E-Mail-Adresse konnte nicht bestätigt werden!"
+            "errored": "Deine E-Mail-Adresse konnte nicht bestätigt werden!",
+            "invalidToken": "Der Token ist ungültig oder abgelaufen."
         },
         "forgotPassword": {
             "heading": "Passwort vergessen",

@@ -14,8 +14,8 @@ export default class AccountDataContext extends BaseDataContext {
         return super.post<void>("register", { userName, email, password, captchaResponse });
     }
 
-    public async confirmEmail(id: string, token: string): Promise<RequestResult<void>> {
-        return super.post<void>("confirmEmail", { id, token });
+    public async confirmEmail(id: string, token: string, email?: string): Promise<RequestResult<void>> {
+        return super.post<void>("confirmEmail", { id, token, email });
     }
 
     public async forgotPassword(email: string, captchaResponse: string): Promise<RequestResult<void>> {
