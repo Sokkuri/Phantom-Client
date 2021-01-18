@@ -55,3 +55,9 @@ export default class Blog extends Vue {
     }
 }
 </script>
+
+<style lang="scss" scoped>
+.columns {
+    margin-bottom: unset;
+}
+</style>
