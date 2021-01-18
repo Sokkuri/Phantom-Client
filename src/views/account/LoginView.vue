@@ -83,7 +83,7 @@ export default class LoginView extends Vue {
             const authResult = await this.sessionManager.login(this.username, this.password, this.captchaResponse);
 
             if (authResult.successfully && authResult.data) {
-                await CurrentUser.saveUserInfo();
+                await CurrentUser.loadUserInfo();
 
                 GlobalEventBus.$emit("update-login-state", "login");
                 Main.router.push({ name: "home" });

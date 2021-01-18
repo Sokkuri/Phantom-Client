@@ -37,6 +37,7 @@ import Notification from "@/common/Notification";
 import TranslationUtils from "@/common/utilities/TranslationUtils";
 import AccountErrors from "@/common/AccountErrors";
 import { InputComponent } from "keiryo";
+import CurrentUser from "@/common/CurrentUser";
 
 @Component({
     components: {
@@ -69,32 +70,35 @@ export default class AccountDataView extends Vue {
         if (await observer.validate()) {
             this.loading = true;
 
-            this.accountSettingsDataContext.saveAccountData(this.userName, this.email).then(x => {
-                if (x.successfully) {
-                    Notification.addSuccess(TranslationUtils.translate("view.settings.accountData.savedSuccessfully")).show();
-                } else {
-                    if (x.data) {
-                        let errorContentKey: string|undefined;
+            const saveResult = await this.accountSettingsDataContext.saveAccountData(this.userName, this.email);
 
-                        switch (x.data) {
-                            case AccountErrors.DuplicateUserName:
-                                errorContentKey = "view.settings.accountData.duplicateUserName";
-                                break;
+            if (saveResult.successfully) {
+                await CurrentUser.loadUserInfo();
+                Notification.addSuccess(TranslationUtils.translate("view.settings.accountData.savedSuccessfully")).show();
+            } else {
+                if (saveResult.data) {
+                    let errorContentKey: string|undefined;
 
-                            case AccountErrors.FaultyEmail:
-                                errorContentKey = "view.settings.accountData.faultyEmail";
-                                break;
+                    switch (saveResult.data) {
+                        case AccountErrors.DuplicateUserName:
+                            errorContentKey = "view.settings.accountData.duplicateUserName";
+                            break;
 
-                            default:
-                                break;
-                        }
+                        case AccountErrors.FaultyEmail:
+                            errorContentKey = "view.settings.accountData.faultyEmail";
+                            break;
 
-                        if (errorContentKey) {
-                            Notification.addError(TranslationUtils.translate(errorContentKey), false).show();
-                        }
+                        default:
+                            break;
+                    }
+
+                    if (errorContentKey) {
+                        Notification.addError(TranslationUtils.translate(errorContentKey), false).show();
                     }
                 }
-            }).finally(() => this.loading = false);
+            }
+
+            this.loading = false;
         }
     }
 }

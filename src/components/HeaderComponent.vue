@@ -83,6 +83,7 @@ export default class HeaderComponent extends Vue {
 
     created() {
         GlobalEventBus.$on("update-login-state", this.updateLoginState);
+        GlobalEventBus.$on("load-user-info", this.loadUserInfo);
 
         this.sessionExists = new UserSessionManager().sessionExists();
         this.loadUserInfo();
@@ -90,6 +91,7 @@ export default class HeaderComponent extends Vue {
 
     beforeDestroy() {
         GlobalEventBus.$off("update-login-state", this.updateLoginState);
+        GlobalEventBus.$off("load-user-info", this.loadUserInfo);
     }
 
     private updateLoginState(state: string) {
