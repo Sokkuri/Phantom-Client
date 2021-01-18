@@ -76,7 +76,7 @@
         "confirmEmail": {
             "successfully": "Deine E-Mail-Adresse wurde erfolgreich bestätigt",
             "errored": "Deine E-Mail-Adresse konnte nicht bestätigt werden!",
-            "invalidToken": "Der Token ist ungültig oder abgelaufen."
+            "invalidToken": "Der Link ist ungültig oder abgelaufen."
         },
         "forgotPassword": {
             "heading": "Passwort vergessen",
@@ -90,7 +90,8 @@
             "heading": "Neues Passwort",
             "password": "Passwort",
             "confirmPassword": "Passwort bestätigen",
-            "submit": "Passwort ändern"
+            "submit": "Passwort ändern",
+            "invalidToken": "Der Link ist ungültig oder abgelaufen."
         },
         "settings": {
             "title": "Einstellungen",

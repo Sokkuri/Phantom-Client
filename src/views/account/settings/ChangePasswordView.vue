@@ -78,6 +78,10 @@ export default class ChangePasswordView extends Vue {
                                 errorContentKey = "view.settings.changePassword.wrongPassword";
                                 break;
 
+                            case AccountErrors.InvalidToken:
+                                errorContentKey = "view.settings.changePassword.invalidToken";
+                                break;
+
                             default:
                                 break;
                         }
