@@ -45,6 +45,7 @@ import Notification from "@/common/Notification";
 import TranslationUtils from "@/common/utilities/TranslationUtils";
 import AccountErrors from "@/common/AccountErrors";
 import { InputComponent } from "keiryo";
+import { UserSessionManager } from "kogitte";
 
 @Component({
     components: {
@@ -53,6 +54,7 @@ import { InputComponent } from "keiryo";
     }
 })
 export default class ChangePasswordView extends Vue {
+    private userSessionManager = new UserSessionManager();
     private accountSettingsDataContext: AccountSettingsDataContext = new AccountSettingsDataContext();
 
     private loading = false;
@@ -66,33 +68,37 @@ export default class ChangePasswordView extends Vue {
         if (await observer.validate()) {
             this.loading = true;
 
-            this.accountSettingsDataContext.changePassword(this.password, this.currentPassword).then(x => {
-                if (x.successfully) {
-                    Notification.addSuccess(TranslationUtils.translate("notification.savedSuccessfully")).show();
-                } else {
-                    if (x.data) {
-                        let errorContentKey: string|undefined;
+            const saveResult = await this.accountSettingsDataContext.changePassword(this.password, this.currentPassword);
 
-                        switch (x.data) {
-                            case AccountErrors.WrongPassword:
-                                errorContentKey = "view.settings.changePassword.wrongPassword";
-                                break;
+            if (saveResult.successfully) {
+                await this.userSessionManager.logout();
+                this.$router.push({ name: "login" });
 
-                            case AccountErrors.InvalidToken:
-                                errorContentKey = "view.settings.changePassword.invalidToken";
-                                break;
+                Notification.addSuccess(TranslationUtils.translate("notification.savedSuccessfully")).show();
+            } else {
+                if (saveResult.data) {
+                    let errorContentKey: string|undefined;
 
-                            default:
-                                break;
-                        }
+                    switch (saveResult.data) {
+                        case AccountErrors.WrongPassword:
+                            errorContentKey = "view.settings.changePassword.wrongPassword";
+                            break;
 
-                        if (errorContentKey) {
-                            Notification.addError(TranslationUtils.translate(errorContentKey), false).show();
-                        }
+                        case AccountErrors.InvalidToken:
+                            errorContentKey = "view.settings.changePassword.invalidToken";
+                            break;
 
+                        default:
+                            break;
+                    }
+
+                    if (errorContentKey) {
+                        Notification.addError(TranslationUtils.translate(errorContentKey), false).show();
                     }
                 }
-            }).finally(() => this.loading = false);
+            }
+
+            this.loading = false;
         }
     }
 }
