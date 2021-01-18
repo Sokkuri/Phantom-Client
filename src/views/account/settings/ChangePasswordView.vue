@@ -20,7 +20,7 @@
                         :name="'confirmNewPassword'"
                         :label="$t('view.settings.changePassword.confirmNewPassword')"
                         :type="'password'"
-                        :rules="'required|password|confirmed:confirmNewPassword'"
+                        :rules="'required|password|confirmed:newPassword'"
                     />
                     <InputComponent
                         :name="'currentPassword'"
