@@ -67,7 +67,6 @@
             "duplicateUserName": "Nutzername bereits vergeben!",
             "faultyEmail": "Die E-Mail-Adresse ist entweder nicht korrekt oder bereits vergeben!",
             "invalidCaptcha": "Das Captcha ist ungültig!",
-            "passwordNotice": "Das Passwort muss mindestens aus 8 Zeichen bestehen, Großschreibung, Kleinschreibung, Zahlen und ein Sonderzeichen enthalten!",
             "confirmEmail": {
                 "title": "Bestätige bitte jetzt deine E-Mail-Adresse",
                 "subtitle": "Dafür musst du den Link in der E-Mail anklicken, die wir dir gerade geschickt haben."
@@ -212,6 +211,9 @@
             "privacyPolicy": "Datenschutzerklärung",
             "contact": "Kontakt",
             "version": "Version"
+        },
+        "passwordNotice": {
+            "content": "Das Passwort muss mindestens aus 8 Zeichen bestehen, Großschreibung, Kleinschreibung, Zahlen und ein Sonderzeichen enthalten!"
         }
     }
 }

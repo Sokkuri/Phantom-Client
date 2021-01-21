@@ -9,10 +9,17 @@
                 <h2 class="subtitle">{{ $t("view.settings.changePassword.title") }}</h2>
                 <ValidationObserver ref="observer" v-slot="{ invalid }">
                     <InputComponent
+                        :name="'currentPassword'"
+                        :label="$t('view.settings.changePassword.currentPassword')"
+                        :type="'password'"
+                        :focus="true"
+                        :rules="'required|password'"
+                        v-model="currentPassword"
+                    />
+                    <InputComponent
                         :name="'newPassword'"
                         :label="$t('view.settings.changePassword.newPassword')"
                         :type="'password'"
-                        :focus="true"
                         :rules="'required|password'"
                         v-model="password"
                     />
@@ -22,13 +29,7 @@
                         :type="'password'"
                         :rules="'required|password|confirmed:newPassword'"
                     />
-                    <InputComponent
-                        :name="'currentPassword'"
-                        :label="$t('view.settings.changePassword.currentPassword')"
-                        :type="'password'"
-                        :rules="'required|password'"
-                        v-model="currentPassword"
-                    />
+                    <PasswordNotice />
                     <button class="button is-primary is-fullwidth" :class="{ 'is-loading': loading }" v-bind:disabled="invalid" v-on:click="onSubmit">{{ $t("view.settings.changePassword.submit") }}</button>
                 </ValidationObserver>
             </div>
@@ -46,11 +47,13 @@ import TranslationUtils from "@/common/utilities/TranslationUtils";
 import AccountErrors from "@/common/AccountErrors";
 import { InputComponent } from "keiryo";
 import { UserSessionManager } from "kogitte";
+import PasswordNotice from "@/components/global/PasswordNotice.vue";
 
 @Component({
     components: {
         SettingsBaseView,
-        InputComponent
+        InputComponent,
+        PasswordNotice
     }
 })
 export default class ChangePasswordView extends Vue {

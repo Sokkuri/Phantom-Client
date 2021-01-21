@@ -41,9 +41,7 @@
                                 v-bind:rules="'required|password|confirmed:password'"
                                 v-model="confirmPassword"
                             />
-                            <div class="notification">
-                                <p>{{ $t("view.register.passwordNotice") }}</p>
-                            </div>
+                            <PasswordNotice />
                             <div class="level">
                                 <div class="level-item">
                                     <CaptchaComponent v-model="captchaResponse" :siteKey="siteKey" />
@@ -68,11 +66,13 @@ import { CaptchaComponent } from "keiryo";
 import AccountErrors from "@/common/AccountErrors";
 import { InputComponent } from "keiryo";
 import Settings from "@/Settings";
+import PasswordNotice from "@/components/global/PasswordNotice.vue";
 
 @Component({
     components: {
         InputComponent,
-        CaptchaComponent
+        CaptchaComponent,
+        PasswordNotice
     },
 })
 export default class RegisterView extends Vue {

@@ -24,6 +24,7 @@
                             v-bind:rules="'required|password|confirmed:password'"
                             v-model="confirmPassword"
                         />
+                        <PasswordNotice />
                         <button class="button is-primary is-fullwidth" :class="{ 'is-loading': loading }" v-bind:disabled="invalid" v-on:click="onSubmit">{{ $t("view.resetPassword.submit") }}</button>
                     </ValidationObserver>
                 </div>
@@ -38,10 +39,12 @@ import AccountDataContext from "@/dataContexts/AccountDataContext";
 import { ValidationObserver } from "vee-validate";
 import Main from "@/main";
 import { InputComponent } from "keiryo";
+import PasswordNotice from "@/components/global/PasswordNotice.vue";
 
 @Component({
     components: {
-        InputComponent
+        InputComponent,
+        PasswordNotice
     }
 })
 export default class ResetPasswordView extends Vue {
