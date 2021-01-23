@@ -2,15 +2,15 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
-import Settings from "@/settings.json";
 import { Constants } from "@sokkuri/common";
 
 export default {
-    ApiUrl: Settings.ApiUrl,
-    FilesUrl: Settings.FilesUrl,
-    ClientId: Settings.ClientId,
+    Name: "Sokkuri",
+    ApiUrl: "/api/",
+    FilesUrl: "/files/",
+    ClientId: "phantom",
     FallbackPrimaryLanguage: Constants.Languages.English,
     HCaptcha: {
-        SiteKey: Settings.HCaptcha.SiteKey
+        SiteKey: "8ee40008-1f08-4f31-b1df-dd67294cfaaa"
     }
 };

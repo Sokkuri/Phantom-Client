@@ -2,6 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
+import SeoUtils from "@/common/utilities/SeoUtils";
 import Vue from "vue";
 import VueRouter from "vue-router";
 
@@ -94,6 +95,16 @@ const router = new VueRouter({
     scrollBehavior() {
         return { x: 0, y: 0 };
     }
+});
+
+router.beforeEach((to, from, next) => {
+    // Remove SEO information when its no longer needed.
+    if (to.name != "anime" && from.name == "anime") {
+        SeoUtils.updateTitle();
+        SeoUtils.deleteMeta();
+    }
+
+    next();
 });
 
 export default router;

@@ -164,6 +164,8 @@ import RecensionComponent from "@/components/entry/RecensionComponent.vue";
 import RecensionViewModel from "@/common/viewModels/RecensionViewModel";
 import RecensionDataContext from "@/dataContexts/RecensionDataContext";
 import { Constants, EntryTitle, Description, Anime, UserListEntry, Tag, Content } from "@sokkuri/common";
+import SeoUtils from "@/common/utilities/SeoUtils";
+import Settings from "@/Settings";
 
 @Component({
     components: {
@@ -219,6 +221,7 @@ export default class AnimeView extends Vue {
                     this.setEntryDetails();
                     this.setAdditionalInformation();
                     this.setUserListData();
+                    this.setSeoInfo();
                 }
             });
 
@@ -244,6 +247,22 @@ export default class AnimeView extends Vue {
                 }
             });
         }
+    }
+
+    private setSeoInfo() {
+        // Add searchengine metadata
+        SeoUtils.updateTitle(this.entryMainTitle.title);
+        SeoUtils.updateMeta("description", this.entryMainDescription.content);
+
+        // Add open graph metadata
+        SeoUtils.updateMeta("og:site_name", Settings.Name);
+        SeoUtils.updateMeta("og:title", this.entryMainTitle.title);
+        SeoUtils.updateMeta("og:image", `https://sokkuri.eu${Settings.FilesUrl}${this.anime.systemFile.name}`);
+        SeoUtils.updateMeta("og:url", `https://sokkuri.eu/anime/${this.anime.id}`);
+        SeoUtils.updateMeta("og:description", this.entryMainDescription.content);
+
+        // Add twitter card metadata
+        SeoUtils.updateMeta("twitter:card", "summary");
     }
 
     private setMainDescription() {

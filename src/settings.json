@@ -1,8 +1,0 @@
-{
-    "ApiUrl": "/api/",
-    "FilesUrl": "/files/",
-    "ClientId": "phantom",
-    "HCaptcha": {
-        "SiteKey": "8ee40008-1f08-4f31-b1df-dd67294cfaaa"
-    }
-}
