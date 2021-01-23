@@ -9,7 +9,7 @@
                 <div class="column is-12">
                     <h1 class="title">{{ $t("search.anime.title")}}</h1>
                 </div>
-                <ValidationObserver ref="observer" v-slot="{ invalid }" tag="div" class="column is-12">
+                <ValidationObserver ref="observer" tag="div" class="column is-12">
                     <div class="columns is-multiline">
                         <div class="column is-6">
                             <label class="label">{{ $t("search.anime.label.format") }}</label>
@@ -18,6 +18,7 @@
                                 :multiple="true"
                                 :elements="selectableTypes"
                                 :rules="'required'"
+                                @input="onFilterChange"
                                 v-model="searchSettings.types"
                             />
 
@@ -26,6 +27,7 @@
                                 :name="'includedTagIds'"
                                 :multiple="true"
                                 :elements="selectableTags"
+                                @input="onFilterChange"
                                 v-model="searchSettings.includedTagIds"
                             />
 
@@ -34,6 +36,7 @@
                                 :name="'includedContentCompanyIds'"
                                 :multiple="true"
                                 :elements="selectableStreamingServices"
+                                @input="onFilterChange"
                                 v-model="searchSettings.includedContentCompanyIds"
                             />
                         </div>
@@ -44,6 +47,7 @@
                                 :multiple="true"
                                 :elements="selectableStates"
                                 :rules="'required'"
+                                @input="onFilterChange"
                                 v-model="searchSettings.states"
                             />
 
@@ -52,16 +56,14 @@
                                 :name="'excludedTagIds'"
                                 :multiple="true"
                                 :elements="selectableTags"
+                                @input="onFilterChange"
                                 v-model="searchSettings.excludedTagIds"
                             />
-                        </div>
-                        <div class="column is-12">
-                            <button class="button is-primary" :disabled="invalid" v-on:click="submitSearch">{{ $t("search.anime.button.search") }}</button>
                         </div>
                     </div>
                 </ValidationObserver>
                 <div class="column is-12">
-                    <h2 class="subtitle has-text-centered" v-if="searchResults.length == 0 && lastSearchResultCount == 0 && !initState">{{ $t("search.noResults") }}</h2>
+                    <h2 class="subtitle has-text-centered" v-if="searchResults.length == 0 && !loading">{{ $t("search.noResults") }}</h2>
                     <AnimeGridComponent
                         v-bind:columnWidth="2"
                         v-bind:entries="searchResults"
@@ -105,7 +107,6 @@ export default class AnimeSearchView extends Vue {
     private searchSettings: SearchSettings =  { types: [], states: [], includedTagIds: [], excludedTagIds: [], page: 1 } as SearchSettings;
 
     private lastSearchResultCount = 0;
-    private initState = true;
 
     created() {
         this.selectableTypes = SelectListItemUtils.getItems(Constants.AnimeTypes.AnimeTypes, TranslationUtils.translate, (x) => x, [ Constants.AnimeTypes.Series ]);
@@ -151,36 +152,35 @@ export default class AnimeSearchView extends Vue {
         });
     }
 
+    // Prevent multiple parallel running request.
+    private onFilterChange = _.debounce(() => this.submitSearch(), 400);
+
     private submitSearch() {
         this.searchResults = [];
         this.searchSettings.page = 1;
 
-        this.search().then(() => this.initState = false);
+        this.search();
     }
 
     private loadNextPage() {
-        const observer = this.$refs.observer as InstanceType<typeof ValidationObserver>;
-
-        observer.validate().then(x => {
-            if (x) {
-                this.searchSettings.page = this.searchSettings.page +1;
-                this.search();
-            }
-        });
+        this.searchSettings.page = this.searchSettings.page +1;
+        this.search();
     }
 
     private async search() {
+        const observer = this.$refs.observer as InstanceType<typeof ValidationObserver>;
         const searchDataContext = new SearchDataContext();
 
-        this.loading = true;
+        if (await observer.validate()) {
+            this.loading = true;
 
-        await searchDataContext.animeSearch(this.searchSettings).then(x => {
-            if (x.successfully && x.data) {
-                this.loading = false;
-                this.searchResults = _.unionBy(this.searchResults.concat(x.data), x => x.id);
-                this.lastSearchResultCount = x.data.length;
-            }
-        });
+            searchDataContext.animeSearch(this.searchSettings).then(x => {
+                if (x.successfully && x.data) {
+                    this.searchResults = _.unionBy(this.searchResults.concat(x.data), x => x.id);
+                    this.lastSearchResultCount = x.data.length;
+                }
+            }).finally(() => this.loading = false);
+        }
     }
 }
 </script>

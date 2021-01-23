@@ -158,9 +158,6 @@
     "search": {
         "anime": {
             "title": "Durchsuchen",
-            "button": {
-                "search": "Suchen"
-            },
             "label": {
                 "format": "Format",
                 "state": "Status",
