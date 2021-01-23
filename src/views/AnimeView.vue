@@ -13,7 +13,7 @@
                             v-if="anime.systemFile"
                             v-bind:fileName="anime.systemFile.name"
                         />
-                        <router-link class="button is-primary is-fullwidth" v-bind:to="'/anime/content/' + anime.id" tag="button">
+                        <router-link class="button is-primary is-fullwidth" :to="'/anime/' + anime.id + '/content'" tag="button">
                             <font-awesome-icon :icon="['far', 'play-circle']" size="2x" />
                             {{ $t("anime.button.watchNow") }}
                         </router-link>
@@ -166,6 +166,7 @@ import RecensionDataContext from "@/dataContexts/RecensionDataContext";
 import { Constants, EntryTitle, Description, Anime, UserListEntry, Tag, Content } from "@sokkuri/common";
 import SeoUtils from "@/common/utilities/SeoUtils";
 import Settings from "@/Settings";
+import Routes from "@/router/Routes";
 
 @Component({
     components: {
@@ -258,7 +259,7 @@ export default class AnimeView extends Vue {
         SeoUtils.updateMeta("og:site_name", Settings.Name);
         SeoUtils.updateMeta("og:title", this.entryMainTitle.title);
         SeoUtils.updateMeta("og:image", `https://sokkuri.eu${Settings.FilesUrl}${this.anime.systemFile.name}`);
-        SeoUtils.updateMeta("og:url", `https://sokkuri.eu/anime/${this.anime.id}`);
+        SeoUtils.updateMeta("og:url", `https://sokkuri.eu${Routes.Anime.Anime(this.anime.id)}`);
         SeoUtils.updateMeta("og:description", this.entryMainDescription.content);
 
         // Add twitter card metadata

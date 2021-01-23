@@ -47,7 +47,6 @@ import { Component, Vue } from "vue-property-decorator";
 import { UserSessionManager } from "kogitte";
 import { InputComponent } from "keiryo";
 import { ValidationObserver } from "vee-validate";
-import Main from "@/main";
 import Notification from "@/common/Notification";
 import TranslationUtils from "@/common/utilities/TranslationUtils";
 import GlobalEventBus from "@/common/GlobalEventBus";
@@ -55,6 +54,8 @@ import { CaptchaComponent } from "keiryo";
 import UserDataContext from "@/dataContexts/UserDataContext";
 import CurrentUser from "@/common/CurrentUser";
 import Settings from "@/Settings";
+import Router from "@/router/Router";
+import Routes from "@/router/Routes";
 
 @Component({
     components: {
@@ -86,7 +87,7 @@ export default class LoginView extends Vue {
                 await CurrentUser.loadUserInfo();
 
                 GlobalEventBus.$emit("update-login-state", "login");
-                Main.router.push({ name: "home" });
+                Router.navigate(Routes.Home);
             } else {
                 Notification.addError(TranslationUtils.translate("view.login.wrongLoginData")).show();
             }

@@ -48,6 +48,8 @@ import AccountErrors from "@/common/AccountErrors";
 import { InputComponent } from "keiryo";
 import { UserSessionManager } from "kogitte";
 import PasswordNotice from "@/components/global/PasswordNotice.vue";
+import Router from "@/router/Router";
+import Routes from "@/router/Routes";
 
 @Component({
     components: {
@@ -75,7 +77,7 @@ export default class ChangePasswordView extends Vue {
 
             if (saveResult.successfully) {
                 await this.userSessionManager.logout();
-                this.$router.push({ name: "login" });
+                Router.navigate(Routes.Login);
 
                 Notification.addSuccess(TranslationUtils.translate("notification.savedSuccessfully")).show();
             } else {

@@ -37,9 +37,10 @@
 import { Component, Vue } from "vue-property-decorator";
 import AccountDataContext from "@/dataContexts/AccountDataContext";
 import { ValidationObserver } from "vee-validate";
-import Main from "@/main";
 import { InputComponent } from "keiryo";
 import PasswordNotice from "@/components/global/PasswordNotice.vue";
+import Router from "@/router/Router";
+import Routes from "@/router/Routes";
 
 @Component({
     components: {
@@ -68,7 +69,7 @@ export default class ResetPasswordView extends Vue {
 
             this.accountDataContext.resetPassword(id, token, this.password).then(x => {
                 if (x.successfully) {
-                    Main.router.push({ name: "login" });
+                    Router.navigate(Routes.Login);
                 }
             }).finally(() => this.loading = false);
         }

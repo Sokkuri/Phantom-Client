@@ -6,7 +6,8 @@ import GlobalEventBus from "@/common/GlobalEventBus";
 import RequestResult from "@/common/models/RequestResult";
 import Notification from "@/common/Notification";
 import TranslationUtils from "@/common/utilities/TranslationUtils";
-import Main from "@/main";
+import Router from "@/router/Router";
+import Routes from "@/router/Routes";
 import Settings from "@/Settings";
 import Axios, { AxiosError } from "axios";
 import { UserSessionManager } from "kogitte";
@@ -93,7 +94,7 @@ export abstract class BaseDataContext {
         switch (result.statusCode) {
             case 401:
                 // Redirect to loginpage when response is unauthorized
-                Main.router.push({ name: "login" });
+                Router.navigate(Routes.Login);
                 break;
 
             case 400:
