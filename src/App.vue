@@ -20,11 +20,8 @@
 import { Component, Vue } from "vue-property-decorator";
 import HeaderComponent from "@/components/HeaderComponent.vue";
 import ConfigurationContext from "@/dataContexts/ConfigurationDataContext";
-import TranslationUtils from "@/common/utilities/TranslationUtils";
-import Notification from "@/common/Notification";
 import FooterComponent from "@/components/FooterComponent.vue";
 import OfflineView from "@/views/OfflineView.vue";
-import GlobalEventBus from "@/common/GlobalEventBus";
 import ErrorModalComponent from "@/components/ErrorModalComponent.vue";
 
 @Component({
@@ -39,30 +36,18 @@ export default class App extends Vue {
     private dataContext: ConfigurationContext = new ConfigurationContext();
     private apiOffline = false;
 
-    created() {
-        this.startup();
-    }
+    async created() {
+        const result = await this.dataContext.getVersion();
 
-    private startup(): void {
-        this.dataContext.getVersion().then((result) => {
-            if (!result.successfully || !result.data) {
-                this.apiOffline = true;
-            } else {
-                const savedVersion = localStorage.getItem("ProductVersion");
+        if (result.successfully) {
+            console.log(`[API BUILD INFO] Build Date: ${result.data?.buildDate}, Version Hash: ${result.data?.commit}`);
 
-                if (savedVersion != result.data.productVersion) {
-                    localStorage.setItem("ProductVersion", result.data.productVersion);
-
-                    if (savedVersion) {
-                        Notification.addInfo(TranslationUtils.translate("changelog.message")
-                            .replace("%PRODUCTVERSION%", result.data.productVersion),false)
-                            .show();
-                    }
-                }
+            if (result.data?.commit) {
+                localStorage.setItem("LastVersion", result.data.commit);
             }
-
-            GlobalEventBus.$emit("startup-finished");
-        });
+        } else {
+            this.apiOffline = true;
+        }
     }
 }
 </script>

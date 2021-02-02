@@ -5,9 +5,6 @@
         "twitter": "Twitter",
         "serverState": "Serverstatus"
     },
-    "changelog": {
-        "message": "Wir haben die Version %PRODUCTVERSION% unserer Seite veröffentlicht! Schaue dir doch die Erneuerungen in unserem Blog an! ^^"
-    },
     "error": {
         "title": "Das hätte nicht passieren dürfen!",
         "description": "Es ist ein unerwarteter Fehler aufgetreten."
@@ -206,8 +203,7 @@
         "footer": {
             "imprint": "Impressum",
             "privacyPolicy": "Datenschutzerklärung",
-            "contact": "Kontakt",
-            "version": "Version"
+            "contact": "Kontakt"
         },
         "passwordNotice": {
             "content": "Das Passwort muss mindestens aus 8 Zeichen bestehen, Großschreibung, Kleinschreibung, Zahlen und ein Sonderzeichen enthalten!"

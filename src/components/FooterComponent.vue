@@ -20,8 +20,8 @@
                 </div>
                 <div class="column is-4">
                     <ol>
+                        <li><a href="https://github.com/Sokkuri" target="_blank" rel="noopener noreferrer">Github</a></li>
                         <li><a href="mailto:support@sokkuri.eu">{{ $t("component.footer.contact") }}</a></li>
-                        <li>{{ $t("component.footer.version") + ": " + version }}</li>
                     </ol>
                 </div>
             </div>
@@ -31,22 +31,8 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import GlobalEventBus from "@/common/GlobalEventBus";
 
 @Component
 export default class FooterComponent extends Vue {
-    private version: String = "";
-
-    created() {
-        GlobalEventBus.$on("startup-finished",  this.loadVersion);
-    }
-
-    private loadVersion() {
-        const savedVersion = localStorage.getItem("ProductVersion");
-
-        if (savedVersion) {
-            this.version = savedVersion;
-        }
-    }
 }
 </script>
