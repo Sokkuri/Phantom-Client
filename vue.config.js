@@ -2,6 +2,8 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
+process.env.VUE_APP_COMMIT = process.env.GITHUB_SHA ?? process.env.CI_COMMIT_SHORT_SHA;
+
 module.exports = {
     pluginOptions: {
         i18n: {

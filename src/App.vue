@@ -23,6 +23,7 @@ import ConfigurationContext from "@/dataContexts/ConfigurationDataContext";
 import FooterComponent from "@/components/FooterComponent.vue";
 import OfflineView from "@/views/OfflineView.vue";
 import ErrorModalComponent from "@/components/ErrorModalComponent.vue";
+import Settings from "@/Settings";
 
 @Component({
     components: {
@@ -37,6 +38,8 @@ export default class App extends Vue {
     private apiOffline = false;
 
     async created() {
+        console.log(`[CLIENT BUILD INFO] Version Hash: ${Settings.Commit}`);
+
         const result = await this.dataContext.getVersion();
 
         if (result.successfully) {

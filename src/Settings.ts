@@ -5,6 +5,7 @@
 import { Constants } from "@sokkuri/common";
 
 export default {
+    Commit: process.env.VUE_APP_COMMIT,
     Name: "Sokkuri",
     ApiUrl: "/api/",
     FilesUrl: "/files/",
@@ -12,5 +13,5 @@ export default {
     FallbackPrimaryLanguage: Constants.Languages.English,
     HCaptcha: {
         SiteKey: "8ee40008-1f08-4f31-b1df-dd67294cfaaa"
-    }
+    },
 };
