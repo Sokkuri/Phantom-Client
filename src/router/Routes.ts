@@ -10,8 +10,8 @@ export default {
     ForgotPassword: "/forgotPassword",
     ResetPassword: "/resetPassword",
     Settings: {
-        AccountData: "accountData",
-        ChangePassword: "changePassword"
+        AccountData: "/settings/accountData",
+        ChangePassword: "/settings/changePassword"
     },
     Profile: {
         Profile: (userName: string) => `/profile/${userName}`,
