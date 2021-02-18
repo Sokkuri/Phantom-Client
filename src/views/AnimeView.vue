@@ -334,7 +334,7 @@ export default class AnimeView extends Vue {
     private setAdditionalInformation() {
         let infos: KeyValuePair<string, string[]>[] = [];
 
-        const otherTitles = this.anime.titles.filter(x => x != this.entryMainTitle);
+        const otherTitles = this.anime.titles.filter(x => x != this.entryMainTitle && x.type == Constants.EntryTitleTypes.Title);
 
         otherTitles.forEach(x => {
             infos.push(new KeyValuePair<string, string[]> ({
@@ -343,7 +343,7 @@ export default class AnimeView extends Vue {
             }));
         });
 
-        const synonyms = this.anime.synonyms.map(x => x.title);
+        const synonyms = this.anime.titles.filter(x => x.type == Constants.EntryTitleTypes.Synonym)?.map(x => x.title);
 
         if (synonyms && synonyms.length > 0) {
             infos.push(new KeyValuePair<string, string[]>({

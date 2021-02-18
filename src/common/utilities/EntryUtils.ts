@@ -3,13 +3,13 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 import Settings from "@/Settings";
-import { Description, EntryTitle } from "@sokkuri/common";
+import { Constants, Description, EntryTitle } from "@sokkuri/common";
 import _ from "lodash";
 
 export default class EntryUtils {
     public static getTitle(titles: EntryTitle[]) {
-        return titles.some(x => x.language == Settings.FallbackPrimaryLanguage) ?
-            (titles.find(x => x.language == Settings.FallbackPrimaryLanguage) as EntryTitle) : (_.first(titles) as EntryTitle);
+        return titles.some(x => x.language == Settings.FallbackPrimaryLanguage && x.type == Constants.EntryTitleTypes.Title) ?
+            (titles.find(x => x.language == Settings.FallbackPrimaryLanguage && x.type == Constants.EntryTitleTypes.Title) as EntryTitle) : (_.first(titles) as EntryTitle);
     }
 
     public static getDescription(descriptions: Description[]) {
