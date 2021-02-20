@@ -1,5 +1,5 @@
 FROM pierrezemb/gostatic
 
-ADD ./dist/ /srv/http
+ADD ./dist/artifact/ /srv/http
 
 ENTRYPOINT ["/goStatic", "-fallback=/index.html"]

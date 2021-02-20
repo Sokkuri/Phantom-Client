@@ -35,6 +35,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2.3.4
       - uses: actions/download-artifact@v2.0.8
+        with:
+          path: ${{ github.workspace }}/dist
       - uses: docker/login-action@v1.8.0
         with:
           registry: ghcr.io
