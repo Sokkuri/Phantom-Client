@@ -2,6 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
+import GlobalEventBus from "@/common/GlobalEventBus";
 import FontAwesomeIcons from "@/FontAwesomeIcons";
 import Router from "@/router/Router";
 import VeeValidators from "@/VeeValidators";
@@ -23,7 +24,12 @@ export default class Main {
 
 Main.i18n = i18n;
 
-AuthConfig.init(Settings.ClientId, `${Settings.ApiUrl}authentication/token`, `${Settings.ApiUrl}authentication/logout`);
+AuthConfig.init({
+    clientId: Settings.ClientId,
+    tokenUrl: `${Settings.ApiUrl}authentication/token`,
+    logoutUrl: `${Settings.ApiUrl}authentication/logout`,
+    onSessionExpire: () => GlobalEventBus.$emit("update-login-state", "logout")
+});
 
 const router = Router.init();
 
