@@ -38,9 +38,6 @@
         "title": "Neuigkeiten"
     },
     "view": {
-        "content": {
-            "firstEpisode": "Erste Episode"
-        },
         "season": {
             "series": "Serien",
             "movies": "Filme"

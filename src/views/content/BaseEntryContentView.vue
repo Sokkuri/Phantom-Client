@@ -18,15 +18,6 @@
                     <button class="button is-fullwidth" @click="openExternalLink(linkContent)">{{ linkContent.company.name }}</button>
                 </div>
             </div>
-            <div class="columns is-multiline"
-                v-if="firstEpisode.id">
-                <div class="column is-12">
-                    <h2 class="subtitle">{{ $t("view.content.firstEpisode") }}</h2>
-                </div>
-                <div class="column is-12">
-                    <VideoComponent v-bind:youtubeUrl="firstEpisode.url" />
-                </div>
-            </div>
         </div>
     </div>
 </template>
@@ -34,8 +25,6 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import RequestResult from "@/common/models/RequestResult";
-import VideoComponent from "@/components/global/VideoComponent.vue";
-import _ from "lodash";
 import StringUtils from "@/common/utilities/StringUtils";
 import { EntryTitle } from "@sokkuri/common";
 import AnimeDataContext from "@/dataContexts/AnimeDataContext";
@@ -45,8 +34,7 @@ import { Content,  Constants } from "@sokkuri/common";
 
 @Component({
     components: {
-        SpinnerComponent,
-        VideoComponent
+        SpinnerComponent
     }
 })
 export default class BaseEntryContentView extends Vue {
@@ -56,7 +44,6 @@ export default class BaseEntryContentView extends Vue {
     protected entryId: number;
     private entryTitle: EntryTitle = new EntryTitle();
     private streamLinkages: Content[] = [];
-    private firstEpisode: Content = new Content();
 
     created() {
         this.entryId = +this.$route.params.id;
@@ -75,12 +62,6 @@ export default class BaseEntryContentView extends Vue {
             getContents.then((x: RequestResult<Content[]>) => {
                 if (x.successfully && x.data) {
                     this.streamLinkages = x.data.filter(y => StringUtils.equalsIgnoreCase(y.type, Constants.ContentTypes.Streamlinking));
-
-                    const episode = _.first(x.data.filter(y => StringUtils.equalsIgnoreCase(y.type, Constants.ContentTypes.Episode)));
-
-                    if (episode) {
-                        this.firstEpisode = episode;
-                    }
                 }
             });
 
