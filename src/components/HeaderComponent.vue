@@ -69,6 +69,7 @@ import GlobalEventBus from "@/common/GlobalEventBus";
 import CurrentUser from "@/common/CurrentUser";
 import StringUtils from "@/common/utilities/StringUtils";
 import { UserInfo } from "@sokkuri/common";
+import GlobalEvents from "@/constants/GlobalEvents";
 
 @Component({
     components: {
@@ -82,16 +83,16 @@ export default class HeaderComponent extends Vue {
     private userSessionManager = new UserSessionManager();
 
     created() {
-        GlobalEventBus.$on("update-login-state", this.updateLoginState);
-        GlobalEventBus.$on("load-user-info", this.loadUserInfo);
+        GlobalEventBus.$on(GlobalEvents.UpdateLoginState, this.updateLoginState);
+        GlobalEventBus.$on(GlobalEvents.LoadUserInfo, this.loadUserInfo);
 
         this.sessionExists = new UserSessionManager().sessionExists();
         this.loadUserInfo();
     }
 
     beforeDestroy() {
-        GlobalEventBus.$off("update-login-state", this.updateLoginState);
-        GlobalEventBus.$off("load-user-info", this.loadUserInfo);
+        GlobalEventBus.$off(GlobalEvents.UpdateLoginState, this.updateLoginState);
+        GlobalEventBus.$off(GlobalEvents.LoadUserInfo, this.loadUserInfo);
     }
 
     private updateLoginState(state: string) {

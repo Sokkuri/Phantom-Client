@@ -106,23 +106,7 @@
                 </div>
             </div>
         </section>
-        <section class="section contents">
-            <div class="container">
-                <div class="columns is-multiline">
-                    <div class="column is-12">
-                        <h2 class="subtitle">{{ $t("anime.heading.contents") }}</h2>
-                    </div>
-                    <div class="column is-4"
-                        v-for="content in entryVideoContents"
-                        v-bind:key="content.id">
-
-                        <VideoComponent
-                            v-bind:youtubeUrl="content.url"
-                        />
-                    </div>
-                </div>
-            </div>
-        </section>
+        <VideoSectionComponent :urls="videoUrls" />
         <section class="section recensions" v-if="recensions.length > 0">
             <div class="container">
                 <div class="columns is-multiline">
@@ -163,10 +147,11 @@ import { SelectComponent, SelectListItem, SelectListItemUtils } from "keiryo";
 import RecensionComponent from "@/components/entry/RecensionComponent.vue";
 import RecensionViewModel from "@/common/viewModels/RecensionViewModel";
 import RecensionDataContext from "@/dataContexts/RecensionDataContext";
-import { Constants, EntryTitle, Description, Anime, UserListEntry, Tag, Content } from "@sokkuri/common";
+import { Constants, EntryTitle, Description, Anime, UserListEntry, Tag } from "@sokkuri/common";
 import SeoUtils from "@/common/utilities/SeoUtils";
 import Settings from "@/Settings";
 import Routes from "@/router/Routes";
+import VideoSectionComponent from "@/components/entry/VideoSectionComponent.vue";
 
 @Component({
     components: {
@@ -178,7 +163,8 @@ import Routes from "@/router/Routes";
         AnimeGridComponent,
         AnimeUserListEditorComponent,
         SelectComponent,
-        RecensionComponent
+        RecensionComponent,
+        VideoSectionComponent
     }
 })
 export default class AnimeView extends Vue {
@@ -189,7 +175,7 @@ export default class AnimeView extends Vue {
     private recensionDataContext: RecensionDataContext = new RecensionDataContext();
 
     private anime: Anime = new Anime();
-    private entryVideoContents: Content[] = [];
+    private videoUrls: string[] = [];
     private userListEntry: UserListEntry = new UserListEntry();
     private entryMainTitle: EntryTitle = new EntryTitle();
     private entryMainDescription: Description = new Description();
@@ -229,7 +215,7 @@ export default class AnimeView extends Vue {
             const getContents = this.contentDataContext.getAnimeContents(animeId);
             getContents.then(x => {
                 if (x.successfully && x.data) {
-                    this.entryVideoContents = x.data.filter(x => x.type == Constants.ContentTypes.Video);
+                    this.videoUrls = x.data.filter(x => x.type == Constants.ContentTypes.Video).map(x => x.url);
                 }
             });
 

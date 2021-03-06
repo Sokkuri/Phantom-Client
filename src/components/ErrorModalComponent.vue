@@ -20,6 +20,7 @@
 import { Component, Vue } from "vue-property-decorator";
 import GlobalEventBus from "@/common/GlobalEventBus";
 import ModalComponent from "@/components/global/ModalComponent.vue";
+import GlobalEvents from "@/constants/GlobalEvents";
 
 @Component({
     components: {
@@ -28,7 +29,7 @@ import ModalComponent from "@/components/global/ModalComponent.vue";
 })
 export default class ErrorModalComponent extends Vue {
     created() {
-        GlobalEventBus.$on("server-error", this.showModal);
+        GlobalEventBus.$on(GlobalEvents.ServerError, this.showModal);
     }
 
     private showModal() {

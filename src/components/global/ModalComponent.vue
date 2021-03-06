@@ -4,12 +4,12 @@
 
 <template>
     <div ref="modalElement" class="modal">
-        <div class="modal-background" v-on:click="onCloseClick"></div>
+        <div class="modal-background" @click="onCloseClick"></div>
 
         <div class="modal-content">
             <div class="columns">
                 <div class="column is-12">
-                    <button class="delete" v-on:click="onCloseClick" />
+                    <button class="delete" @click="onCloseClick" />
                 </div>
             </div>
             <slot></slot>

@@ -24,6 +24,7 @@ import FooterComponent from "@/components/FooterComponent.vue";
 import OfflineView from "@/views/OfflineView.vue";
 import ErrorModalComponent from "@/components/ErrorModalComponent.vue";
 import Settings from "@/Settings";
+import LocalStorageKeys from "@/constants/LocalStorageKeys";
 
 @Component({
     components: {
@@ -46,7 +47,7 @@ export default class App extends Vue {
             console.log(`[API BUILD INFO] Build Date: ${result.data?.buildDate}, Version Hash: ${result.data?.commit}`);
 
             if (result.data?.commit) {
-                localStorage.setItem("LastVersion", result.data.commit);
+                localStorage.setItem(LocalStorageKeys.LastVersion, result.data.commit);
             }
         } else {
             this.apiOffline = true;

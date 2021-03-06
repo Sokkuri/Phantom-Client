@@ -56,6 +56,7 @@ import CurrentUser from "@/common/CurrentUser";
 import Settings from "@/Settings";
 import Router from "@/router/Router";
 import Routes from "@/router/Routes";
+import GlobalEvents from "@/constants/GlobalEvents";
 
 @Component({
     components: {
@@ -86,7 +87,7 @@ export default class LoginView extends Vue {
             if (authResult.successfully && authResult.data) {
                 await CurrentUser.loadUserInfo();
 
-                GlobalEventBus.$emit("update-login-state", "login");
+                GlobalEventBus.$emit(GlobalEvents.UpdateLoginState, "login");
                 Router.navigate(Routes.Home);
             } else {
                 Notification.addError(TranslationUtils.translate("view.login.wrongLoginData")).show();

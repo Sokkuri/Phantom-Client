@@ -6,6 +6,7 @@ import GlobalEventBus from "@/common/GlobalEventBus";
 import RequestResult from "@/common/models/RequestResult";
 import Notification from "@/common/Notification";
 import TranslationUtils from "@/common/utilities/TranslationUtils";
+import GlobalEvents from "@/constants/GlobalEvents";
 import Router from "@/router/Router";
 import Routes from "@/router/Routes";
 import Settings from "@/Settings";
@@ -103,7 +104,7 @@ export abstract class BaseDataContext {
 
             case 500:
                 // Show error modal
-                GlobalEventBus.$emit("server-error");
+                GlobalEventBus.$emit(GlobalEvents.ServerError);
                 break;
 
             default:

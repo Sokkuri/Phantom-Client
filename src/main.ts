@@ -3,6 +3,7 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 import GlobalEventBus from "@/common/GlobalEventBus";
+import GlobalEvents from "@/constants/GlobalEvents";
 import FontAwesomeIcons from "@/FontAwesomeIcons";
 import Router from "@/router/Router";
 import VeeValidators from "@/VeeValidators";
@@ -28,7 +29,7 @@ AuthConfig.init({
     clientId: Settings.ClientId,
     tokenUrl: `${Settings.ApiUrl}authentication/token`,
     logoutUrl: `${Settings.ApiUrl}authentication/logout`,
-    onSessionExpire: () => GlobalEventBus.$emit("update-login-state", "logout")
+    onSessionExpire: () => GlobalEventBus.$emit(GlobalEvents.UpdateLoginState, "logout")
 });
 
 const router = Router.init();

@@ -3,7 +3,9 @@
    - file, You can obtain one at https://mozilla.org/MPL/2.0/. -->
 
 <template>
-    <iframe v-bind:src="youtubeUrl" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <div class="video-component">
+        <iframe :src="youtubeUrl" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
+    </div>
 </template>
 
 <script lang="ts">
@@ -14,3 +16,13 @@ export default class VideoComponent extends Vue {
     @Prop() private youtubeUrl!: string;
 }
 </script>
+
+<style lang="scss" scoped>
+.video-component {
+    iframe {
+        width: 100%;
+        height: 100%;
+        min-height: 14.1rem;
+    }
+}
+</style>
