@@ -3,11 +3,10 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 import Settings from "@/Settings";
-import _ from "lodash";
 
 export default class SeoUtils {
     public static updateTitle(prefix?: string) {
-        document.title = prefix ? `${_.escape(prefix)} - ${Settings.Name}` : Settings.Name;
+        document.title = prefix ? `${prefix} - ${Settings.Name}` : Settings.Name;
     }
 
     public static updateMeta(name: string, content?: string) {
