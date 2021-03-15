@@ -40,7 +40,7 @@
         "@vue/cli-plugin-typescript": "^4.5.11",
         "@vue/cli-service": "^4.5.11",
         "@sokkuri/eslint-config": "^2.1.2",
-        "eslint": "^7.18.0",
+        "eslint": "^7.22.0",
         "sass": "^1.32.8",
         "sass-loader": "^10.1.1",
         "typescript": "^4.2.3",
