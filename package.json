@@ -25,7 +25,7 @@
         "vue-router": "^3.5.1",
         "uuid": "^8.3.2",
         "lodash": "^4.17.21",
-        "viewerjs": "^1.9.0",
+        "viewerjs": "^1.10.0",
         "date-fns": "^2.22.1",
         "noty": "^3.2.0-beta",
         "tippy.js": "^6.3.1",
