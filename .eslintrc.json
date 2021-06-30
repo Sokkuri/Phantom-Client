@@ -1,5 +1,0 @@
-{
-    "extends": [
-        "@sokkuri/eslint-config"
-    ]
-}
