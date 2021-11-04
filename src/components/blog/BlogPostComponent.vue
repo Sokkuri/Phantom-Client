@@ -16,7 +16,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import ImageComponent from "@/components/global/ImageComponent.vue";
-import TimeFormatUtils from "@/common/utilities/TimeFormatUtils";
+import TimeUtils from "@/common/utilities/TimeUtils";
 
 @Component({
   components: {
@@ -31,7 +31,7 @@ export default class BlogPostComponent extends Vue {
     @Prop() private creationDate!: string;
 
     private getFormattedDate() {
-    return TimeFormatUtils.getDateTime(this.creationDate);
+    return TimeUtils.formatDateTime(this.creationDate);
     }
 }
 </script>
