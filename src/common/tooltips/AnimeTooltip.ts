@@ -4,7 +4,7 @@
 
 import TranslationUtils from "@/common/utilities/TranslationUtils";
 import { Anime, Constants } from "@sokkuri/common";
-import _ from "lodash";
+import { escape, take } from "lodash-es";
 import { Instance } from "tippy.js";
 import BaseTooltip from "./BaseTooltip";
 
@@ -23,27 +23,27 @@ export default class AnimeTooltip extends BaseTooltip {
         const infos: string[] = [];
 
         if (data.type == Constants.AnimeTypes.Movie || data.episodes == 0) {
-            infos.push(_.escape(TranslationUtils.translate(data.type)));
+            infos.push(escape(TranslationUtils.translate(data.type)));
         } else {
-            infos.push(`${_.escape(TranslationUtils.translate(data.type))} - ${data.episodes} ${TranslationUtils.translate("anime.details.episodes")}`);
+            infos.push(`${escape(TranslationUtils.translate(data.type))} - ${data.episodes} ${TranslationUtils.translate("anime.details.episodes")}`);
         }
 
-        infos.push(_.escape(TranslationUtils.translate(data.status)));
+        infos.push(escape(TranslationUtils.translate(data.status)));
 
         let tagElements = "";
 
         if (data.tags.length > 0) {
-            const tags = _.take(data.tags, 3);
+            const tags = take(data.tags, 3);
 
             tags.forEach(x => {
-                tagElements += `<span class="tag is-rounded">${_.escape(TranslationUtils.translate(x.translationKey))}</span>`;
+                tagElements += `<span class="tag is-rounded">${escape(TranslationUtils.translate(x.translationKey))}</span>`;
             });
         }
 
         let htmlElements = "";
 
         infos.forEach(x => {
-            htmlElements = htmlElements.concat(`<p>${_.escape(x)}</p>`);
+            htmlElements = htmlElements.concat(`<p>${escape(x)}</p>`);
         });
 
         htmlElements = htmlElements.concat(`<div class="tags">${tagElements}</div>`);

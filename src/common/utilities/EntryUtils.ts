@@ -4,16 +4,16 @@
 
 import Settings from "@/Settings";
 import { Constants, Description, EntryTitle } from "@sokkuri/common";
-import _ from "lodash";
+import { first } from "lodash-es";
 
 export default class EntryUtils {
     public static getTitle(titles: EntryTitle[]) {
         return titles.some(x => x.language == Settings.FallbackPrimaryLanguage && x.type == Constants.EntryTitleTypes.Title) ?
-            (titles.find(x => x.language == Settings.FallbackPrimaryLanguage && x.type == Constants.EntryTitleTypes.Title) as EntryTitle) : (_.first(titles) as EntryTitle);
+            (titles.find(x => x.language == Settings.FallbackPrimaryLanguage && x.type == Constants.EntryTitleTypes.Title) as EntryTitle) : (first(titles) as EntryTitle);
     }
 
     public static getDescription(descriptions: Description[]) {
         return descriptions.some(x => x.language == Settings.FallbackPrimaryLanguage) ?
-            (descriptions.find(x => x.language == Settings.FallbackPrimaryLanguage) as Description) : (_.first(descriptions) as Description);
+            (descriptions.find(x => x.language == Settings.FallbackPrimaryLanguage) as Description) : (first(descriptions) as Description);
     }
 }
