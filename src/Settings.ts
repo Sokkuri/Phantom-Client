@@ -10,6 +10,9 @@ export default {
     ApiUrl: "/api/",
     FilesUrl: "/files/",
     ClientId: "phantom",
+    Language: navigator.language?.startsWith("de") ? "de" : "en",
+
+    // ToDo: Temporary!
     FallbackPrimaryLanguage: Constants.Languages.English,
     HCaptcha: {
         SiteKey: "8ee40008-1f08-4f31-b1df-dd67294cfaaa"
