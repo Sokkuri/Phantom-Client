@@ -27,7 +27,7 @@
         "viewerjs": "^1.10.0",
         "noty": "^3.2.0-beta",
         "tippy.js": "^6.3.1",
-        "vee-validate": "^3.4.10",
+        "vee-validate": "^3.4.14",
         "dayjs": "^1.10.7"
     },
     "devDependencies": {
