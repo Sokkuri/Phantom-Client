@@ -5,3 +5,9 @@ updates:
     schedule:
       interval: "monthly"
     target-branch: "dev"
+    allow:
+      - dependency-name: "*"
+        dependency-type: production
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
