@@ -11,7 +11,7 @@
         "@fortawesome/fontawesome-svg-core": "^1.2.35",
         "@fortawesome/free-regular-svg-icons": "^5.15.3",
         "@fortawesome/free-solid-svg-icons": "^5.15.3",
-        "@fortawesome/vue-fontawesome": "^2.0.2",
+        "@fortawesome/vue-fontawesome": "^2.0.8",
         "@sokkuri/common": "^1.4.0",
         "kogitte": "^5.1.2",
         "keiryo": "^2.3.1",
@@ -26,7 +26,7 @@
         "lodash-es": "^4.17.21",
         "viewerjs": "^1.10.5",
         "noty": "^3.2.0-beta",
-        "tippy.js": "^6.3.1",
+        "tippy.js": "^6.3.7",
         "vee-validate": "^3.4.14",
         "dayjs": "^1.10.7"
     },
