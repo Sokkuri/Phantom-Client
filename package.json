@@ -28,7 +28,7 @@
         "noty": "^3.2.0-beta",
         "tippy.js": "^6.3.7",
         "vee-validate": "^3.4.14",
-        "dayjs": "^1.11.5"
+        "dayjs": "^1.11.7"
     },
     "devDependencies": {
         "@types/webpack": "^4.41.26",
